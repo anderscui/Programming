@@ -14,3 +14,4 @@ f = '2'
 if type(e) is type(f):
     print('e and f have the same types.')
 
+# type checking
