@@ -1,0 +1,10 @@
+EFP App
+	iOS
+		APN service
+			app id + customer id + device id
+
+	Android
+
+
+Parse
+	
