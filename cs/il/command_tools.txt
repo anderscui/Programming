@@ -1,0 +1,10 @@
+1. ilasm
+>ilasm /exe HelloWorld.il /output=NewHelloWorld.exe
+
+# or
+>ilasm /dll CILTypes.il
+
+2. peverify
+>peverify NewHelloWorld.exe
+
+3.
