@@ -47,10 +47,13 @@
     <Compile Include="Threads\AsyncDelegateStateData.cs" />
     <Compile Include="Threads\AsyncDelegateCallback.cs" />
     <Compile Include="Threads\AsyncDelegate.cs" />
+    <Compile Include="Threads\Printer2.cs" />
     <Compile Include="Threads\Printer.cs" />
     <Compile Include="Threads\ParameterizedThreadStart.cs" />
+    <Compile Include="Threads\MultiThreadsIssue.cs" />
     <Compile Include="Threads\SimpleThreadStart.cs" />
     <Compile Include="Threads\SyncDelegate.cs" />
+    <Compile Include="Threads\TimerTime.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

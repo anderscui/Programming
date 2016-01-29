@@ -20,7 +20,13 @@ namespace Andersc.CodePlay.PlayConsole
 
             // Use Thread Type
             //SimpleThreadStart.Demo();
-            ParameterizedThreadStarts.Demo();
+            //ParameterizedThreadStarts.Demo();
+
+            // lock, Monitor...
+            //MultiThreadsIssue.Demo();
+
+            // Timer
+            TimerTime.Demo();
         }
 
         static void ThreadStats()

@@ -10,6 +10,8 @@ The is not a direct one-to-one correspondence between app domains and threads.
 
 Aborting or suspending an active thread is generally considered a bad idea.
 
+Assignments and simple arithmetic operations are not **atomic**.
+
 # The Problem of Concurrency
 
 One of the many "painful aspects" of multithreaded programming is that you have little control
@@ -22,3 +24,6 @@ thread-volative vs. atomic
 delegate type, TPL(Task Parallel Library), async & await
 
 
+# ThreadPool
+
+Pooled threads are always background threads with default priority(Normal).

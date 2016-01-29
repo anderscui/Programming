@@ -23,6 +23,7 @@ namespace Andersc.CodePlay.PlayConsole.Threads
                     //var backgroundThread = new Thread(p.PrintNumbers);
                     var backgroundThread = new Thread(new ThreadStart(p.PrintNumbers));
                     backgroundThread.Name = "Secondary";
+                    //backgroundThread.IsBackground = true;
                     backgroundThread.Start();
                     break;
                 case "1":
