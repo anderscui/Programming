@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayConsole", "src\PlayCons
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayGround", "test\PlayGround\PlayGround.csproj", "{97E1E3FB-E266-4BCA-9231-93292AB775B2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayForms", "src\PlayForms\PlayForms.csproj", "{0F0E2BB1-E92A-4926-8EF0-24B6031D6D20}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{97E1E3FB-E266-4BCA-9231-93292AB775B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97E1E3FB-E266-4BCA-9231-93292AB775B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97E1E3FB-E266-4BCA-9231-93292AB775B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F0E2BB1-E92A-4926-8EF0-24B6031D6D20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F0E2BB1-E92A-4926-8EF0-24B6031D6D20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F0E2BB1-E92A-4926-8EF0-24B6031D6D20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F0E2BB1-E92A-4926-8EF0-24B6031D6D20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
