@@ -42,8 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\TestContracts.cs" />
+    <Compile Include="Lambdas\TestQueries.cs" />
     <Compile Include="Lambdas\TestLambdas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Types\TestTypes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
