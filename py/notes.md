@@ -30,6 +30,12 @@ Methods with leading and trailing double underscores are special methods, e.g. _
 
 strings are stored as seq of chars indexed by integers.
 
+**reg ex**
+
+* match (from start of string)
+* search
+* findall
+* finditer
 
 **errors and exceptions**
 

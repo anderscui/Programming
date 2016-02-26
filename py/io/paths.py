@@ -18,6 +18,12 @@ print('dir name: ' + os.path.dirname(__file__))
 print('{0} exists? {1}'.format(__file__, os.path.exists(__file__)))
 print('{0} exists? {1}'.format(__file__ + 'y', os.path.exists(__file__ + 'y')))
 
+# dir exists
+print('dir {0} exists? {1}'.format('dir1', os.path.isdir('dir1')))
+print('dir {0} exists? {1}'.format('test_dir', os.path.isdir('test_dir')))
+print('dir {0} exists? {1}'.format('./test_dir', os.path.isdir('./test_dir')))
+print('dir {0} exists? {1}'.format('./test_dir/', os.path.isdir('./test_dir/')))
+
 # file size
 print('{0} size: {1}'.format(__file__, os.path.getsize(__file__)))
 
