@@ -5,7 +5,8 @@ re_pure_number = re.compile(r'^[-+]?\d*\.\d+|\d+$')
 re_number_with_unit = re.compile(r'^[-+]?(\d*\.\d+|\d+)[a-zA-Z]+')
 re_money = re.compile(r'^\$(\d*\.\d+|\d+)$')
 
-re_en_word = re.compile(r"^[a-z-'.&]+$")
+re_en_word = re.compile(r"^[a-zA-Z-'.&]+$")
+re_en_ngram = re.compile(r"^[a-zA-Z-'.& ]+$")
 
 def test_re_numbers():
     s = 'numbers: -1.1, 3.2 or 5'
@@ -28,6 +29,10 @@ def isnumeric_with_unit(s):
 
 def is_english_word(w):
     return re_en_word.match(w) is not None
+
+
+def is_english_ngram(w):
+    return re_en_ngram.match(w) is not None
 
 
 def test_isnumeric():
@@ -74,7 +79,6 @@ def test_is_english_word():
     assert not is_english_word('p@ssword')
     assert not is_english_word('is_good')
     assert not is_english_word(r'at\a')
-    assert not is_english_word('Good')
 
     assert is_english_word('a')
     assert is_english_word('word')
@@ -83,4 +87,20 @@ def test_is_english_word():
     assert is_english_word('u.s.a.')
     assert is_english_word('at&t')
 
+    assert is_english_word('B')
+    assert is_english_word('Good')
 
+
+def test_is_english_ngram():
+    test_is_english_word()
+
+    assert is_english_ngram('Hello world')
+    assert is_english_ngram('i love you')
+    assert is_english_ngram('i love you ')
+
+    assert not is_english_ngram('i love you !')
+    assert not is_english_ngram('i love \t you')
+
+
+if __name__ == '__main__':
+    test_is_english_word()
