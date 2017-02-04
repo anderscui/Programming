@@ -265,5 +265,6 @@ target/
 #Ipython Notebook
 .ipynb_checkpoints
 
-
 py3/.idea/*
+
+.DS_Store
