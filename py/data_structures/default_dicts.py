@@ -12,3 +12,5 @@ assert d['a'] == 15
 assert d['b'] == 20
 assert d['c'] == 25
 assert d['d'] == 0
+
+assert len(d) == 4

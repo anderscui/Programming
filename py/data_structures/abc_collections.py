@@ -1,3 +1,4 @@
+# TODO: Py3?
 from collections.abc import Sequence
 
 
