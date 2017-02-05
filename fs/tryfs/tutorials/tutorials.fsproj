@@ -44,10 +44,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Tutorial.fs" />
+    <Compile Include="identifiers.fs" />
+    <Compile Include="funs.fs" />
+    <Compile Include="recur.fs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="hello.fs" />
+    <None Include="quick\hello.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="quick\" />
   </ItemGroup>
   <Import Project="$(FSharpTargetsPath)" />
 </Project>
