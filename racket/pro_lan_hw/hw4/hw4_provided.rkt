@@ -56,7 +56,22 @@
 						  [(equal? v (car (vector-ref vec start))) (vector-ref vec start)]
 						  [#t (f vec v (+ start 1))]))])
 		(f vec v 0)))
-	
+
+(define (cached-assoc xs n)
+	(let ([vs (make-vector n #f)]
+		  [next 0])
+		(lambda (v)
+			(let ([invec (vector-assoc v vs)])
+				(if invec
+					invec
+					(let ([ans (assoc v xs)])
+						(if ans
+							(begin
+								(print "found one")
+								(vector-set! vs next ans)
+								(set! next (remainder (+ next 1) n))
+								ans)
+							#f)))))))
 
 ; testing helpers
 (define nats
@@ -93,5 +108,18 @@
 (and (equal? (vector-assoc 3 (vector (cons 1 2) (cons 3 4) "str" (cons 5 6))) (cons 3 4))
 	 (equal? (vector-assoc 9 (vector (cons 1 2) (cons 3 4) "str" (cons 5 6))) #f))
 
+(define xlist (list (cons 1 2) (cons 3 4) (cons 5 6) (cons 7 8) (cons 9 10)))
+(define cached (cached-assoc xlist 3))
+
+(cached 3)
+(cached 3)
+(cached 1)
+(cached 7)
+(cached 9)
+(cached 3)
+(cached 3)
+(cached 5)
+(cached 9)
+(cached 7)
 
 

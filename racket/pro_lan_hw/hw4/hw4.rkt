@@ -56,3 +56,19 @@
 						  [(equal? v (car (vector-ref vec start))) (vector-ref vec start)]
 						  [#t (f vec v (+ start 1))]))])
 		(f vec v 0)))
+
+(define (cached-assoc xs n)
+	(let ([vs (make-vector n #f)]
+		  [next 0])
+		(lambda (v)
+			(let ([invec (vector-assoc v vs)])
+				(if invec
+					invec
+					(let ([ans (assoc v xs)])
+						(if ans
+							(begin
+								(print "found one")
+								(vector-set! vs next ans)
+								(set! next (remainder (+ next 1) n))
+								ans)
+							#f)))))))
