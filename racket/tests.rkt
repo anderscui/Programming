@@ -8,3 +8,13 @@
 
 (cadr (list 1 2))
 (caddr (list 1 2 3))
+
+(pair? (list 1 2))
+(pair? null)
+
+(define (sum lst)
+	(if (pair? lst)
+		(+ (car lst) (sum (cdr lst)))
+		0))
+(sum null)
+(sum (list 1 2 3))
