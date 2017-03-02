@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{6D9B7693-C26D-46E9-854B-FBA181A72270}</ProjectGuid>
+    <ProjectGuid>{1954F4A0-34F0-48FB-861F-903551A85B66}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>tutorials</RootNamespace>
-    <AssemblyName>tutorials</AssemblyName>
+    <RootNamespace>cli</RootNamespace>
+    <AssemblyName>cli</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -38,25 +38,20 @@
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.ValueTuple">
+      <HintPath>..\packages\System.ValueTuple.4.3.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="FSharp.Core">
-      <HintPath>..\packages\FSharp.Core.4.0.0.1\lib\net40\FSharp.Core.dll</HintPath>
+      <HintPath>..\packages\FSharp.Core.4.1.0\lib\net40\FSharp.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Tutorial.fs" />
-    <Compile Include="quick\identifiers.fs" />
-    <Compile Include="quick\funs.fs" />
-    <Compile Include="quick\recur.fs" />
-    <Compile Include="quick\pairs.fs" />
-    <Compile Include="quick\gcd.fs" />
-    <Compile Include="quick\main_appfs.fs" />
+    <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="quick\hello.fs" />
-    <None Include="quick\packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="quick\" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(FSharpTargetsPath)" />
 </Project>

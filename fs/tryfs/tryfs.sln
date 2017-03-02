@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "tutorials", "tutorials\tutorials.fsproj", "{6D9B7693-C26D-46E9-854B-FBA181A72270}"
 EndProject
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "cli", "cli\cli.fsproj", "{1954F4A0-34F0-48FB-861F-903551A85B66}"
+EndProject
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "types", "types\types.fsproj", "{F9E8F8AF-339E-4177-A491-840B41C3C615}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,5 +17,13 @@ Global
 		{6D9B7693-C26D-46E9-854B-FBA181A72270}.Debug|x86.Build.0 = Debug|x86
 		{6D9B7693-C26D-46E9-854B-FBA181A72270}.Release|x86.ActiveCfg = Release|x86
 		{6D9B7693-C26D-46E9-854B-FBA181A72270}.Release|x86.Build.0 = Release|x86
+		{1954F4A0-34F0-48FB-861F-903551A85B66}.Debug|x86.ActiveCfg = Debug|x86
+		{1954F4A0-34F0-48FB-861F-903551A85B66}.Debug|x86.Build.0 = Debug|x86
+		{1954F4A0-34F0-48FB-861F-903551A85B66}.Release|x86.ActiveCfg = Release|x86
+		{1954F4A0-34F0-48FB-861F-903551A85B66}.Release|x86.Build.0 = Release|x86
+		{F9E8F8AF-339E-4177-A491-840B41C3C615}.Debug|x86.ActiveCfg = Debug|x86
+		{F9E8F8AF-339E-4177-A491-840B41C3C615}.Debug|x86.Build.0 = Debug|x86
+		{F9E8F8AF-339E-4177-A491-840B41C3C615}.Release|x86.ActiveCfg = Release|x86
+		{F9E8F8AF-339E-4177-A491-840B41C3C615}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 EndGlobal
