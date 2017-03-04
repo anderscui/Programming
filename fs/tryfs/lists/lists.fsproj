@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{F9E8F8AF-339E-4177-A491-840B41C3C615}</ProjectGuid>
+    <ProjectGuid>{BB726D8E-18CB-43C7-ADE1-56BFC8CE25F8}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>types</RootNamespace>
-    <AssemblyName>types</AssemblyName>
+    <RootNamespace>lists</RootNamespace>
+    <AssemblyName>lists</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -49,23 +49,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="numbers.fs" />
-    <Compile Include="texts.fs" />
-    <Compile Include="if_exp.fs" />
-    <Compile Include="op_overloading.fs" />
-    <Compile Include="higher-order.fs" />
-    <Compile Include="fun_comp.fs" />
-    <Compile Include="infixesfs.fs" />
-    <Compile Include="equality.fs" />
-    <Compile Include="ordering.fs" />
-    <Compile Include="tuples.fs" />
-    <Compile Include="geo_vectors.fs" />
-    <Compile Include="records.fs" />
-    <Compile Include="quadratic_equation.fs" />
-    <Compile Include="rational.fs" />
-    <Compile Include="tagged_val.fs" />
-    <Compile Include="enums.fs" />
-    <Compile Include="option_val.fs" />
+    <Compile Include="lists.fs" />
+    <Compile Include="list_exp.fs" />
+    <Compile Include="recur.fs" />
   </ItemGroup>
   <Import Project="$(FSharpTargetsPath)" />
 </Project>
