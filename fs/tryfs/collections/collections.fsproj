@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{BB726D8E-18CB-43C7-ADE1-56BFC8CE25F8}</ProjectGuid>
+    <ProjectGuid>{A7D7F4EC-C7B1-4C04-914C-862EF88808DE}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>lists</RootNamespace>
-    <AssemblyName>lists</AssemblyName>
+    <RootNamespace>collections</RootNamespace>
+    <AssemblyName>collections</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -38,22 +38,17 @@
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.ValueTuple">
-      <HintPath>..\packages\System.ValueTuple.4.3.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
-    </Reference>
     <Reference Include="FSharp.Core">
-      <HintPath>..\packages\FSharp.Core.4.1.0\lib\net40\FSharp.Core.dll</HintPath>
+      <HintPath>..\packages\FSharp.Core.4.0.0.1\lib\net40\FSharp.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="maps.fsx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="lists.fs" />
-    <Compile Include="list_exp.fs" />
-    <Compile Include="recur.fs" />
-    <Compile Include="recur_more.fs" />
-    <Compile Include="cash_register.fs" />
+    <Compile Include="sets.fs" />
   </ItemGroup>
   <Import Project="$(FSharpTargetsPath)" />
 </Project>

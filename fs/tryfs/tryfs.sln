@@ -9,6 +9,8 @@ Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "types", "types\types.fsproj
 EndProject
 Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "lists", "lists\lists.fsproj", "{BB726D8E-18CB-43C7-ADE1-56BFC8CE25F8}"
 EndProject
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "collections", "collections\collections.fsproj", "{A7D7F4EC-C7B1-4C04-914C-862EF88808DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -31,5 +33,9 @@ Global
 		{BB726D8E-18CB-43C7-ADE1-56BFC8CE25F8}.Debug|x86.Build.0 = Debug|x86
 		{BB726D8E-18CB-43C7-ADE1-56BFC8CE25F8}.Release|x86.ActiveCfg = Release|x86
 		{BB726D8E-18CB-43C7-ADE1-56BFC8CE25F8}.Release|x86.Build.0 = Release|x86
+		{A7D7F4EC-C7B1-4C04-914C-862EF88808DE}.Debug|x86.ActiveCfg = Debug|x86
+		{A7D7F4EC-C7B1-4C04-914C-862EF88808DE}.Debug|x86.Build.0 = Debug|x86
+		{A7D7F4EC-C7B1-4C04-914C-862EF88808DE}.Release|x86.ActiveCfg = Release|x86
+		{A7D7F4EC-C7B1-4C04-914C-862EF88808DE}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 EndGlobal
