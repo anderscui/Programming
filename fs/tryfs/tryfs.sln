@@ -11,6 +11,8 @@ Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "lists", "lists\lists.fsproj
 EndProject
 Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "collections", "collections\collections.fsproj", "{A7D7F4EC-C7B1-4C04-914C-862EF88808DE}"
 EndProject
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "finite_trees", "finite_trees\finite_trees.fsproj", "{C3491B3B-F9C6-4935-B036-E998D2C4A3F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -37,5 +39,9 @@ Global
 		{A7D7F4EC-C7B1-4C04-914C-862EF88808DE}.Debug|x86.Build.0 = Debug|x86
 		{A7D7F4EC-C7B1-4C04-914C-862EF88808DE}.Release|x86.ActiveCfg = Release|x86
 		{A7D7F4EC-C7B1-4C04-914C-862EF88808DE}.Release|x86.Build.0 = Release|x86
+		{C3491B3B-F9C6-4935-B036-E998D2C4A3F8}.Debug|x86.ActiveCfg = Debug|x86
+		{C3491B3B-F9C6-4935-B036-E998D2C4A3F8}.Debug|x86.Build.0 = Debug|x86
+		{C3491B3B-F9C6-4935-B036-E998D2C4A3F8}.Release|x86.ActiveCfg = Release|x86
+		{C3491B3B-F9C6-4935-B036-E998D2C4A3F8}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 EndGlobal
