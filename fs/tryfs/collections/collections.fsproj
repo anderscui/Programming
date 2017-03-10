@@ -45,8 +45,6 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="maps.fsx" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="lists.fs" />
     <Compile Include="sets.fs" />
   </ItemGroup>

@@ -47,8 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="numbers.fs" />
     <Compile Include="texts.fs" />
     <Compile Include="if_exp.fs" />

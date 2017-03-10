@@ -47,8 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="lists.fs" />
     <Compile Include="list_exp.fs" />
     <Compile Include="recur.fs" />

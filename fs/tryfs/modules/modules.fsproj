@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{C3491B3B-F9C6-4935-B036-E998D2C4A3F8}</ProjectGuid>
+    <ProjectGuid>{4E2DA5B9-DA03-4EED-BF8D-07A8E2629F24}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>finite_trees</RootNamespace>
-    <AssemblyName>finite_trees</AssemblyName>
+    <RootNamespace>modules</RootNamespace>
+    <AssemblyName>modules</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -38,19 +38,19 @@
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.ValueTuple">
-      <HintPath>..\packages\System.ValueTuple.4.3.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
-    </Reference>
     <Reference Include="FSharp.Core">
-      <HintPath>..\packages\FSharp.Core.4.1.0\lib\net40\FSharp.Core.dll</HintPath>
+      <HintPath>..\packages\FSharp.Core.4.0.0.1\lib\net40\FSharp.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup />
+  <ItemGroup />
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
-    <Compile Include="chinese_boxes.fs" />
-    <Compile Include="differentiation.fs" />
-    <Compile Include="binary_trees.fs" />
-    <Compile Include="search_tree.fs" />
+    <Compile Include="vector.fsi" />
+    <Compile Include="vector.fs" />
+    <Compile Include="vector_client.fs" />
   </ItemGroup>
   <Import Project="$(FSharpTargetsPath)" />
 </Project>
