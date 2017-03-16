@@ -38,8 +38,11 @@
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ValueTuple">
+      <HintPath>..\packages\System.ValueTuple.4.3.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="FSharp.Core">
-      <HintPath>..\packages\FSharp.Core.4.0.0.1\lib\net40\FSharp.Core.dll</HintPath>
+      <HintPath>..\packages\FSharp.Core.4.1.0.2\lib\net45\FSharp.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup />
@@ -47,10 +50,11 @@
   <ItemGroup />
   <ItemGroup />
   <ItemGroup>
-    <None Include="packages.config" />
     <Compile Include="vector.fsi" />
     <Compile Include="vector.fs" />
     <Compile Include="vector_client.fs" />
+    <None Include="packages.config" />
+    <Compile Include="objects.fs" />
   </ItemGroup>
   <Import Project="$(FSharpTargetsPath)" />
 </Project>
