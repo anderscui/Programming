@@ -64,6 +64,7 @@
     <Compile Include="tagged_val.fs" />
     <Compile Include="enums.fs" />
     <Compile Include="option_val.fs" />
+    <Compile Include="loops.fs" />
   </ItemGroup>
   <Import Project="$(FSharpTargetsPath)" />
 </Project>

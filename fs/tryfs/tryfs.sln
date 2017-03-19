@@ -15,6 +15,8 @@ Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "finite_trees", "finite_tree
 EndProject
 Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "modules", "modules\modules.fsproj", "{4E2DA5B9-DA03-4EED-BF8D-07A8E2629F24}"
 EndProject
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "oo", "oo\oo.fsproj", "{62CD4755-8AB9-4B75-B415-B2B423039408}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -49,5 +51,9 @@ Global
 		{4E2DA5B9-DA03-4EED-BF8D-07A8E2629F24}.Debug|x86.Build.0 = Debug|x86
 		{4E2DA5B9-DA03-4EED-BF8D-07A8E2629F24}.Release|x86.ActiveCfg = Release|x86
 		{4E2DA5B9-DA03-4EED-BF8D-07A8E2629F24}.Release|x86.Build.0 = Release|x86
+		{62CD4755-8AB9-4B75-B415-B2B423039408}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{62CD4755-8AB9-4B75-B415-B2B423039408}.Debug|x86.Build.0 = Debug|Any CPU
+		{62CD4755-8AB9-4B75-B415-B2B423039408}.Release|x86.ActiveCfg = Release|Any CPU
+		{62CD4755-8AB9-4B75-B415-B2B423039408}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
