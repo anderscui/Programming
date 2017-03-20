@@ -47,6 +47,7 @@
     <Compile Include="defs-tests.fsx" />
     <None Include="packages.config" />
     <Compile Include="methods.fs" />
+    <Compile Include="structs.fs" />
   </ItemGroup>
   <Import Project="$(FSharpTargetsPath)" />
 </Project>
