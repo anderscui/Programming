@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{62CD4755-8AB9-4B75-B415-B2B423039408}</ProjectGuid>
+    <ProjectGuid>{170DAEEE-9AB7-48AD-8C6F-2459ACF32F93}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>oo</RootNamespace>
-    <AssemblyName>oo</AssemblyName>
+    <RootNamespace>fp</RootNamespace>
+    <AssemblyName>fp</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -46,10 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
-    <Compile Include="defs.fs" />
-    <Compile Include="defs-tests.fsx" />
-    <Compile Include="methods.fs" />
-    <Compile Include="structs.fs" />
+    <Compile Include="currying.fs" />
+    <Compile Include="currying-tests.fsx" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(FSharpTargetsPath)" />
