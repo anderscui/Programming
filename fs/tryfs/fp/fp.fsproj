@@ -49,6 +49,9 @@
     <Compile Include="currying.fs" />
     <Compile Include="currying-tests.fsx" />
     <None Include="packages.config" />
+    <Compile Include="pipeling.fs" />
+    <None Include="pipeling_tests.fsx" />
+    <None Include="recs.fsx" />
   </ItemGroup>
   <Import Project="$(FSharpTargetsPath)" />
 </Project>
