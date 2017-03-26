@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{170DAEEE-9AB7-48AD-8C6F-2459ACF32F93}</ProjectGuid>
+    <ProjectGuid>{91AE9293-F141-4CC7-B778-752424AA9AD3}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>fp</RootNamespace>
-    <AssemblyName>fp</AssemblyName>
+    <RootNamespace>patterns</RootNamespace>
+    <AssemblyName>patterns</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -37,26 +37,14 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
-    <Reference Include="System.ValueTuple">
-      <HintPath>..\packages\System.ValueTuple.4.3.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
-    </Reference>
     <Reference Include="FSharp.Core">
-      <HintPath>..\packages\FSharp.Core.4.1.0.2\lib\net45\FSharp.Core.dll</HintPath>
+      <HintPath>..\packages\FSharp.Core.4.0.0.1\lib\net40\FSharp.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
-    <Compile Include="currying.fs" />
-    <Compile Include="currying-tests.fsx" />
+    <Compile Include="patterns.fsx" />
     <None Include="packages.config" />
-    <Compile Include="pipeling.fs" />
-    <None Include="pipeling_tests.fsx" />
-    <None Include="recs.fsx" />
-    <None Include="closure.fsx" />
-    <None Include="types.fsx" />
-    <None Include="records.fsx" />
-    <None Include="dis_unions.fsx" />
-    <None Include="laziness.fsx" />
   </ItemGroup>
   <Import Project="$(FSharpTargetsPath)" />
 </Project>

@@ -19,6 +19,8 @@ Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "oo", "oo\oo.fsproj", "{62CD
 EndProject
 Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "fp", "fp\fp.fsproj", "{170DAEEE-9AB7-48AD-8C6F-2459ACF32F93}"
 EndProject
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "patterns", "patterns\patterns.fsproj", "{91AE9293-F141-4CC7-B778-752424AA9AD3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -61,5 +63,9 @@ Global
 		{170DAEEE-9AB7-48AD-8C6F-2459ACF32F93}.Debug|x86.Build.0 = Debug|Any CPU
 		{170DAEEE-9AB7-48AD-8C6F-2459ACF32F93}.Release|x86.ActiveCfg = Release|Any CPU
 		{170DAEEE-9AB7-48AD-8C6F-2459ACF32F93}.Release|x86.Build.0 = Release|Any CPU
+		{91AE9293-F141-4CC7-B778-752424AA9AD3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{91AE9293-F141-4CC7-B778-752424AA9AD3}.Debug|x86.Build.0 = Debug|Any CPU
+		{91AE9293-F141-4CC7-B778-752424AA9AD3}.Release|x86.ActiveCfg = Release|Any CPU
+		{91AE9293-F141-4CC7-B778-752424AA9AD3}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
