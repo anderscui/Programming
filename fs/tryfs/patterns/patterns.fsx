@@ -10,3 +10,15 @@ let test_op = function
   | Some(v) -> printfn "Some: %i" v
   | None -> printfn "None"
 
+// null pattern
+let upper =
+  function
+  | null | "" -> None
+  | v -> Some(v.ToUpper())
+
+// type-annotated
+let is_pascal =
+  function
+  | (s : string) when s.Length > 0 && s.[0] = System.Char.ToUpper s.[0] -> true
+  | _ -> false
+
