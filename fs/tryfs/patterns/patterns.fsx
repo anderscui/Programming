@@ -22,3 +22,6 @@ let is_pascal =
   | (s : string) when s.Length > 0 && s.[0] = System.Char.ToUpper s.[0] -> true
   | _ -> false
 
+// as patterns, can also be used within match exp
+let x, y as point = (5, 12)
+
