@@ -57,6 +57,7 @@
     <None Include="records.fsx" />
     <None Include="dis_unions.fsx" />
     <None Include="laziness.fsx" />
+    <None Include="higher-order.fsx" />
   </ItemGroup>
   <Import Project="$(FSharpTargetsPath)" />
 </Project>

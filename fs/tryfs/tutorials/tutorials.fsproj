@@ -62,6 +62,7 @@
     <Compile Include="quick\options.fs" />
     <Compile Include="quick\exceptions.fs" />
     <None Include="packages.config" />
+    <None Include="compatibility.fsx" />
   </ItemGroup>
   <Import Project="$(FSharpTargetsPath)" />
 </Project>

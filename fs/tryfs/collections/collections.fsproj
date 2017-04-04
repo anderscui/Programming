@@ -50,6 +50,8 @@
     <Compile Include="lists.fs" />
     <Compile Include="sets.fs" />
     <None Include="packages.config" />
+    <None Include="lists2.fsx" />
+    <None Include="seqs.fsx" />
   </ItemGroup>
   <Import Project="$(FSharpTargetsPath)" />
 </Project>
