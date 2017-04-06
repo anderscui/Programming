@@ -1,3 +1,5 @@
+package parsers
+
 /**
   * Created by andersc on 4/5/17.
   */
@@ -16,18 +18,12 @@ class SimpleParser extends RegexParsers {
   def freq: Parser[WordFreq] = word ~ number ^^ { case wd ~ fr => WordFreq(wd, fr) }
 }
 
-object TestSimpleParser extends SimpleParser {
+object WordFreqParser extends SimpleParser {
   def main(args: Array[String]): Unit = {
     parse(freq, "scala 121 python 100") match {
       case Success(matched, _) => println(matched)
       case Failure(msg, _) => println("FAILURE: " + msg)
       case Error(msg, _) => println("ERROR: " + msg)
     }
-
-//    parse(word, "1scala3 programming scala") match {
-//      case Success(matched, _) => println(matched)
-//      case Failure(msg, _) => println("FAILURE: " + msg)
-//      case Error(msg, _) => println("ERROR: " + msg)
-//    }
   }
 }
