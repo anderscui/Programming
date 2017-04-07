@@ -3,9 +3,10 @@ package parsers
 import scala.util.matching.Regex
 import scala.util.parsing.combinator.RegexParsers
 
-/**
-  * Created by andersc on 4/6/17.
-  */
+class Expr
+case class Number(value: Int) extends Expr
+case class Operator(op: String, left: Expr, right: Expr) extends Expr
+
 class ExprParser extends RegexParsers {
   val number: Regex = "[0-9]+".r
 
