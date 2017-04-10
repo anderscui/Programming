@@ -65,13 +65,8 @@ def max(a: Int, b: Int, c: Int) = {
 // varargs
 def sum(items: Int*): Int = {
   var total = 0
+  println(items.getClass)
   for (i <- items) total += i
   total
 }
-
-
-
->>>>>>> add patterns in scala.
-
-
-
+sum(1, 2, 3)
