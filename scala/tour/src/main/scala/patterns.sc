@@ -25,3 +25,9 @@ def matchEverything(obj: Any): String = obj match {
 println(matchEverything("a@b.c"))
 println(matchEverything(1, 2.0))
 println(matchEverything("test"))
+
+val s: Some[Any] = Some(1)
+s match {
+  case Some(v: String) => println(v)
+  case _ => println("Others")
+}

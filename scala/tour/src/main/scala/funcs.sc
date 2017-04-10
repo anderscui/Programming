@@ -18,7 +18,7 @@ log(3.1415)
 // deprecated syntax
 def log2(d: Double) { println(f"Got value $d%.2f") }
 
-// empty parentheses
+// empty parentheses, or input-less func
 def hi(): String = "hi"
 
 // params groups
@@ -35,6 +35,43 @@ val d = id(65.0)
 // infix op notation
 d compare 18.0
 d + 1.1
+
+// ** Invoking a func with an exp block **
+def formatEuro(amt: Double) = f"-> $amt%.2f"
+
+formatEuro(3.1234)
+formatEuro { val rate = 1.32; 0.235 + 0.7123 + rate * 5.32 }
+
+// ** recursive
+def power(x: Int, n: Int): Long = {
+  if (n >= 1)
+    x * power(x, n-1)
+  else 1
+}
+power(2, 10)
+
+@annotation.tailrec
+def power2(x: Int, n: Int, t: Int = 1): Int = {
+  if (n < 1) t
+  else power2(x, n-1, x*t)
+}
+
+// nested
+def max(a: Int, b: Int, c: Int) = {
+  def max(x: Int, y: Int) = if (x > y) x else y
+  max(a, max(b, c))
+}
+
+// varargs
+def sum(items: Int*): Int = {
+  var total = 0
+  for (i <- items) total += i
+  total
+}
+
+
+
+>>>>>>> add patterns in scala.
 
 
 
