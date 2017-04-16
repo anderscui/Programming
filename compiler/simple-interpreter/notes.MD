@@ -24,6 +24,50 @@ A **lexeme** is a sequence of characters that form a token. e.g. 123 is an integ
 
 The process of finding the structure in the stream of tokens, or put differently, the process of recognizing a phrase in the stream of tokens is called **parsing**. The part of an interpreter or compiler that performs that job is called a **parser**.
 
+A **syntax diagram** is a graphical representation of a programming language’s syntax rules. Basically, a syntax diagram visually shows you which statements are allowed in your programming language and which are not.
+
+![Syntax Diagram](images/syntax_diagram.png)
+
+Syntax diagrams are pretty easy to read: just follow the paths indicated by the arrows. Some paths indicate **choices**. And some paths indicate **loops**.
+
+Syntax diagrams serve two main purposes:
+
+* They graphically represent the specification (grammar) of a programming language.
+* They can be used to help you write your parser you can map a diagram to code by following simple rules.
+
+Parsing is also called **syntax analysis**, and the parser is also aptly called a **syntax analyzer**.
+
+The parser just recognizes the structure making sure that it corresponds to some specifications and the interpreter actually evaluates the expression once the parser has successfully recognized (parsed) it.
+
+## Grammars
+
+**context-free grammars (CFG)** or **BNF** (Backus-Naur Form) or [EBNF notation](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form).
+
+### Here are a couple of reasons to use grammars:
+
+* A grammar specifies the syntax of a programming language in a **concise** manner. Unlike syntax diagrams, grammars are very compact.
+* A grammar can serve as great documentation.
+* A grammar is a good starting point even if you manually write your parser from scratch. Quite often you can just convert the grammar to code by following a set of simple rules.
+* There is a set of tools, called **parser generators**, which accept a grammar as an input and automatically generate a parser for you based on that grammar.
+
+A grammar consists of a sequence of **rules**, also known as **productions**.
+
+A rule consists of a non-terminal, called the **head** or **left-hand side** of the production, a colon, and a sequence of terminals and/or non-terminals, called the **body** or **right-hand side** of the production.
+
+```shell
+expr: factor ((MUL|DIV) factor)*
+factor: INTEGER
+```
+
+In the grammar above, tokens like MUL, DIV, and INTEGER are called **terminals** and variables like expr and factor are called **non-terminals**. Non-terminals usually consist of a sequence of terminals and/or non-terminals. The non-terminal symbol on the left side of the first rule is called the **start symbol**. In the case of our grammar, the start symbol is expr.
+
+A grammar defines a language by explaining what sentences it can form. This is how you can derive an arithmetic expression using the grammar: first you begin with the start symbol expr and then repeatedly replace a non-terminal by the body of a rule for that non-terminal until you have generated a sentence consisting solely of terminals. Those sentences form a language defined by the grammar.
+
+If the grammar cannot derive a certain arithmetic expression, then it doesn’t support that expression and the parser will generate a syntax error when it tries to recognize the expression.
+
+
+
+
 
 
 

@@ -42,7 +42,7 @@ class Interpreter(object):
         self.current_token = None
         self.current_char = self.text[self.pos]
 
-    def error(self, msg='Error parsing input'):
+    def error(self, msg='Invalid syntax'):
         raise ValueError(msg)
 
     def advance(self):
@@ -100,7 +100,7 @@ class Interpreter(object):
         else:
             self.error()
 
-    def get_right_operand(self):
+    def get_next_term(self):
         # expect a op token
         op = self.current_token
         if op.type in OP_FUNCS:
@@ -109,24 +109,26 @@ class Interpreter(object):
             self.error('operator expected')
 
         # expect another int token
-        right = self.current_token
-        self.eat(INTEGER)
+        next_term = self.term()
 
-        return op, right
+        return op, next_term
+
+    def term(self):
+        # expect a int token
+        token = self.current_token
+        self.eat(INTEGER)
+        return token.value
 
     def expr(self):
         self.current_token = self.get_next_token()
 
-        # expect a int token
-        left = self.current_token
-        self.eat(INTEGER)
+        result = self.term()
 
         while self.current_token is not None and self.current_token.type != EOF:
-            op, right = self.get_right_operand()
-            temp_result = OP_FUNCS[op.type](left.value, right.value)
-            left = Token(INTEGER, temp_result)
+            op, right = self.get_next_term()
+            result = OP_FUNCS[op.type](result, right)
 
-        return left.value
+        return result
 
 
 if __name__ == '__main__':
