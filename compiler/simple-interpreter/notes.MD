@@ -20,6 +20,10 @@ In order for the interpreter to actually understand what to do with that string 
 
 The process of breaking the input string into tokens is called **lexical analysis**. The first step of the interpreter is reading the input and convert it into **a stream of tokens**. The part of interpreter is called **lexical analyzer**, or **lexer** for short, other names are **scanner** or **tokenizer**.
 
+A **lexeme** is a sequence of characters that form a token. e.g. 123 is an integer token.
+
+The process of finding the structure in the stream of tokens, or put differently, the process of recognizing a phrase in the stream of tokens is called **parsing**. The part of an interpreter or compiler that performs that job is called a **parser**.
+
 
 
 

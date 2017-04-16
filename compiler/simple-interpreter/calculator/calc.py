@@ -1,14 +1,16 @@
 # coding=utf-8
 
-# Token types
-# EOF token is used to indicate that there is no more input left for lexical
-# analysis
-from operator import add, sub
+from operator import add, sub, mul, ifloordiv, mod
 import re
 
-INTEGER, PLUS, MINUS, EOF = 'INTEGER', 'PLUS', 'MINUS', 'EOF'
-RE_WS = re.compile('\s+', re.U)
-OP_FUNCS = {PLUS: add, MINUS: sub}
+# Token types
+# EOF token is used to indicate that there is no more input left for
+# lexical analysis
+INTEGER, EOF = 'INTEGER', 'EOF'
+PLUS, MINUS, MULTI, DIV, MOD = 'PLUS', 'MINUS', 'MULTI', 'DIV', 'MOD'
+
+CHAR_OPS = {'+': PLUS, '-': MINUS, '*': MULTI, '/': DIV, '%': MOD}
+OP_FUNCS = {PLUS: add, MINUS: sub, MULTI: mul, DIV: ifloordiv, MOD: mod}
 
 
 class Token(object):
@@ -35,15 +37,32 @@ class Token(object):
 
 class Interpreter(object):
     def __init__(self, text):
-        self.text = self.preprocess_text(text)
+        self.text = text
         self.pos = 0
         self.current_token = None
+        self.current_char = self.text[self.pos]
 
-    def preprocess_text(self, text):
-        return RE_WS.sub('', text)
+    def error(self, msg='Error parsing input'):
+        raise ValueError(msg)
 
-    def error(self):
-        raise ValueError('Error parsing input')
+    def advance(self):
+        """Advance the 'pos' pointer and set the 'current_char' variable."""
+        self.pos += 1
+        if self.pos > len(self.text) - 1:
+            self.current_char = None
+        else:
+            self.current_char = self.text[self.pos]
+
+    def skip(self):
+        while self.current_char is not None and self.current_char.isspace():
+            self.advance()
+
+    def integer(self):
+        result = ''
+        while self.current_char is not None and self.current_char.isdigit():
+            result += self.current_char
+            self.advance()
+        return int(result)
 
     def get_next_token(self):
         """Lexical analyzer (also known as scanner or tokenizer)
@@ -51,30 +70,22 @@ class Interpreter(object):
         This method is responsible for breaking a sentence
         apart into tokens. One token at a time.
         """
-        text = self.text
+        while self.current_char is not None:
+            if self.current_char.isspace():
+                self.skip()
+                continue
 
-        if self.pos > len(text) - 1:
-            return Token(EOF, None)
+            if self.current_char.isdigit():
+                return Token(INTEGER, self.integer())
 
-        cur_char = text[self.pos]
-        if cur_char.isdigit():
-            next_pos = self.pos + 1
-            while next_pos < len(text) and text[next_pos].isdigit():
-                next_pos += 1
-            token = Token(INTEGER, int(text[self.pos: next_pos]))
-            self.pos = next_pos
-            return token
+            if self.current_char in CHAR_OPS:
+                token = Token(CHAR_OPS[self.current_char], self.current_char)
+                self.advance()
+                return token
 
-        if cur_char == '+':
-            token = Token(PLUS, cur_char)
-            self.pos += 1
-            return token
-        elif cur_char == '-':
-            token = Token(MINUS, cur_char)
-            self.pos += 1
-            return token
+            self.error()
 
-        self.error()
+        return Token(EOF, None)
 
     def eat(self, expected_type):
         """ Compare the current token type with the passed token
@@ -89,6 +100,20 @@ class Interpreter(object):
         else:
             self.error()
 
+    def get_right_operand(self):
+        # expect a op token
+        op = self.current_token
+        if op.type in OP_FUNCS:
+            self.eat(op.type)
+        else:
+            self.error('operator expected')
+
+        # expect another int token
+        right = self.current_token
+        self.eat(INTEGER)
+
+        return op, right
+
     def expr(self):
         self.current_token = self.get_next_token()
 
@@ -96,18 +121,12 @@ class Interpreter(object):
         left = self.current_token
         self.eat(INTEGER)
 
-        # expect a op token
-        op = self.current_token
-        op_func = None
-        if op.type in OP_FUNCS:
-            self.eat(op.type)
-            op_func = OP_FUNCS[op.type]
+        while self.current_token is not None and self.current_token.type != EOF:
+            op, right = self.get_right_operand()
+            temp_result = OP_FUNCS[op.type](left.value, right.value)
+            left = Token(INTEGER, temp_result)
 
-        # expect another int token
-        right = self.current_token
-        self.eat(INTEGER)
-
-        return op_func(left.value, right.value)
+        return left.value
 
 
 if __name__ == '__main__':
@@ -123,4 +142,3 @@ if __name__ == '__main__':
         inter = Interpreter(text)
         result = inter.expr()
         print(result)
-
