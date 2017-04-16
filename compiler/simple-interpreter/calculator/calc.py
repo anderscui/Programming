@@ -3,7 +3,12 @@
 # Token types
 # EOF token is used to indicate that there is no more input left for lexical
 # analysis
-INTEGER, PLUS, EOF = 'INTEGER', 'PLUS', 'EOF'
+from operator import add, sub
+import re
+
+INTEGER, PLUS, MINUS, EOF = 'INTEGER', 'PLUS', 'MINUS', 'EOF'
+RE_WS = re.compile('\s+', re.U)
+OP_FUNCS = {PLUS: add, MINUS: sub}
 
 
 class Token(object):
@@ -30,9 +35,12 @@ class Token(object):
 
 class Interpreter(object):
     def __init__(self, text):
-        self.text = text
+        self.text = self.preprocess_text(text)
         self.pos = 0
         self.current_token = None
+
+    def preprocess_text(self, text):
+        return RE_WS.sub('', text)
 
     def error(self):
         raise ValueError('Error parsing input')
@@ -50,12 +58,19 @@ class Interpreter(object):
 
         cur_char = text[self.pos]
         if cur_char.isdigit():
-            token = Token(INTEGER, int(cur_char))
-            self.pos += 1
+            next_pos = self.pos + 1
+            while next_pos < len(text) and text[next_pos].isdigit():
+                next_pos += 1
+            token = Token(INTEGER, int(text[self.pos: next_pos]))
+            self.pos = next_pos
             return token
 
         if cur_char == '+':
             token = Token(PLUS, cur_char)
+            self.pos += 1
+            return token
+        elif cur_char == '-':
+            token = Token(MINUS, cur_char)
             self.pos += 1
             return token
 
@@ -77,19 +92,22 @@ class Interpreter(object):
     def expr(self):
         self.current_token = self.get_next_token()
 
-        # expect a single-digit token
+        # expect a int token
         left = self.current_token
         self.eat(INTEGER)
 
-        # expect a '+' token
+        # expect a op token
         op = self.current_token
-        self.eat(PLUS)
+        op_func = None
+        if op.type in OP_FUNCS:
+            self.eat(op.type)
+            op_func = OP_FUNCS[op.type]
 
-        # expect another single-digit token
+        # expect another int token
         right = self.current_token
         self.eat(INTEGER)
 
-        return left.value + right.value
+        return op_func(left.value, right.value)
 
 
 if __name__ == '__main__':
