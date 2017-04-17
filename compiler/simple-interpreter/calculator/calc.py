@@ -1,7 +1,6 @@
 # coding=utf-8
 
 from operator import add, sub, mul, ifloordiv, mod
-import re
 
 # Token types
 # EOF token is used to indicate that there is no more input left for
@@ -35,25 +34,24 @@ class Token(object):
         return self.__str__()
 
 
-class Interpreter(object):
+class Lexer(object):
     def __init__(self, text):
         self.text = text
         self.pos = 0
-        self.current_token = None
         self.current_char = self.text[self.pos]
 
-    def error(self, msg='Invalid syntax'):
+    def error(self, msg='Invalid character'):
         raise ValueError(msg)
 
     def advance(self):
         """Advance the 'pos' pointer and set the 'current_char' variable."""
         self.pos += 1
         if self.pos > len(self.text) - 1:
-            self.current_char = None
+            self.current_char = None  # indicates the EOF
         else:
             self.current_char = self.text[self.pos]
 
-    def skip(self):
+    def skip_whitespace(self):
         while self.current_char is not None and self.current_char.isspace():
             self.advance()
 
@@ -72,7 +70,7 @@ class Interpreter(object):
         """
         while self.current_char is not None:
             if self.current_char.isspace():
-                self.skip()
+                self.skip_whitespace()
                 continue
 
             if self.current_char.isdigit():
@@ -87,6 +85,16 @@ class Interpreter(object):
 
         return Token(EOF, None)
 
+
+class Interpreter(object):
+
+    def __init__(self, lexer):
+        self.lexer = lexer
+        self.current_token = self.lexer.get_next_token()
+
+    def error(self, msg='Invalid syntax'):
+        raise ValueError(msg)
+
     def eat(self, expected_type):
         """ Compare the current token type with the passed token
             type and if they match then "eat" the current token
@@ -96,7 +104,7 @@ class Interpreter(object):
         :return:
         """
         if self.current_token.type == expected_type:
-            self.current_token = self.get_next_token()
+            self.current_token = self.lexer.get_next_token()
         else:
             self.error()
 
@@ -120,10 +128,7 @@ class Interpreter(object):
         return token.value
 
     def expr(self):
-        self.current_token = self.get_next_token()
-
         result = self.term()
-
         while self.current_token is not None and self.current_token.type != EOF:
             op, right = self.get_next_term()
             result = OP_FUNCS[op.type](result, right)
@@ -141,6 +146,7 @@ if __name__ == '__main__':
             continue
 
         text = text.strip()
-        inter = Interpreter(text)
+        lexer = Lexer(text)
+        inter = Interpreter(lexer)
         result = inter.expr()
         print(result)

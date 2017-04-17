@@ -65,6 +65,27 @@ A grammar defines a language by explaining what sentences it can form. This is h
 
 If the grammar cannot derive a certain arithmetic expression, then it doesn’t support that expression and the parser will generate a syntax error when it tries to recognize the expression.
 
+### Convert the grammar to source code
+
+* Each rule, R, defined in the grammar, becomes a method with the same name, and references to that rule become a method call: R(). The body of the method follows the flow of the body of the rule using the very same guidelines.
+* Alternatives (a1 | a2 | aN) become an if-elif-else statement.
+* An optional grouping (…)* becomes a while statement that can loop over zero or more times
+* Each token reference T becomes a call to the method eat: eat(T). The way the eat method works is that it consumes the token T if it matches the current lookahead token, then it gets a new token from the lexer and assigns that token to the current_token internal variable.
+
+### Associativity and Precedence
+
+In ordinary arithmetic and most programming languages addition, subtraction, multiplication, and division are **left-associative**.
+
+In the arithmetic that we know and use, multiplication and division have **higher precedence** than addition and subtraction.
+
+Here are the rules for **how to construct a grammar from the precedence table**:
+
+* For each level of precedence define a non-terminal. The body of a production for the non-terminal should contain arithmetic operators from that level and non-terminals for the next higher level of precedence.
+* Create an additional non-terminal factor for basic units of expression, in our case, integers. The general rule is that if you have N levels of precedence, you will need N + 1 non-terminals in total: one non-terminal for each level plus one non-terminal for basic units of expression.
+
+
+
+
 
 
 
