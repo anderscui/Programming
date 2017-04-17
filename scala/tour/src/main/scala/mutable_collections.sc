@@ -28,3 +28,19 @@ val scala = files map (_.getName) filter (_ endsWith "scala")
 val inks = Seq('c', 'm', 'y', 'k')
 
 val hi = "Hello, " ++ "worldly" take 12 replaceAll ("w", "W")
+
+// mutable map
+val map = collection.mutable.Map[Int, String]()
+map += (1 -> "one")
+map += (2 -> "two")
+map += (3 -> "three")
+
+for ((k, v) <- map) {
+  println(k, v)
+}
+
+// mutable set
+val set = collection.mutable.Set[String]()
+set += "Hello"
+set += "World"
+set contains "Hello"
