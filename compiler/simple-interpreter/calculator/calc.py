@@ -6,10 +6,10 @@ from operator import add, sub, mul, ifloordiv, mod
 # EOF token is used to indicate that there is no more input left for
 # lexical analysis
 INTEGER, EOF = 'INTEGER', 'EOF'
-PLUS, MINUS, MULTI, DIV, MOD = 'PLUS', 'MINUS', 'MULTI', 'DIV', 'MOD'
+PLUS, MINUS, MUL, DIV, MOD = 'PLUS', 'MINUS', 'MULTI', 'DIV', 'MOD'
 
-CHAR_OPS = {'+': PLUS, '-': MINUS, '*': MULTI, '/': DIV, '%': MOD}
-OP_FUNCS = {PLUS: add, MINUS: sub, MULTI: mul, DIV: ifloordiv, MOD: mod}
+CHAR_OPS = {'+': PLUS, '-': MINUS, '*': MUL, '/': DIV, '%': MOD}
+OP_FUNCS = {PLUS: add, MINUS: sub, MUL: mul, DIV: ifloordiv, MOD: mod}
 
 
 class Token(object):
@@ -121,17 +121,41 @@ class Interpreter(object):
 
         return op, next_term
 
-    def term(self):
-        # expect a int token
+    def factor(self):
+        """factor: INTEGER"""
         token = self.current_token
         self.eat(INTEGER)
         return token.value
 
+    def term(self):
+        """term: factor ((MUL | DIV) factor)*"""
+        result = self.factor()
+        while self.current_token.type in (MUL, DIV):
+            token = self.current_token
+            if token.type == MUL:
+                self.eat(MUL)
+                result = result * self.factor()
+            elif token.type == DIV:
+                self.eat(DIV)
+                result = result / self.factor()
+        return result
+
     def expr(self):
+        """Arithmetic exp parser / interpreter
+
+        expr: term ((PLUS | MINUS) term)*
+        term: factor ((MUL | DIV) factor)*
+        factor: INTEGER
+        """
         result = self.term()
-        while self.current_token is not None and self.current_token.type != EOF:
-            op, right = self.get_next_term()
-            result = OP_FUNCS[op.type](result, right)
+        while self.current_token.type in (PLUS, MINUS):
+            token = self.current_token
+            if token.type == PLUS:
+                self.eat(PLUS)
+                result = result + self.term()
+            elif token.type == MINUS:
+                self.eat(MINUS)
+                result = result - self.term()
 
         return result
 
