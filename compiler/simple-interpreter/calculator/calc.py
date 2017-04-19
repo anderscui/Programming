@@ -130,7 +130,7 @@ class Interpreter(object):
 
         return op, next_term
 
-    def factor(self):
+    def primary(self):
         """factor: INTEGER | (LPAREN expr RPAREN)"""
         token = self.current_token
         if token.type == INTEGER:
@@ -141,6 +141,16 @@ class Interpreter(object):
             result = self.expr()
             self.eat(RPAREN)
             return result
+
+    def factor(self):
+        """factor: primary (POW primary)*"""
+        result = self.primary()
+        while self.current_token.type in (POW,):
+            token = self.current_token
+            if token.type == POW:
+                self.eat(POW)
+                result = OP_FUNCS[POW](result, self.primary())
+        return result
 
     def term(self):
         """term: factor ((MUL | DIV) factor)*"""
@@ -160,7 +170,8 @@ class Interpreter(object):
 
         expr: term ((PLUS | MINUS) term)*
         term: factor ((MUL | DIV) factor)*
-        factor: INTEGER
+        factor: primary (POW primary)*
+        primary: INTEGER | (LPAREN expr RPAREN)
         """
         result = self.term()
         while self.current_token.type in (PLUS, MINUS):

@@ -19,3 +19,6 @@ class TestCalc(TestCase):
         self.test_expr('7 + 3 * (10 / (12 / (3 + 1) - 1)) / (2 + 3) - 5 - 3 + (8)', 10)
 
         self.test_expr('2 ^ 3', 8)
+        self.test_expr('3 * 2 ^ 3', 24)
+        self.test_expr('3 ^ 2 * 2', 18)
+        self.test_expr('3^2^2+1', 82)
