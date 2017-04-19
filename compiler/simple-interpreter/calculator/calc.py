@@ -1,15 +1,16 @@
 # coding=utf-8
 
-from operator import add, sub, mul, ifloordiv, mod
+from operator import add, sub, mul, ifloordiv, pow
 
 # Token types
 # EOF token is used to indicate that there is no more input left for
 # lexical analysis
 INTEGER, EOF = 'INTEGER', 'EOF'
-PLUS, MINUS, MUL, DIV, MOD = 'PLUS', 'MINUS', 'MULTI', 'DIV', 'MOD'
+PLUS, MINUS, MUL, DIV, POW = 'PLUS', 'MINUS', 'MULTI', 'DIV', 'POW'
+LRAREN, RPAREN = '(', ')'
 
-CHAR_OPS = {'+': PLUS, '-': MINUS, '*': MUL, '/': DIV, '%': MOD}
-OP_FUNCS = {PLUS: add, MINUS: sub, MUL: mul, DIV: ifloordiv, MOD: mod}
+CHAR_OPS = {'+': PLUS, '-': MINUS, '*': MUL, '/': DIV, '^': POW}
+OP_FUNCS = {PLUS: add, MINUS: sub, MUL: mul, DIV: ifloordiv, POW: pow}
 
 
 class Token(object):
@@ -81,6 +82,14 @@ class Lexer(object):
                 self.advance()
                 return token
 
+            if self.current_char == '(':
+                self.advance()
+                return Token(LRAREN, '(')
+
+            if self.current_char == ')':
+                self.advance()
+                return Token(RPAREN, ')')
+
             self.error()
 
         return Token(EOF, None)
@@ -122,10 +131,16 @@ class Interpreter(object):
         return op, next_term
 
     def factor(self):
-        """factor: INTEGER"""
+        """factor: INTEGER | (LPAREN expr RPAREN)"""
         token = self.current_token
-        self.eat(INTEGER)
-        return token.value
+        if token.type == INTEGER:
+            self.eat(INTEGER)
+            return token.value
+        elif token.type == LRAREN:
+            self.eat(LRAREN)
+            result = self.expr()
+            self.eat(RPAREN)
+            return result
 
     def term(self):
         """term: factor ((MUL | DIV) factor)*"""
@@ -134,10 +149,10 @@ class Interpreter(object):
             token = self.current_token
             if token.type == MUL:
                 self.eat(MUL)
-                result = result * self.factor()
+                result = OP_FUNCS[MUL](result, self.factor())
             elif token.type == DIV:
                 self.eat(DIV)
-                result = result / self.factor()
+                result = OP_FUNCS[DIV](result, self.factor())
         return result
 
     def expr(self):
@@ -152,10 +167,10 @@ class Interpreter(object):
             token = self.current_token
             if token.type == PLUS:
                 self.eat(PLUS)
-                result = result + self.term()
+                result = OP_FUNCS[PLUS](result, self.term())
             elif token.type == MINUS:
                 self.eat(MINUS)
-                result = result - self.term()
+                result = OP_FUNCS[MINUS](result, self.term())
 
         return result
 
