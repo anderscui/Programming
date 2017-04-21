@@ -26,7 +26,7 @@ The process of finding the structure in the stream of tokens, or put differently
 
 A **syntax diagram** is a graphical representation of a programming language’s syntax rules. Basically, a syntax diagram visually shows you which statements are allowed in your programming language and which are not.
 
-![Syntax Diagram](images/syntax_diagram.png)
+![Syntax Diagram](https://ruslanspivak.com/lsbasi-part3/lsbasi_part3_syntax_diagram.png)
 
 Syntax diagrams are pretty easy to read: just follow the paths indicated by the arrows. Some paths indicate **choices**. And some paths indicate **loops**.
 
@@ -82,6 +82,50 @@ Here are the rules for **how to construct a grammar from the precedence table**:
 
 * For each level of precedence define a non-terminal. The body of a production for the non-terminal should contain arithmetic operators from that level and non-terminals for the next higher level of precedence.
 * Create an additional non-terminal factor for basic units of expression, in our case, integers. The general rule is that if you have N levels of precedence, you will need N + 1 non-terminals in total: one non-terminal for each level plus one non-terminal for basic units of expression.
+
+# [Part 2](https://ruslanspivak.com/lsbasi-part7/)
+
+## IR (Intermediate Representation)
+
+we could have our interpreter and parser code mixed together and the interpreter would evaluate an expression as soon as the parser recognized a certain language construct like addition, subtraction, multiplication, or division. Such interpreters are called **syntax-directed interpreters**. They usually **make a single pass** over the input and are suitable for basic language applications. In order to analyze more complex Pascal programming language constructs, we need to build an **intermediate representation (IR)**. Our parser will be responsible for building an IR and our interpreter will use it to interpret the input represented as the IR.
+
+The IR we use throughout the series is called an **abstract-syntax tree (AST)**. But before we dig deeper into ASTs let’s talk about **parse trees** briefly. Though we’re not going to use parse trees for our interpreter and compiler, they can help you understand how your parser interpreted the input by visualizing the execution trace of the parser. We’ll also compare them with ASTs to see **why ASTs are better suited for intermediate representation than parse trees**.
+
+So, what is a parse tree? A parse-tree (sometimes called a **concrete syntax tree**) is a tree that represents the syntactic structure of a language construct according to our grammar definition. It basically shows how your parser recognized the language construct or, in other words, it shows how the start symbol of your grammar derives a certain string in the programming language.
+
+The call stack of the parser implicitly represents a parse tree and it’s automatically built in memory by your parser as it is trying to recognize a certain language construct.
+
+![AST vs. parse tree](https://ruslanspivak.com/lsbasi-part7/lsbasi_part7_ast_01.png)
+
+In the picture above we can see that:
+
+* The parse tree records a sequence of rules the parser applies to recognize the input.
+* The root of the parse tree is labeled with the grammar start symbol.
+* Each interior node represents a non-terminal, that is it represents a grammar rule application, like expr, term, or factor in our case.
+* Each leaf node represents a token.
+
+The AST captures the essence of the input while being smaller.
+
+Here are the main differences between ASTs and Parse trees:
+
+* ASTs **uses operators/operations** as root and interior nodes and it uses operands as their children.
+* ASTs **do not use interior nodes** to represent a grammar rule, unlike the parse tree does.
+* ASTs don’t represent every detail from the real syntax (that’s why they’re called abstract) - no rule nodes and no parentheses, for example.
+* ASTs are dense compared to a parse tree for the same language construct.
+
+So, **what is an abstract syntax tree?** An abstract syntax tree (AST) is a tree that represents the abstract syntactic structure of a language construct where each interior node and the root node represents an operator, and the children of the node represent the operands of that operator.
+
+In order to **encode the operator precedence in AST**, that is, to represent that “X happens before Y” you just need to put X lower in the tree than Y. And you’ve already seen that in the previous pictures.
+
+How do you navigate the tree to properly evaluate the expression represented by that tree? You do that by using a **postorder traversal** - a special case of depth-first traversal - which starts at the root node and recursively visits the children of each node from left to right. The postorder traversal visits nodes as far away from the root as fast as it can.
+
+The reason we’re going to use a postorder traversal for our interpreter is that first, we need to evaluate interior nodes lower in the tree because they represent operators with higher precedence and second, we need to evaluate operands of an operator before applying the operator to those operands.
+
+### Pipeline (Lexer, Parser, Interpreter)
+
+![pipeline](https://ruslanspivak.com/lsbasi-part7/lsbasi_part7_pipeline.png)
+
+You can read that as “The parser gets tokens from the lexer and then returns the generated AST for the interpreter to traverse and interpret the input.”
 
 
 

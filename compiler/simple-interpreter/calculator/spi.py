@@ -1,10 +1,8 @@
 # coding=utf-8
+"""SPI - Simple Pascal Interpreter"""
 
 from operator import add, sub, mul, ifloordiv, pow
 
-# Token types
-# EOF token is used to indicate that there is no more input left for
-# lexical analysis
 INTEGER, EOF = 'INTEGER', 'EOF'
 PLUS, MINUS, MUL, DIV, POW = 'PLUS', 'MINUS', 'MULTI', 'DIV', 'POW'
 LPAREN, RPAREN = '(', ')'
@@ -94,109 +92,117 @@ class Lexer(object):
 
         return Token(EOF, None)
 
+# PARSER #
 
-class Interpreter(object):
 
+class AST(object):
+    pass
+
+
+class BinOp(AST):
+    def __init__(self, left, op, right):
+        self.left = left
+        self.token = self.op = op
+        self.right = right
+
+
+class Num(AST):
+    def __init__(self, token):
+        self.token = token
+        self.value = token.value
+
+
+class Parser(object):
     def __init__(self, lexer):
         self.lexer = lexer
         self.current_token = self.lexer.get_next_token()
 
-    def error(self, msg='Invalid syntax'):
-        raise ValueError(msg)
+    def error(self):
+        raise ValueError('Invalid syntax')
 
-    def eat(self, expected_type):
-        """ Compare the current token type with the passed token
-            type and if they match then "eat" the current token
-            and assign the next token to the self.current_token,
-            otherwise raise an exception.
-        :param expected_type:
-        :return:
-        """
-        if self.current_token.type == expected_type:
+    def eat(self, token_type):
+        if self.current_token.type == token_type:
             self.current_token = self.lexer.get_next_token()
         else:
             self.error()
 
-    def get_next_term(self):
-        # expect a op token
-        op = self.current_token
-        if op.type in OP_FUNCS:
-            self.eat(op.type)
-        else:
-            self.error('operator expected')
-
-        # expect another int token
-        next_term = self.term()
-
-        return op, next_term
-
-    def primary(self):
-        """factor: INTEGER | (LPAREN expr RPAREN)"""
+    def factor(self):
+        """factor : INTEGER | LPAREN expr RPAREN"""
         token = self.current_token
         if token.type == INTEGER:
             self.eat(INTEGER)
-            return token.value
+            return Num(token)
         elif token.type == LPAREN:
             self.eat(LPAREN)
-            result = self.expr()
+            node = self.expr()
             self.eat(RPAREN)
-            return result
-
-    def factor(self):
-        """factor: primary (POW primary)*"""
-        result = self.primary()
-        while self.current_token.type in (POW,):
-            token = self.current_token
-            if token.type == POW:
-                self.eat(POW)
-                result = OP_FUNCS[POW](result, self.primary())
-        return result
+            return node
 
     def term(self):
-        """term: factor ((MUL | DIV) factor)*"""
-        result = self.factor()
+        """term : factor ((MUL | DIV) factor)*"""
+        node = self.factor()
+
         while self.current_token.type in (MUL, DIV):
             token = self.current_token
             if token.type == MUL:
                 self.eat(MUL)
-                result = OP_FUNCS[MUL](result, self.factor())
             elif token.type == DIV:
                 self.eat(DIV)
-                result = OP_FUNCS[DIV](result, self.factor())
-        return result
+
+            node = BinOp(left=node, op=token, right=self.factor())
+
+        return node
 
     def expr(self):
-        """Arithmetic exp parser / interpreter
-
-        expr: term ((PLUS | MINUS) term)*
-        term: factor ((MUL | DIV) factor)*
-        factor: primary (POW primary)*
-        primary: INTEGER | (LPAREN expr RPAREN)
         """
-        result = self.term()
+        expr   : term ((PLUS | MINUS) term)*
+        term   : factor ((MUL | DIV) factor)*
+        factor : INTEGER | LPAREN expr RPAREN
+        """
+        node = self.term()
+
         while self.current_token.type in (PLUS, MINUS):
             token = self.current_token
             if token.type == PLUS:
                 self.eat(PLUS)
-                result = OP_FUNCS[PLUS](result, self.term())
             elif token.type == MINUS:
                 self.eat(MINUS)
-                result = OP_FUNCS[MINUS](result, self.term())
 
-        return result
+            node = BinOp(left=node, op=token, right=self.term())
+
+        return node
+
+    def parse(self):
+        return self.expr()
 
 
-if __name__ == '__main__':
-    while True:
-        try:
-            text = input('calc > ')
-        except EOFError:
-            break
-        if not text:
-            continue
+class NodeVisitor(object):
+    def visit(self, node):
+        method_name = 'visit_' + type(node).__name__
+        visitor = getattr(self, method_name, self.generic_visit)
+        return visitor(node)
 
-        text = text.strip()
-        lexer = Lexer(text)
-        inter = Interpreter(lexer)
-        result = inter.expr()
-        print(result)
+    def generic_visit(self, node):
+        raise Exception('No visit_{} method found'.format(type(node).__name__))
+
+
+class Interpreter(NodeVisitor):
+    def __init__(self, parser):
+        self.parser = parser
+
+    def visit_BinOp(self, node):
+        if node.op.type == PLUS:
+            return self.visit(node.left) + self.visit(node.right)
+        elif node.op.type == MINUS:
+            return self.visit(node.left) - self.visit(node.right)
+        elif node.op.type == MUL:
+            return self.visit(node.left) * self.visit(node.right)
+        elif node.op.type == DIV:
+            return self.visit(node.left) // self.visit(node.right)
+
+    def visit_Num(self, node):
+        return node.value
+
+    def interpret(self):
+        tree = self.parser.parse()
+        return self.visit(tree)
