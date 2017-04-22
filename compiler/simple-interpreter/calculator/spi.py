@@ -9,6 +9,7 @@ LPAREN, RPAREN = '(', ')'
 
 CHAR_OPS = {'+': PLUS, '-': MINUS, '*': MUL, '/': DIV, '^': POW}
 OP_FUNCS = {PLUS: add, MINUS: sub, MUL: mul, DIV: ifloordiv, POW: pow}
+OP_CHARS = {v: k for k, v in CHAR_OPS.items()}
 
 
 class Token(object):
@@ -91,6 +92,7 @@ class Lexer(object):
             self.error()
 
         return Token(EOF, None)
+
 
 # PARSER #
 
@@ -199,6 +201,47 @@ class Interpreter(NodeVisitor):
             return self.visit(node.left) * self.visit(node.right)
         elif node.op.type == DIV:
             return self.visit(node.left) // self.visit(node.right)
+
+    def visit_Num(self, node):
+        return node.value
+
+    def interpret(self):
+        tree = self.parser.parse()
+        return self.visit(tree)
+
+
+class RpnTranslator(NodeVisitor):
+    """Print the postfix notation(Reverse Polish Notation) of an arithmetic
+    expression"""
+
+    def __init__(self, parser):
+        self.parser = parser
+
+    def visit_BinOp(self, node):
+        op = OP_CHARS[node.op.type]
+        return '{} {} {}'.format(self.visit(node.left),
+                                 self.visit(node.right),
+                                 op)
+
+    def visit_Num(self, node):
+        return node.value
+
+    def interpret(self):
+        tree = self.parser.parse()
+        return self.visit(tree)
+
+
+class LispTranslator(NodeVisitor):
+    """Print the LISP style notation of an arithmetic expression"""
+
+    def __init__(self, parser):
+        self.parser = parser
+
+    def visit_BinOp(self, node):
+        op = OP_CHARS[node.op.type]
+        return '({} {} {})'.format(op,
+                                   self.visit(node.left),
+                                   self.visit(node.right))
 
     def visit_Num(self, node):
         return node.value
