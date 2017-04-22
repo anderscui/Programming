@@ -2,13 +2,15 @@
 """SPI - Simple Pascal Interpreter"""
 
 from operator import add, sub, mul, ifloordiv, pow
+from operator import pos, neg
 
 INTEGER, EOF = 'INTEGER', 'EOF'
 PLUS, MINUS, MUL, DIV, POW = 'PLUS', 'MINUS', 'MULTI', 'DIV', 'POW'
 LPAREN, RPAREN = '(', ')'
 
 CHAR_OPS = {'+': PLUS, '-': MINUS, '*': MUL, '/': DIV, '^': POW}
-OP_FUNCS = {PLUS: add, MINUS: sub, MUL: mul, DIV: ifloordiv, POW: pow}
+BOP_FUNCS = {PLUS: add, MINUS: sub, MUL: mul, DIV: ifloordiv, POW: pow}
+UOP_FUNCS = {PLUS: pos, MINUS: neg}
 OP_CHARS = {v: k for k, v in CHAR_OPS.items()}
 
 
@@ -108,6 +110,12 @@ class BinOp(AST):
         self.right = right
 
 
+class UnaryOp(AST):
+    def __init__(self, op, expr):
+        self.token = self.op = op
+        self.expr = expr
+
+
 class Num(AST):
     def __init__(self, token):
         self.token = token
@@ -129,9 +137,15 @@ class Parser(object):
             self.error()
 
     def factor(self):
-        """factor : INTEGER | LPAREN expr RPAREN"""
+        """factor : (PLUS | MINUS) factor | INTEGER | LPAREN expr RPAREN"""
         token = self.current_token
-        if token.type == INTEGER:
+        if token.type == PLUS:
+            self.eat(PLUS)
+            return UnaryOp(token, self.factor())
+        elif token.type == MINUS:
+            self.eat(MINUS)
+            return UnaryOp(token, self.factor())
+        elif token.type == INTEGER:
             self.eat(INTEGER)
             return Num(token)
         elif token.type == LPAREN:
@@ -159,7 +173,7 @@ class Parser(object):
         """
         expr   : term ((PLUS | MINUS) term)*
         term   : factor ((MUL | DIV) factor)*
-        factor : INTEGER | LPAREN expr RPAREN
+        factor : (PLUS | MINUS) factor | INTEGER | LPAREN expr RPAREN
         """
         node = self.term()
 
@@ -193,14 +207,11 @@ class Interpreter(NodeVisitor):
         self.parser = parser
 
     def visit_BinOp(self, node):
-        if node.op.type == PLUS:
-            return self.visit(node.left) + self.visit(node.right)
-        elif node.op.type == MINUS:
-            return self.visit(node.left) - self.visit(node.right)
-        elif node.op.type == MUL:
-            return self.visit(node.left) * self.visit(node.right)
-        elif node.op.type == DIV:
-            return self.visit(node.left) // self.visit(node.right)
+        op_func = BOP_FUNCS[node.op.type]
+        return op_func(self.visit(node.left), self.visit(node.right))
+
+    def visit_UnaryOp(self, node):
+        return UOP_FUNCS[node.op.type](self.visit(node.expr))
 
     def visit_Num(self, node):
         return node.value

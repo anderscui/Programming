@@ -127,6 +127,17 @@ The reason we’re going to use a postorder traversal for our interpreter is tha
 
 You can read that as “The parser gets tokens from the lexer and then returns the generated AST for the interpreter to traverse and interpret the input.”
 
+## Unary Operators
+
+**What is a unary operator then?** A unary operator is an operator that operates on one operand only.
+
+Here are the rules for unary plus and unary minus operators:
+
+* The unary minus (-) operator produces the negation of its numeric operand
+* The unary plus (+) operator yields its numeric operand without change
+* The unary operators have higher precedence than the binary operators +, -, *, and /
+
+
 
 
 
