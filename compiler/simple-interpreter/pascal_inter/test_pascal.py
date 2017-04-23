@@ -7,7 +7,7 @@ from pascal_inter.pascal import Parser, Lexer, Interpreter
 class TestPascal(TestCase):
 
     def test_interpreter(self):
-        filepath = 'test.pas'
+        filepath = 'test2.pas'
         text = open(filepath, 'r').read()
         lexer = Lexer(text)
         parser = Parser(lexer)
