@@ -137,6 +137,33 @@ Here are the rules for unary plus and unary minus operators:
 * The unary plus (+) operator yields its numeric operand without change
 * The unary operators have higher precedence than the binary operators +, -, *, and /
 
+# [Part 3](https://ruslanspivak.com/lsbasi-part11/)
+
+## Symbols
+
+What is a symbol? For our purposes, we’ll informally define symbol as an **identifier of some program entity** like a variable, subroutine, or built-in type. For symbols to be useful they need to have at least the following information about the program entities they identify:
+
+* Name (for example, ‘x’, ‘y’, ‘number’)
+* Category (Is it a variable, subroutine, or built-in type?)
+* Type (INTEGER, REAL)
+
+### Why symbols
+
+Why do we even need to track those symbols in the first place? Here are some of the reasons:
+
+* To make sure that when we assign a value to a variable the types are correct (**type checking**)
+* To make sure that a variable is **declared before it is used**
+
+## Symbol Table
+
+What is a symbol table? A symbol table is an **abstract data type (ADT)** for tracking various symbols in source code.
+
+How do we automate the process of building the symbol table? We’ll just write another node visitor that walks the AST built by our parser! This is another example of **how useful it is to have an intermediary form like AST**. Instead of extending our parser to deal with the symbol table, we **separate concerns and write a new node visitor class**.
+
+
+
+
+
 
 
 

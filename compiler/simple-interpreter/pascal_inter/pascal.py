@@ -1,6 +1,6 @@
 # coding=utf-8
 """SPI - Simple Pascal Interpreter"""
-
+from collections import OrderedDict
 from operator import add, sub, mul, floordiv, truediv, pow
 from operator import pos, neg
 
@@ -192,6 +192,53 @@ class Lexer(object):
             self.error()
 
         return Token(EOF, None)
+
+
+# SYMBOLS #
+
+
+class Symbol(object):
+    def __init__(self, name, type=None):
+        self.name = name
+        self.type = type
+
+
+class BuiltinTypeSymbol(object):
+    def __init__(self, name):
+        super(BuiltinTypeSymbol, self).__init__(name)
+
+    def __str__(self):
+        return self.name
+
+    __repr__ = __str__
+
+
+class VarSymbol(Symbol):
+    def __init__(self, name, type):
+        super(VarSymbol, self).__init__(name, type)
+
+    def __str__(self):
+        return '<{name}:{type}>'.format(name=self.name, type=self.type)
+
+    __repr__ = __str__
+
+
+class SymbolTable(object):
+    def __init__(self):
+        self._symbols = OrderedDict()
+
+    def __str__(self):
+        return 'Symbols: {symbols}'.format(symbols=[val for val in self._symbols])
+
+    __repr__ = __str__
+
+    def define(self, symbol):
+        print('Define: %s' % symbol)
+        self._symbols[symbol.name] = symbol
+
+    def lookup(self, name):
+        print('Lookup: %s' % name)
+        return self._symbols.get(name)
 
 
 # PARSER #
