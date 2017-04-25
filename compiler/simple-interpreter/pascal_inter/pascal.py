@@ -203,7 +203,7 @@ class Symbol(object):
         self.type = type
 
 
-class BuiltinTypeSymbol(object):
+class BuiltinTypeSymbol(Symbol):
     def __init__(self, name):
         super(BuiltinTypeSymbol, self).__init__(name)
 
@@ -226,11 +226,17 @@ class VarSymbol(Symbol):
 class SymbolTable(object):
     def __init__(self):
         self._symbols = OrderedDict()
+        self._init_builtins()
 
     def __str__(self):
-        return 'Symbols: {symbols}'.format(symbols=[val for val in self._symbols])
+        return 'Symbols: {symbols}'.format(symbols=[val for val in
+                                                    self._symbols.values()])
 
     __repr__ = __str__
+
+    def _init_builtins(self):
+        self.define(BuiltinTypeSymbol(INTEGER))
+        self.define(BuiltinTypeSymbol(REAL))
 
     def define(self, symbol):
         print('Define: %s' % symbol)
@@ -239,7 +245,6 @@ class SymbolTable(object):
     def lookup(self, name):
         print('Lookup: %s' % name)
         return self._symbols.get(name)
-
 
 # PARSER #
 
@@ -515,12 +520,63 @@ class NodeVisitor(object):
         raise Exception('No visit_{} method found'.format(type(node).__name__))
 
 
+class SymbolTableBuilder(NodeVisitor):
+    def __init__(self):
+        self.symtab = SymbolTable()
+
+    def visit_Program(self, node):
+        self.visit(node.block)
+
+    def visit_Block(self, node):
+        for decl in node.declarations:
+            self.visit(decl)
+        self.visit(node.compound_statements)
+
+    def visit_Compound(self, node):
+        for child in node.children:
+            self.visit(child)
+
+    def visit_BinOp(self, node):
+        self.visit(node.left)
+        self.visit(node.right)
+
+    def visit_UnaryOp(self, node):
+        self.visit(node.expr)
+
+    def visit_Num(self, node):
+        pass
+
+    def visit_NoOp(self, node):
+        pass
+
+    def visit_VarDecl(self, node):
+        type_name = node.type_node.value
+        type_symbol = self.symtab.lookup(type_name)
+        var_name = node.var_node.value
+        var_symbol = VarSymbol(var_name, type_symbol)
+        self.symtab.define(var_symbol)
+
+    def visit_Assign(self, node):
+        var_name = node.left.value
+        var_symbol = self.symtab.lookup(var_name)
+        if var_symbol is None:
+            raise NameError('Var "{}" not declared.'.format(var_name))
+
+        self.visit(node.right)
+
+    def visit_Var(self, node):
+        var_name = node.value
+        var_symbol = self.symtab.lookup(var_name)
+        if var_symbol is None:
+            raise NameError('Var "{}" not declared.'.format(var_name))
+
+
 class Interpreter(NodeVisitor):
 
     GLOBAL_SCOPE = {}
 
-    def __init__(self, parser):
-        self.parser = parser
+    def __init__(self, tree):
+        self.tree = tree
 
     def visit_BinOp(self, node):
         op_func = BOP_FUNCS[node.op.type]
@@ -533,7 +589,6 @@ class Interpreter(NodeVisitor):
         return node.value
 
     def visit_Program(self, node):
-        print('Program: {}'.format(node.name))
         self.visit(node.block)
 
     def visit_Block(self, node):
@@ -567,7 +622,7 @@ class Interpreter(NodeVisitor):
         pass
 
     def interpret(self):
-        tree = self.parser.parse()
+        tree = self.tree
         if tree is None:
             return ''
         else:
