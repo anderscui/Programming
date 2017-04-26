@@ -5,7 +5,7 @@ from operator import add, sub, mul, floordiv, truediv, pow
 from operator import pos, neg
 
 # structures
-PROGRAM, VAR, BEGIN, END = 'PROGRAM', 'VAR', 'BEGIN', 'END'
+PROGRAM, VAR, PROCEDURE, BEGIN, END = 'PROGRAM', 'VAR', 'PROCEDURE', 'BEGIN', 'END'
 # types
 INTEGER, REAL = 'INTEGER', 'REAL'
 # literals
@@ -61,6 +61,7 @@ class Token(object):
 RESERVED_KEYWORDS = {
     'PROGRAM': Token('PROGRAM', 'PROGRAM'),
     'VAR': Token('VAR', 'VAR'),
+    'PROCEDURE': Token('PROCEDURE', 'PROCEDURE'),
     'DIV': Token(INTEGER_DIV, 'DIV'),
     'INTEGER': Token('INTEGER', 'INTEGER'),
     'REAL': Token('REAL', 'REAL'),
@@ -257,6 +258,13 @@ class Program(AST):
     def __init__(self, name, block):
         self.name = name
         self.block = block
+
+
+class ProcedureDecl(AST):
+    def __init__(self, proc_name, block_node):
+        self.proc_name = proc_name
+        self.block_node = block_node
+
 
 class Block(AST):
     def __init__(self, declarations, comp_stats):
@@ -485,6 +493,17 @@ class Parser(object):
                 var_decl = self.variable_declaration()
                 result.extend(var_decl)
                 self.eat(SEMI)
+
+        while self.current_token.type == PROCEDURE:
+            self.eat(PROCEDURE)
+            proc_name = self.current_token.value
+            self.eat(ID)
+            self.eat(SEMI)
+            block_node = self.block()
+            proc_decl = ProcedureDecl(proc_name, block_node)
+            result.append(proc_decl)
+            self.eat(SEMI)
+
         return result
 
     def block(self):
@@ -526,6 +545,9 @@ class SymbolTableBuilder(NodeVisitor):
 
     def visit_Program(self, node):
         self.visit(node.block)
+
+    def visit_ProcedureDecl(self, node):
+        pass
 
     def visit_Block(self, node):
         for decl in node.declarations:
@@ -590,6 +612,9 @@ class Interpreter(NodeVisitor):
 
     def visit_Program(self, node):
         self.visit(node.block)
+
+    def visit_ProcedureDecl(self, node):
+        pass
 
     def visit_Block(self, node):
         for decl in node.declarations:

@@ -160,6 +160,12 @@ What is a symbol table? A symbol table is an **abstract data type (ADT)** for tr
 
 How do we automate the process of building the symbol table? We’ll just write another node visitor that walks the AST built by our parser! This is another example of **how useful it is to have an intermediary form like AST**. Instead of extending our parser to deal with the symbol table, we **separate concerns and write a new node visitor class**.
 
+# [Part 4](https://ruslanspivak.com/lsbasi-part12/)
+
+## Procedures
+
+What is a procedure declaration? A procedure declaration is a language construct that **defines an identifier (a procedure name) and associates it with a block of Pascal code**.
+
 
 
 

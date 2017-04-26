@@ -1,4 +1,5 @@
 # coding=utf-8
+import unittest
 from unittest import TestCase
 
 from pascal_inter.pascal import Parser, Lexer, Interpreter, SymbolTableBuilder
@@ -14,11 +15,21 @@ class TestPascal(TestCase):
 
     def test_interpreter(self):
         parser = self.get_ast('test2.pas')
-        inter = Interpreter(parser)
+        tree = parser.parse()
+        inter = Interpreter(tree)
         result = inter.interpret()
         print(result)
         print(inter.GLOBAL_SCOPE)
 
+    def test_procedure_decl(self):
+        parser = self.get_ast('procedures.pas')
+        tree = parser.parse()
+        inter = Interpreter(tree)
+        result = inter.interpret()
+        print(result)
+        print(inter.GLOBAL_SCOPE)
+
+    @unittest.skip("skip errors")
     def test_symbol_table_error(self):
         parser = self.get_ast('name_error.pas')
         tree = parser.parse()

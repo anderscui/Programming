@@ -12,7 +12,7 @@ class TestCalc(TestCase):
         self.assertEqual(inter.expr(), expected_value)
 
     def test_interpreter(self):
-        self.test_expr('1 + 1', 2)
+        self.test_expr('1 + 1', 3)
         self.test_expr('2 + 7 * 4', 30)
         self.test_expr('7 - 6 / 3', 5)
         self.test_expr('14 + 2 * 3 - 6 / 2', 17)
