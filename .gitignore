@@ -268,3 +268,5 @@ target/
 py3/.idea/*
 
 .DS_Store
+*.class
+*.tokens
