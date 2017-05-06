@@ -1,20 +1,110 @@
 grammar TL;
 
-@lexer::header {
-  import java.util.*;
-}
-
-// in a parsing rule, '.' means any 'token' instead of 'char'.
 parse
-  :  (t=.
-          {System.out.printf("text: %-7s  type: %s \n",
-           $t.text, tokenNames[$t.type]);}
-     )*
-     EOF
-  ;
+ : block EOF
+ ;
+
+block
+ : (statement | functionDecl)* (Return expression ';')?
+ ;
+
+statement
+ : assignment ';'
+ | functionCall ';'
+ | ifStatement
+ | forStatement
+ | whileStatement
+ ;
+
+assignment
+ : Identifier indexes? '=' expression
+ ;
+
+functionCall
+ : Identifier '(' exprList? ')' #identifierFunctionCall
+ | Println '(' expression? ')'  #printlnFunctionCall
+ | Print '(' expression ')'     #printFunctionCall
+ | Assert '(' expression ')'    #assertFunctionCall
+ | Size '(' expression ')'      #sizeFunctionCall
+ ;
+
+ifStatement
+ : ifStat elseIfStat* elseStat? End
+ ;
+
+ifStat
+ : If expression Do block
+ ;
+
+elseIfStat
+ : Else If expression Do block
+ ;
+
+elseStat
+ : Else Do block
+ ;
+
+functionDecl
+ : Def Identifier '(' idList? ')' block End
+ ;
+
+forStatement
+ : For Identifier '=' expression To expression Do block End
+ ;
+
+whileStatement
+ : While expression Do block End
+ ;
+
+idList
+ : Identifier (',' Identifier)*
+ ;
+
+exprList
+ : expression (',' expression)*
+ ;
+
+expression
+ : '-' expression                           #unaryMinusExpression
+ | '!' expression                           #notExpression
+ | expression '^' expression                #powerExpression
+ | expression '*' expression                #multiplyExpression
+ | expression '/' expression                #divideExpression
+ | expression '%' expression                #modulusExpression
+ | expression '+' expression                #addExpression
+ | expression '-' expression                #subtractExpression
+ | expression '>=' expression               #gtEqExpression
+ | expression '<=' expression               #ltEqExpression
+ | expression '>' expression                #gtExpression
+ | expression '<' expression                #ltExpression
+ | expression '==' expression               #eqExpression
+ | expression '!=' expression               #notEqExpression
+ | expression '&&' expression               #andExpression
+ | expression '||' expression               #orExpression
+ | expression '?' expression ':' expression #ternaryExpression
+ | expression In expression                 #inExpression
+ | Number                                   #numberExpression
+ | Bool                                     #boolExpression
+ | Null                                     #nullExpression
+ | functionCall indexes?                    #functionCallExpression
+ | list indexes?                            #listExpression
+ | Identifier indexes?                      #identifierExpression
+ | String indexes?                          #stringExpression
+ | '(' expression ')' indexes?              #expressionExpression
+ | Input '(' String? ')'                    #inputExpression
+ ;
+
+list
+ : '[' exprList? ']'
+ ;
+
+indexes
+ : ('[' expression ']')+
+ ;
 
 Println  : 'println';
 Print    : 'print';
+Input    : 'input';
 Assert   : 'assert';
 Size     : 'size';
 Def      : 'def';
@@ -57,40 +147,34 @@ QMark    : '?';
 Colon    : ':';
 
 Bool
-  :  'true'
-  |  'false'
-  ;
+ : 'true'
+ | 'false'
+ ;
 
 Number
-  :  Int ('.' Digit*)?
-  ;
+ : Int ('.' Digit*)?
+ ;
 
 Identifier
-  :  ('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | Digit)*
-  ;
+ : [a-zA-Z_] [a-zA-Z_0-9]*
+ ;
 
 String
-  // cannot use @after for a lexer rule?
-  /*@after {
-    setText(getText().substring(1, getText().length()-1).replaceAll("\\\\(.)", "$1"));
-  }*/
-  :  '"'  (~('"' | '\\')  | '\\' .)* '"'
-  |  '\'' (~('\'' | '\\') | '\\' .)* '\''
-  ;
+ : ["] (~["\r\n] | '\\\\' | '\\"')* ["]
+ | ['] (~['\r\n] | '\\\\' | '\\\'')* [']
+ ;
 
 Comment
-  :  ('//' ~[\r\n]* | '/*' .*? '*/') -> skip
-  ;
-
+ : ('//' ~[\r\n]* | '/*' .*? '*/') -> skip
+ ;
 Space
-  :  (' ' | '\t' | '\r' | '\n' | '\u000C') -> skip
-  ;
-
+ : [ \t\r\n\u000C] -> skip
+ ;
 fragment Int
-  :  '1'..'9' Digit*
-  |  '0'
-  ;
+ : [1-9] Digit*
+ | '0'
+ ;
 
 fragment Digit
-  :  '0'..'9'
-  ;
+ : [0-9]
+ ;

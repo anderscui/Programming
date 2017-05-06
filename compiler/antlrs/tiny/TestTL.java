@@ -6,5 +6,6 @@ public class TestTL {
     CommonTokenStream tokens = new CommonTokenStream(lexer);
     TLParser parser = new TLParser(tokens);
     parser.parse();
+    System.out.println("Done");
   }
 }
