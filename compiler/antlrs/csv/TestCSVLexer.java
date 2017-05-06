@@ -9,14 +9,11 @@ public class TestCSVLexer {
 
     CSVLexer lexer = new CSVLexer(new ANTLRInputStream(source));
     CommonTokenStream tokens = new CommonTokenStream(lexer);
+    CSVParser parser = new CSVParser(tokens);
 
-    tokens.fill();
+    // validate the grammar.
+    //parser.file();
 
-    int n = 1;
-    for (Object o: tokens.getTokens()) {
-      CommonToken token = (CommonToken)o;
-      System.out.println("token(" + n + ") = " + token.getText().replace("\n", "\\n"));
-      n++;
-    }
+
   }
 }

@@ -2,7 +2,7 @@ grammar CSV;
 
 file: row+;
 
-row: value (Comma value)* LineBreak;
+row: value (Comma value)* (LineBreak | EOF);
 
 value: SimpleValue | QuotedValue;
 

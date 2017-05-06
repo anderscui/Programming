@@ -141,6 +141,7 @@ public class CSVParser extends Parser {
 			return getRuleContext(ValueContext.class,i);
 		}
 		public TerminalNode LineBreak() { return getToken(CSVParser.LineBreak, 0); }
+		public TerminalNode EOF() { return getToken(CSVParser.EOF, 0); }
 		public List<TerminalNode> Comma() { return getTokens(CSVParser.Comma); }
 		public TerminalNode Comma(int i) {
 			return getToken(CSVParser.Comma, i);
@@ -185,7 +186,15 @@ public class CSVParser extends Parser {
 				_la = _input.LA(1);
 			}
 			setState(19);
-			match(LineBreak);
+			_la = _input.LA(1);
+			if ( !(_la==EOF || _la==LineBreak) ) {
+			_errHandler.recoverInline(this);
+			}
+			else {
+				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+				_errHandler.reportMatch(this);
+				consume();
+			}
 			}
 		}
 		catch (RecognitionException re) {
@@ -249,12 +258,12 @@ public class CSVParser extends Parser {
 	public static final String _serializedATN =
 		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\6\32\4\2\t\2\4\3"+
 		"\t\3\4\4\t\4\3\2\6\2\n\n\2\r\2\16\2\13\3\3\3\3\3\3\7\3\21\n\3\f\3\16\3"+
-		"\24\13\3\3\3\3\3\3\4\3\4\3\4\2\2\5\2\4\6\2\3\3\2\5\6\2\30\2\t\3\2\2\2"+
-		"\4\r\3\2\2\2\6\27\3\2\2\2\b\n\5\4\3\2\t\b\3\2\2\2\n\13\3\2\2\2\13\t\3"+
-		"\2\2\2\13\f\3\2\2\2\f\3\3\2\2\2\r\22\5\6\4\2\16\17\7\3\2\2\17\21\5\6\4"+
-		"\2\20\16\3\2\2\2\21\24\3\2\2\2\22\20\3\2\2\2\22\23\3\2\2\2\23\25\3\2\2"+
-		"\2\24\22\3\2\2\2\25\26\7\4\2\2\26\5\3\2\2\2\27\30\t\2\2\2\30\7\3\2\2\2"+
-		"\4\13\22";
+		"\24\13\3\3\3\3\3\3\4\3\4\3\4\2\2\5\2\4\6\2\4\3\3\4\4\3\2\5\6\2\30\2\t"+
+		"\3\2\2\2\4\r\3\2\2\2\6\27\3\2\2\2\b\n\5\4\3\2\t\b\3\2\2\2\n\13\3\2\2\2"+
+		"\13\t\3\2\2\2\13\f\3\2\2\2\f\3\3\2\2\2\r\22\5\6\4\2\16\17\7\3\2\2\17\21"+
+		"\5\6\4\2\20\16\3\2\2\2\21\24\3\2\2\2\22\20\3\2\2\2\22\23\3\2\2\2\23\25"+
+		"\3\2\2\2\24\22\3\2\2\2\25\26\t\2\2\2\26\5\3\2\2\2\27\30\t\3\2\2\30\7\3"+
+		"\2\2\2\4\13\22";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
