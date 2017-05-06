@@ -49,7 +49,7 @@ functionDecl
  ;
 
 forStatement
- : For Identifier '=' expression To expression Do block End
+ : For Identifier '=' expression (To | ToDots) expression Do block End
  ;
 
 whileStatement
@@ -79,8 +79,8 @@ expression
  | expression '<' expression                #ltExpression
  | expression '==' expression               #eqExpression
  | expression '!=' expression               #notEqExpression
- | expression '&&' expression               #andExpression
- | expression '||' expression               #orExpression
+ | expression 'and' expression               #andExpression
+ | expression 'or' expression               #orExpression
  | expression '?' expression ':' expression #ternaryExpression
  | expression In expression                 #inExpression
  | Number                                   #numberExpression
@@ -114,13 +114,14 @@ Return   : 'return';
 For      : 'for';
 While    : 'while';
 To       : 'to';
+ToDots   : '..';
 Do       : 'do';
 End      : 'end';
 In       : 'in';
 Null     : 'null';
 
-Or       : '||';
-And      : '&&';
+Or       : 'or';
+And      : 'and';
 Equals   : '==';
 NEquals  : '!=';
 GTEquals : '>=';

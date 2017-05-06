@@ -5,11 +5,11 @@
 println("start to assert the statements...");
 
 // boolean expressions
-assert(true || false);
+assert(true or false);
 assert(!false);
-assert(true && true);
-assert(!true || !false);
-assert(true && (true || false));
+assert(true and true);
+assert(!true or !false);
+assert(true and (true or false));
 
 // relational expressions
 assert(1 < 2);
@@ -46,6 +46,14 @@ for i=1 to 10 do
   a = a + i;
 end
 assert(a == (1+2+3+4+5+6+7+8+9+10));
+
+for i = 1 .. 10 do
+  if i > 1 do
+    print(", ");
+  end
+  print(i);
+end
+println("");
 
 b = -10;
 c = 0;
@@ -108,6 +116,7 @@ def sort(list)
   while !sorted(list) do
   end
 end
+
 def sorted(list)
   n = size(list);
   for i=0 to n-2 do
@@ -120,6 +129,7 @@ def sorted(list)
   end
   return true;
 end
+
 numbers = [3,5,1,4,2];
 sort(numbers);
 assert(numbers == [1,2,3,4,5]);
