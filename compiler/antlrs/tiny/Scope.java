@@ -16,6 +16,7 @@ public class Scope {
         variables = new HashMap<String, TLValue>();
     }
 
+    // when a function is invoked.
     public void assignParam(String var, TLValue value) {
     	variables.put(var, value);
     }
@@ -62,6 +63,7 @@ public class Scope {
         }
     }
 
+    // down-top searching.
     public TLValue resolve(String var) {
         TLValue value = variables.get(var);
         if(value != null) {

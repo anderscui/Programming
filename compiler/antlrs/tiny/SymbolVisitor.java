@@ -16,6 +16,7 @@ public class SymbolVisitor extends TLBaseVisitor<TLValue> {
     public TLValue visitFunctionDecl(TLParser.FunctionDeclContext ctx) {
         List<TerminalNode> params = ctx.idList() != null ? ctx.idList().Identifier() : new ArrayList<TerminalNode>();
         ParseTree block = ctx.block();
+        // TODO: overloading?
         String id = ctx.Identifier().getText() + params.size();
         functions.put(id, new Function(id, params, block));
         return TLValue.VOID;

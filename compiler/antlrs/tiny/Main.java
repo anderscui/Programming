@@ -13,12 +13,16 @@ public class Main {
             parser.setBuildParseTree(true);
             ParseTree tree = parser.parse();
 
-            Scope scope = new Scope();
+            // Pass 1: collect functions
             Map<String, Function> functions = new HashMap<String, Function>();
             SymbolVisitor symbolVisitor = new SymbolVisitor(functions);
             symbolVisitor.visit(tree);
+
+            // Pass 2: evaluation
+            Scope scope = new Scope();
             EvalVisitor visitor = new EvalVisitor(scope, functions);
             visitor.visit(tree);
+
         } catch (Exception e) {
             if ( e.getMessage() != null) {
                 System.err.println(e.getMessage());
