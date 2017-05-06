@@ -117,6 +117,11 @@ public class TLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitParse(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitParse(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ParseContext parse() throws RecognitionException {
@@ -170,6 +175,11 @@ public class TLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitBlock(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitBlock(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -270,6 +280,11 @@ public class TLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitStatement(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitStatement(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final StatementContext statement() throws RecognitionException {
@@ -351,6 +366,11 @@ public class TLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitAssignment(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitAssignment(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final AssignmentContext assignment() throws RecognitionException {
@@ -414,6 +434,11 @@ public class TLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitAssertFunctionCall(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitAssertFunctionCall(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class SizeFunctionCallContext extends FunctionCallContext {
 		public TerminalNode Size() { return getToken(TLParser.Size, 0); }
@@ -428,6 +453,11 @@ public class TLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitSizeFunctionCall(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitSizeFunctionCall(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class PrintlnFunctionCallContext extends FunctionCallContext {
@@ -444,6 +474,11 @@ public class TLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitPrintlnFunctionCall(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitPrintlnFunctionCall(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class IdentifierFunctionCallContext extends FunctionCallContext {
 		public TerminalNode Identifier() { return getToken(TLParser.Identifier, 0); }
@@ -459,6 +494,11 @@ public class TLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitIdentifierFunctionCall(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitIdentifierFunctionCall(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class PrintFunctionCallContext extends FunctionCallContext {
 		public TerminalNode Print() { return getToken(TLParser.Print, 0); }
@@ -473,6 +513,11 @@ public class TLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitPrintFunctionCall(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitPrintFunctionCall(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -611,6 +656,11 @@ public class TLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitIfStatement(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitIfStatement(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final IfStatementContext ifStatement() throws RecognitionException {
@@ -685,6 +735,11 @@ public class TLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitIfStat(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitIfStat(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final IfStatContext ifStat() throws RecognitionException {
@@ -736,6 +791,11 @@ public class TLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitElseIfStat(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitElseIfStat(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ElseIfStatContext elseIfStat() throws RecognitionException {
@@ -785,6 +845,11 @@ public class TLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitElseStat(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitElseStat(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ElseStatContext elseStat() throws RecognitionException {
@@ -833,6 +898,11 @@ public class TLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitFunctionDecl(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitFunctionDecl(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -905,6 +975,11 @@ public class TLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitForStatement(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitForStatement(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ForStatementContext forStatement() throws RecognitionException {
@@ -966,6 +1041,11 @@ public class TLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitWhileStatement(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitWhileStatement(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final WhileStatementContext whileStatement() throws RecognitionException {
@@ -1013,6 +1093,11 @@ public class TLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitIdList(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitIdList(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1072,6 +1157,11 @@ public class TLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitExprList(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitExprList(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1140,6 +1230,11 @@ public class TLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitGtExpression(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitGtExpression(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class NumberExpressionContext extends ExpressionContext {
 		public TerminalNode Number() { return getToken(TLParser.Number, 0); }
@@ -1151,6 +1246,11 @@ public class TLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitNumberExpression(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitNumberExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class IdentifierExpressionContext extends ExpressionContext {
@@ -1166,6 +1266,11 @@ public class TLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitIdentifierExpression(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitIdentifierExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class ModulusExpressionContext extends ExpressionContext {
@@ -1184,6 +1289,11 @@ public class TLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitModulusExpression(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitModulusExpression(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class NotExpressionContext extends ExpressionContext {
 		public ExpressionContext expression() {
@@ -1197,6 +1307,11 @@ public class TLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitNotExpression(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitNotExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class MultiplyExpressionContext extends ExpressionContext {
@@ -1215,6 +1330,11 @@ public class TLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitMultiplyExpression(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitMultiplyExpression(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class GtEqExpressionContext extends ExpressionContext {
 		public List<ExpressionContext> expression() {
@@ -1231,6 +1351,11 @@ public class TLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitGtEqExpression(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitGtEqExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class AndExpressionContext extends ExpressionContext {
@@ -1249,6 +1374,11 @@ public class TLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitAndExpression(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitAndExpression(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class StringExpressionContext extends ExpressionContext {
 		public TerminalNode String() { return getToken(TLParser.String, 0); }
@@ -1263,6 +1393,11 @@ public class TLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitStringExpression(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitStringExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class ExpressionExpressionContext extends ExpressionContext {
@@ -1281,6 +1416,11 @@ public class TLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitExpressionExpression(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitExpressionExpression(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class NullExpressionContext extends ExpressionContext {
 		public TerminalNode Null() { return getToken(TLParser.Null, 0); }
@@ -1292,6 +1432,11 @@ public class TLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitNullExpression(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitNullExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class FunctionCallExpressionContext extends ExpressionContext {
@@ -1310,6 +1455,11 @@ public class TLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitFunctionCallExpression(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitFunctionCallExpression(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class ListExpressionContext extends ExpressionContext {
 		public ListContext list() {
@@ -1326,6 +1476,11 @@ public class TLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitListExpression(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitListExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class LtEqExpressionContext extends ExpressionContext {
@@ -1344,6 +1499,11 @@ public class TLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitLtEqExpression(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitLtEqExpression(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class LtExpressionContext extends ExpressionContext {
 		public List<ExpressionContext> expression() {
@@ -1361,6 +1521,11 @@ public class TLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitLtExpression(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitLtExpression(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class BoolExpressionContext extends ExpressionContext {
 		public TerminalNode Bool() { return getToken(TLParser.Bool, 0); }
@@ -1372,6 +1537,11 @@ public class TLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitBoolExpression(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitBoolExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class NotEqExpressionContext extends ExpressionContext {
@@ -1390,6 +1560,11 @@ public class TLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitNotEqExpression(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitNotEqExpression(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class DivideExpressionContext extends ExpressionContext {
 		public List<ExpressionContext> expression() {
@@ -1406,6 +1581,11 @@ public class TLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitDivideExpression(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitDivideExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class OrExpressionContext extends ExpressionContext {
@@ -1424,6 +1604,11 @@ public class TLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitOrExpression(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitOrExpression(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class UnaryMinusExpressionContext extends ExpressionContext {
 		public ExpressionContext expression() {
@@ -1437,6 +1622,11 @@ public class TLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitUnaryMinusExpression(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitUnaryMinusExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class PowerExpressionContext extends ExpressionContext {
@@ -1455,6 +1645,11 @@ public class TLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitPowerExpression(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitPowerExpression(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class EqExpressionContext extends ExpressionContext {
 		public List<ExpressionContext> expression() {
@@ -1471,6 +1666,11 @@ public class TLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitEqExpression(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitEqExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class InExpressionContext extends ExpressionContext {
@@ -1490,6 +1690,11 @@ public class TLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitInExpression(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitInExpression(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class AddExpressionContext extends ExpressionContext {
 		public List<ExpressionContext> expression() {
@@ -1506,6 +1711,11 @@ public class TLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitAddExpression(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitAddExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class SubtractExpressionContext extends ExpressionContext {
@@ -1524,6 +1734,11 @@ public class TLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitSubtractExpression(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitSubtractExpression(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class TernaryExpressionContext extends ExpressionContext {
 		public List<ExpressionContext> expression() {
@@ -1541,6 +1756,11 @@ public class TLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitTernaryExpression(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitTernaryExpression(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class InputExpressionContext extends ExpressionContext {
 		public TerminalNode Input() { return getToken(TLParser.Input, 0); }
@@ -1553,6 +1773,11 @@ public class TLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitInputExpression(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitInputExpression(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1992,6 +2217,11 @@ public class TLParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitList(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitList(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ListContext list() throws RecognitionException {
@@ -2046,6 +2276,11 @@ public class TLParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof TLListener ) ((TLListener)listener).exitIndexes(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof TLVisitor ) return ((TLVisitor<? extends T>)visitor).visitIndexes(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
