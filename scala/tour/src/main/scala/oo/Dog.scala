@@ -1,3 +1,5 @@
+package oo
+
 /**
   * Created by andersc on 4/5/17.
   */
@@ -22,5 +24,3 @@ object Dog {
 // The primary purpose of case classes is to hold immutable data.
 // Case classes also get pattern matching for free
 case class Person(name: String, phoneNumber: String)
-
-
