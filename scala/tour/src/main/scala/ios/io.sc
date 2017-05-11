@@ -2,7 +2,7 @@ import java.io.PrintWriter
 
 import scala.io.Source
 
-for (line <- Source.fromFile("/Users/andersc/text.zshrc").getLines())
+for (line <- Source.fromFile("/Users/andersc/.zshrc").getLines())
   println(line)
 
 val writer = new PrintWriter("myfile.txt")
