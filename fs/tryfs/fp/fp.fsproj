@@ -38,17 +38,16 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.ValueTuple">
-      <HintPath>..\packages\System.ValueTuple.4.3.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+      <HintPath>..\packages\System.ValueTuple.4.3.1\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="FSharp.Core">
-      <HintPath>..\packages\FSharp.Core.4.1.0.2\lib\net45\FSharp.Core.dll</HintPath>
+      <HintPath>..\packages\FSharp.Core.4.1.17\lib\net45\FSharp.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="currying.fs" />
     <Compile Include="currying-tests.fsx" />
-    <None Include="packages.config" />
     <Compile Include="pipeling.fs" />
     <None Include="pipeling_tests.fsx" />
     <None Include="recs.fsx" />
@@ -58,6 +57,7 @@
     <None Include="dis_unions.fsx" />
     <None Include="laziness.fsx" />
     <None Include="higher-order.fsx" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(FSharpTargetsPath)" />
 </Project>
