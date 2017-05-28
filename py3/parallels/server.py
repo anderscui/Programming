@@ -1,8 +1,11 @@
 # coding=utf-8
 from socket import *
 from threading import Thread
+from concurrent.futures import ProcessPoolExecutor as Pool
 
 from beazley import fib
+
+pool = Pool(4)
 
 
 def fib_handler(client):
@@ -11,7 +14,8 @@ def fib_handler(client):
         if not req:
             break
         n = int(req)
-        result = fib(n)
+        future = pool.submit(fib, n)
+        result = future.result()
         resp = str(result).encode('ascii') + b'\n'
         client.send(resp)
     print('Closed')
