@@ -9,6 +9,8 @@ def fib(n):
     else:
         return fib(n-1) + fib(n-2)
 
-print(fib(1))
-print(fib(20))
-print(fib(30))
+
+if __name__ == '__main__':
+    print(fib(1))
+    print(fib(20))
+    print(fib(30))

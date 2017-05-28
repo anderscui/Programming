@@ -1,5 +1,6 @@
 # coding=utf-8
 from socket import *
+from threading import Thread
 
 from beazley import fib
 
@@ -24,7 +25,7 @@ def fib_server(address):
     while True:
         client, addr = sock.accept()
         print('Connection', addr)
-        fib_handler(client)
+        Thread(target=fib_handler, args=(client,), daemon=True).start()
 
 
 fib_server(('', 25000))
