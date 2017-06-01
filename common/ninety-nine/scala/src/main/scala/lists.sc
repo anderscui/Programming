@@ -69,3 +69,31 @@ def len2[A](list: List[A]): Int = {
 
 assert(len2(fib) == 6)
 assert(len2(List.empty) == 0)
+
+// P05
+def reverseSimple[A](list: List[A]): List[A] = list match {
+  case head :: tail => reverseSimple(tail) ::: List(head)
+  case Nil => Nil
+}
+
+val reversedFib = fib.reverse
+assert(reverseSimple(fib) == reversedFib)
+
+def reverse[A](list: List[A]): List[A] = {
+  def revRecur(acc: List[A], curList: List[A]): List[A] = {
+    curList match {
+      case head :: tail => revRecur(head :: acc, tail)
+      case Nil => acc
+    }
+  }
+  revRecur(Nil, list)
+}
+
+assert(reverse(fib) == reversedFib)
+
+def reverseFunc[A](list: List[A]): List[A] = {
+  list.foldLeft(List[A]()) { (acc, elem) => elem :: acc }
+}
+
+assert(reverseFunc(fib) == reversedFib)
+
