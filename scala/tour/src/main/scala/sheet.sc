@@ -1,3 +1,4 @@
+import oo.{Dog, Person}
 //https://learnxinyminutes.com/docs/scala/
 
 println("Hello, world")
