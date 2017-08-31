@@ -1,5 +1,7 @@
 package concur
 
+import scala.collection.mutable
+
 object ThreadsSleep {
   def main(args: Array[String]): Unit = {
     val t = thread {
@@ -112,5 +114,81 @@ object SharedStateAccessReorderingSync {
       t2.join()
       assert(!(x == 1 && y == 1), s"x = $x, y = $y")
     }
+  }
+}
+
+object SynchronizedPool {
+  private val tasks = mutable.Queue[() => Unit]()
+
+  def asynchronous(body: => Unit) = tasks.synchronized {
+    tasks.enqueue(() => body)
+    tasks.notify()
+  }
+
+  object Worker extends Thread {
+    setDaemon(true)
+
+    def poll() = tasks.synchronized {
+      while (tasks.isEmpty)
+        tasks.wait()
+      tasks.dequeue()
+    }
+
+    override def run(): Unit = while (true) {
+      val task = poll()
+      task()
+    }
+  }
+
+  def main(args: Array[String]): Unit = {
+
+    Worker.start()
+    asynchronous { log("Hello") }
+    asynchronous { log("World") }
+    Thread.sleep(1000)
+  }
+}
+
+object InterruptSynchronizedPool {
+  private val tasks = mutable.Queue[() => Unit]()
+
+  def asynchronous(body: => Unit) = tasks.synchronized {
+    tasks.enqueue(() => body)
+    tasks.notify()
+  }
+
+  object Worker extends Thread {
+    var terminated = false
+
+    def poll(): Option[() => Unit] = tasks.synchronized {
+      while (tasks.isEmpty && !terminated)
+        tasks.wait()
+
+      if (!terminated)
+        Some(tasks.dequeue())
+      else
+        None
+    }
+
+    import scala.annotation.tailrec
+    @tailrec
+    override def run() = poll() match {
+      case Some(task) => task(); run()
+      case None =>
+    }
+
+    def shutdown() = tasks.synchronized {
+      terminated = true
+      tasks.notify()
+    }
+  }
+
+  def main(args: Array[String]): Unit = {
+
+    Worker.start()
+    asynchronous { log("Hello") }
+    asynchronous { log("World") }
+    Thread.sleep(1000)
+    Worker.shutdown()
   }
 }

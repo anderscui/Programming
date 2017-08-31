@@ -70,7 +70,7 @@ nums endsWith List(2, 3)
 // also max, min, sum
 nums.product
 
-// impl recude
+// impl reduce
 def reduceOp[A, B](l: List[A], start: B)(f: (B, A) => B): B = {
   var acc = start
   for (elem <- l)
@@ -91,21 +91,3 @@ val answer = List(11.1, 12.2, 13.7).reduceLeft(_ + _)
 List(1, 2, 3).mkString(", ")
 // toBuffer, toList, toMap, toSet, toString
 Map("a" -> 1, "b" -> 2).toList
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
