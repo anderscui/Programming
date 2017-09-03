@@ -2,6 +2,18 @@ package concur
 
 import scala.collection.mutable
 
+object ThreadsMain extends App {
+  val t = Thread.currentThread
+  println(s"I am the thread ${t.getName}")
+}
+
+object ThreadsCreation extends App {
+  val t = thread { println("New thread running..."); 1 }
+  // halts the execution of the main thread until t completes its execution.
+  t.join()
+  println("New thread joined.")
+}
+
 object ThreadsSleep {
   def main(args: Array[String]): Unit = {
     val t = thread {
