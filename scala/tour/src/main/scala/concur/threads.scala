@@ -41,22 +41,22 @@ object Nondeterminism {
 object UnprotectedUid {
   var uidCount = 0L
 
-  def getUid() = {
+  def getUniqueId() = {
     // not atomic
     val freshUid = uidCount + 1
     uidCount = freshUid
     freshUid
   }
 
-  def printUids(n: Int): Unit = {
-    val uids = for (i <- 0 until n) yield getUid()
+  def printUniqueIds(n: Int): Unit = {
+    val uids = for (i <- 0 until n) yield getUniqueId()
     log(s"Generated uids: $uids")
   }
 
   def main(args: Array[String]): Unit = {
     // a race condition
-    val t = thread { printUids(5) }
-    printUids(5)
+    val t = thread { printUniqueIds(5) }
+    printUniqueIds(5)
     t.join()
   }
 }
@@ -65,20 +65,20 @@ object SynchronizedUid {
   var uidCount = 0L
 
   // don't omit "this" object.
-  def getUid() = this.synchronized {
+  def getUniqueId() = this.synchronized {
     val freshUid = uidCount + 1
     uidCount = freshUid
     freshUid
   }
 
-  def printUids(n: Int): Unit = {
-    val uids = for (i <- 0 until n) yield getUid()
+  def printUniqueIds(n: Int): Unit = {
+    val uids = for (i <- 0 until n) yield getUniqueId()
     log(s"Generated uids: $uids")
   }
 
   def main(args: Array[String]): Unit = {
-    val t = thread { printUids(5) }
-    printUids(5)
+    val t = thread { printUniqueIds(5) }
+    printUniqueIds(5)
     t.join()
   }
 }
@@ -127,6 +127,37 @@ object SharedStateAccessReorderingSync {
       assert(!(x == 1 && y == 1), s"x = $x, y = $y")
     }
   }
+}
+
+object SynchronizedBadPool extends App {
+  private val tasks = mutable.Queue[() => Unit]()
+
+  val worker = new Thread {
+    def poll(): Option[() => Unit] = tasks.synchronized {
+      if (tasks.nonEmpty)
+        Some(tasks.dequeue())
+      else
+        None
+    }
+
+    // busy-waiting...
+    override def run(): Unit = while (true) poll() match {
+      case Some(task) => task()
+      case None =>
+    }
+  }
+
+  def asynchronous(body: => Unit) = tasks.synchronized {
+    tasks.enqueue(() => body)
+  }
+
+  worker.setName("Worker")
+  worker.setDaemon(true)
+  worker.start()
+
+  asynchronous { log("Hello") }
+  asynchronous { log(" world!") }
+  Thread.sleep(2000)
 }
 
 object SynchronizedPool {
