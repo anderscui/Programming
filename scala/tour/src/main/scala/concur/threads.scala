@@ -25,6 +25,8 @@ object ThreadsSleep {
       Thread.sleep(1000)
       log("Completed...")
     }
+    t.join()
+    log("New thread joined.")
   }
 }
 
