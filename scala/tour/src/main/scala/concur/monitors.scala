@@ -28,3 +28,17 @@ object SyncronizedNesting extends App {
   t1.join(); t2.join(); t3.join()
   log(s"--- transfers ---\n$transfers")
 }
+
+object SynchronizedDeadlock extends App {
+  import SyncronizedNesting.Account
+
+  def send(a: Account, b: Account, n: Int): Unit = a.synchronized {
+    b.synchronized {
+      a.money -= n
+      b.money += n
+    }
+  }
+
+  val a = new Account("Jack", 1000)
+  val b = new Account("")
+}

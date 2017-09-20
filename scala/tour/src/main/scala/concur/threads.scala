@@ -92,10 +92,17 @@ object SharedStateAccessReordering {
       var b = false
       var x = -1
       var y = -1
+      // the JVM is allowed to reorder certain program statements executed by one thread
+      // as long as it does not change the serial semantics of the program.
+      // additionally, the threads do not need to write all their updates to the main memory immediately.
       val t1 = thread {
         a = true
         y = if (b) 0 else 1
       }
+      // We always need to apply proper sync to ensure that the writes by one thread
+      // are VISIBLE to antoher thread.
+      // Writes by any thread executing the synchronized statement on an x object are not only atomic,
+      // but also visible to threads that execute synchronized on x.
       val t2 = thread {
         b = true
         x = if (a) 0 else 1
