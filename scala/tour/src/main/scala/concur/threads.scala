@@ -67,6 +67,8 @@ object SynchronizedUid {
   var uidCount = 0L
 
   // don't omit "this" object.
+  // each object on the JVM has a special built-in *monitor lock*, also called *intrinsic lock*.
+  // when a thread calls the synchronized statement on an x object, it gains ownership of the monitor lock.
   def getUniqueId() = this.synchronized {
     val freshUid = uidCount + 1
     uidCount = freshUid
@@ -127,6 +129,8 @@ object SharedStateAccessReorderingSync {
         }
       }
       val t2 = thread { this.synchronized {
+          // on gaining ownership of the monitor, the thread can witness the memory writes of all the
+          // threads that previously released that monitor.
           b = true
           x = if (a) 0 else 1
         }
@@ -135,112 +139,5 @@ object SharedStateAccessReorderingSync {
       t2.join()
       assert(!(x == 1 && y == 1), s"x = $x, y = $y")
     }
-  }
-}
-
-object SynchronizedBadPool extends App {
-  private val tasks = mutable.Queue[() => Unit]()
-
-  val worker = new Thread {
-    def poll(): Option[() => Unit] = tasks.synchronized {
-      if (tasks.nonEmpty)
-        Some(tasks.dequeue())
-      else
-        None
-    }
-
-    // busy-waiting...
-    override def run(): Unit = while (true) poll() match {
-      case Some(task) => task()
-      case None =>
-    }
-  }
-
-  def asynchronous(body: => Unit) = tasks.synchronized {
-    tasks.enqueue(() => body)
-  }
-
-  worker.setName("Worker")
-  worker.setDaemon(true)
-  worker.start()
-
-  asynchronous { log("Hello") }
-  asynchronous { log(" world!") }
-  Thread.sleep(2000)
-}
-
-object SynchronizedPool {
-  private val tasks = mutable.Queue[() => Unit]()
-
-  def asynchronous(body: => Unit) = tasks.synchronized {
-    tasks.enqueue(() => body)
-    tasks.notify()
-  }
-
-  object Worker extends Thread {
-    setDaemon(true)
-
-    def poll() = tasks.synchronized {
-      while (tasks.isEmpty)
-        tasks.wait()
-      tasks.dequeue()
-    }
-
-    override def run(): Unit = while (true) {
-      val task = poll()
-      task()
-    }
-  }
-
-  def main(args: Array[String]): Unit = {
-
-    Worker.start()
-    asynchronous { log("Hello") }
-    asynchronous { log("World") }
-    Thread.sleep(1000)
-  }
-}
-
-object InterruptSynchronizedPool {
-  private val tasks = mutable.Queue[() => Unit]()
-
-  def asynchronous(body: => Unit) = tasks.synchronized {
-    tasks.enqueue(() => body)
-    tasks.notify()
-  }
-
-  object Worker extends Thread {
-    var terminated = false
-
-    def poll(): Option[() => Unit] = tasks.synchronized {
-      while (tasks.isEmpty && !terminated)
-        tasks.wait()
-
-      if (!terminated)
-        Some(tasks.dequeue())
-      else
-        None
-    }
-
-    import scala.annotation.tailrec
-    @tailrec
-    override def run() = poll() match {
-      case Some(task) => task(); run()
-      case None =>
-    }
-
-    def shutdown() = tasks.synchronized {
-      terminated = true
-      tasks.notify()
-    }
-  }
-
-  def main(args: Array[String]): Unit = {
-
-    Worker.start()
-    asynchronous { log("Hello") }
-    asynchronous { log("World") }
-    Thread.sleep(1000)
-    Worker.shutdown()
   }
 }
