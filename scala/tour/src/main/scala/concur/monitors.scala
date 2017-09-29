@@ -49,3 +49,31 @@ object SynchronizedDeadlock extends App {
   t1.join(); t2.join()
   log(s"a = ${a.money}, b = ${b.money}")
 }
+
+class Page(val txt: String, var position: Int)
+
+// JVM offers a more lightweight form of sync than `synchronized` block.
+// Volative variables can be automatically read and modified, and are mostly used as status flags.
+// Two advantages: writes to and reads from volatile vars cannot be `reordered` in a single thread.
+// writing to a volatile var is immediately visible to all the other threads.
+object Volatile extends App {
+  val pages = for (i <- 1 to 5) yield
+    new Page("Na" * (1000 - 200 * i) + " Batman!", -1)
+
+  @volatile var found = false
+
+  for (p <- pages) yield thread {
+    var i = 0
+    while (i < p.txt.length && !found) {
+      if (p.txt(i) == '!') {
+        p.position = i
+        found = true
+      } else {
+        i += 1
+      }
+    }
+  }
+
+  while (!found) {}
+  log(s"results: ${pages.map(_.position)}")
+}
