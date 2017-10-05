@@ -17,3 +17,10 @@ Scala inherits its memory model from the JVM, which precisely specifies a set of
 * Thread termination
 * Transitivity (A -> B, B -> C => A -> C)
 
+## Immutable objects and final fields
+
+We have said that programs must establish happends-before relationships to avoid data races, but there is an exception to this rule. If an object contains only **final fields** and the reference to the enclosing object does not become visible to another thread before the constructor completes, then the object is considered immutable and can be shared between the threads with any sync.
+
+In Java, it's `final` keyword.
+
+
