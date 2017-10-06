@@ -1,5 +1,6 @@
 package concur
 
+import java.util.concurrent.LinkedBlockingQueue
 import java.util.concurrent.atomic.AtomicReference
 
 import scala.annotation.tailrec
@@ -15,25 +16,49 @@ class Entry(val isDir: Boolean) {
   val state = new AtomicReference[State](new Idle)
 }
 
-//object fileManager extends App {
-//  @tailrec
-//  private def prepareForDelete(entry: Entry): Boolean = {
-//    val s0 = entry.state.get()
-//    s0 match {
-//      case i: Idle =>
-//        if (entry.state.compareAndSet(s0, new Deleting))
-//          true
-//        else
-//          prepareForDelete(entry)
-//      case c: Creating =>
-//        logMessage("File currently created, cannot delete.")
-//        false
-//      case c: Copying =>
-//        logMessage("File currently copied, cannot delete.")
-//        false
-//      case d: Deleting =>
-//        false
-//    }
-//  }
-//}
+class FileSystem(path: String) {
+
+  private val messages = new LinkedBlockingQueue[String]()
+
+  val logger = new Thread {
+    setDaemon(true)
+    override def run() = while (true) {
+      println("test")
+      log(messages.take())
+    }
+  }
+  logger.start()
+
+  def logMessage(msg: String): Unit = messages.offer(msg)
+
+  @tailrec
+  private def prepareForDelete(entry: Entry): Boolean = {
+    val s0 = entry.state.get()
+    s0 match {
+      case i: Idle =>
+        if (entry.state.compareAndSet(s0, new Deleting))
+          true
+        else
+          prepareForDelete(entry)
+      case c: Creating =>
+        logMessage("File currently created, cannot delete.")
+        false
+      case c: Copying =>
+        logMessage("File currently copied, cannot delete.")
+        false
+      case d: Deleting =>
+        false
+    }
+  }
+}
+
+object TestFileSystem {
+  def main(args: Array[String]): Unit = {
+    val fs = new FileSystem(".")
+    fs.logMessage("Testing log!")
+    //fs.logger.start()
+
+    Thread.sleep(100)
+  }
+}
 

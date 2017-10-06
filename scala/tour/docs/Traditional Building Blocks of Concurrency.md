@@ -102,4 +102,36 @@ The ABA problem is usually a type of a race condition. In some cases, it leads t
 
 ## 支持并发操作的集合
 
+在多线程中修改Scala标准库中的集合会导致数据损坏，因为这些集合类没有使用任何同步机制。因此，**永远不要在多线程中使用可修改集合类，除非采用了某种合适的同步机制**。具体方法如下：
+
+* 结合使用不可修改集合类与原子变量
+* 结合使用不可修改集合类与`synchronized`，此方法可能会有scalability问题（当线程太多时）
+* 支持并发操作的集合类
+
+```scala
+// synchronized与集合类
+object CollectionsSynced extends App {
+  val buffer = mutable.ArrayBuffer[Int]()
+
+  def asyncAdd(numbers: Seq[Int]) = execute {
+    buffer.synchronized {
+      buffer ++= numbers
+      log(s"buffer = $buffer")
+    }
+  }
+
+  asyncAdd(0 until 10)
+  asyncAdd(10 until 20)
+  Thread.sleep(100)
+}
+```
+
+## 并发队列
+
+并发编程中一个常见模式是**生产者-消费者（producer-consumer）**模式，比如在Kafka中。这样的模式中，运算被分发到系统不同的部分，从而有了生产者与消费者之分。实现此模式需要的集合类称为**并发队列**。需要特别注意的是，并发队列对于empty和full情形的处理与单线程的队列有所不同。
+
+JDK在`java.util.concurrent`包中包含了若干高效实现的并发队列实现，它们实现的是`BlockingQueue`接口。
+
+注意：**只有在确定没有其它线程修改并发数据结构时才使用iterators**。
+
 
