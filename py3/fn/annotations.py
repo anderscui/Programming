@@ -1,5 +1,4 @@
 # coding=utf-8
-from __future__ import unicode_literals
 
 
 def f(ham: str, eggs: str = 'eggs') -> str:
