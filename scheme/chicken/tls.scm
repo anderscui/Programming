@@ -18,3 +18,13 @@
       ((null? lat) #f)
       ((eq? a (car lat)) #t)
       ("so let's go on" (member? a (cdr lat))))))
+
+(define member2?
+  (lambda (a lat)
+    (cond
+      ((null? lat) #f)
+      (else (or (eq? a (car lat))
+                (member? a (cdr lat)))))))
+
+(print "tls.scm loaded, this is the default module.")
+(newline)
