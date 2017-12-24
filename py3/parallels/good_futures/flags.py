@@ -41,7 +41,7 @@ def download_many(cc_list):
 
 def main(downloader):
     start = time.time()
-    count = downloader(POP20_CC)
+    count = downloader(POP20_CC[:10])
     elapsed = time.time() - start
     msg = '\n{} flags downloaded in {:.2f}s'
     print(msg.format(count, elapsed))
