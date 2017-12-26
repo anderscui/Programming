@@ -26,5 +26,12 @@
       (else (or (eq? a (car lat))
                 (member? a (cdr lat)))))))
 
+(define rember
+  (lambda  (a lat)
+    (cond
+      ((null? lat) (quote ()))
+      ((eq? a (car lat)) (cdr lat))
+      ("otherwise" (cons (car lat) (rember a (cdr lat)))))))
+
 (print "tls.scm loaded, this is the default module.")
 (newline)
