@@ -33,5 +33,20 @@
       ((eq? a (car lat)) (cdr lat))
       ("otherwise" (cons (car lat) (rember a (cdr lat)))))))
 
+; assert
+(define eqvals?
+  (lambda (v1 v2)
+    (if (equal? v1 v2)
+      (print "cool")
+      (begin (print "oops...") (print v1) (print v2)))))
+
+(define true?
+  (lambda (v)
+    (if (and (boolean? v) v) (print "cool") (print "oops..."))))
+
+(define false?
+  (lambda (v)
+    (true? (not v))))
+
 (print "tls.scm loaded, this is the default module.")
 (newline)
