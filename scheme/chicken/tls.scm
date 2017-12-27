@@ -40,6 +40,18 @@
       ((= a (car lat)) (add1 (occur a (cdr lat))))
       (else (occur a (cdr lat))))))
 
+(define first
+  (lambda (l)
+    (car l)))
+
+(define second
+  (lambda (l)
+    (car (cdr l))))
+
+(define third
+  (lambda (l)
+    (car (cdr (cdr l)))))
+
 ; assert
 (define eqvals?
   (lambda (v1 v2)
