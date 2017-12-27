@@ -33,6 +33,13 @@
       ((eq? a (car lat)) (cdr lat))
       ("otherwise" (cons (car lat) (rember a (cdr lat)))))))
 
+(define occur
+  (lambda (a lat)
+    (cond
+      ((null? lat) 0)
+      ((= a (car lat)) (add1 (occur a (cdr lat))))
+      (else (occur a (cdr lat))))))
+
 ; assert
 (define eqvals?
   (lambda (v1 v2)

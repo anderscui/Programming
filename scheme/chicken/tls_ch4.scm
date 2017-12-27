@@ -107,3 +107,21 @@
 
 (eqvals? (pick 4 '(lasagna spaghetti ravioli macaroni meatball)) 'macaroni)
 
+(define no-nums
+  (lambda (lat)
+    (cond
+      ((null? lat) '())
+      ((number? (car lat)) (no-nums (cdr lat)))
+      (else (cons (car lat) (no-nums (cdr lat)))))))
+
+(eqvals? (no-nums '(5 pears 6 prunes 9 dates)) '(pears prunes dates))
+
+(define occur
+  (lambda (a lat)
+    (cond
+      ((null? lat) 0)
+      ((= a (car lat)) (add1 (occur a (cdr lat))))
+      (else (occur a (cdr lat))))))
+
+(eqvals? (occur 1 '(1 2 1 2 3)) 2)
+(eqvals? (occur 10 '(1 2 1 2 3)) 0)
