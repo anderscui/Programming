@@ -16,7 +16,7 @@
   (lambda (a lat)
     (cond
       ((null? lat) #f)
-      ((eq? a (car lat)) #t)
+      ((equal? a (car lat)) #t)
       ("so let's go on" (member? a (cdr lat))))))
 
 (define member2?
@@ -51,6 +51,16 @@
 (define third
   (lambda (l)
     (car (cdr (cdr l)))))
+
+; maths
+; is 'n' multiple of 'm', 6 of 3.
+(define multiple?
+  (lambda (n m)
+    (= (remainder n m) 0)))
+
+(define factor?
+  (lambda (n m)
+    (multiple? m n)))
 
 ; assert
 (define eqvals?
