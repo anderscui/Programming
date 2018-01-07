@@ -62,6 +62,14 @@
   (lambda (n m)
     (multiple? m n)))
 
+(define even?
+  (lambda (n)
+    (= (modulo n 2) 0)))
+
+(define odd?
+  (lambda (n)
+    (not (even? n))))
+
 ; assert
 (define eqvals?
   (lambda (v1 v2)

@@ -146,3 +146,82 @@
 ; there are 3 atoms that are not equal to 'tuna
 (eqvals? (multirember&co 'tuna '(strawberries tuna and swordfish) how-many-others) 3)
 
+(define multiinsertLR
+  (lambda (new oldL oldR lat)
+    (cond
+      [(null? lat) '()]
+      [(equal? (car lat) oldL)
+        (cons new (cons oldL (multiinsertLR new oldL oldR (cdr lat))))]
+      [(equal? (car lat) oldR)
+        (cons oldR (cons new (multiinsertLR new oldL oldR (cdr lat))))]
+      [else (cons (car lat) (multiinsertLR new oldL oldR (cdr lat)))])))
+
+(eqvals? (multiinsertLR 'new 'a 'b '(a c b c)) '(new a c b new c))
+
+(define multiinsertLR&co
+  (lambda (new oldL oldR lat col)
+    (cond
+      [(null? lat) (col '() 0 0)]
+      [(equal? (car lat) oldL)
+        (multiinsertLR&co new oldL oldR (cdr lat)
+          (lambda (newlat L R)
+            (col (cons new (cons oldL newlat)) (add1 L) R)))]
+      [(equal? (car lat) oldR)
+        (multiinsertLR&co new oldL oldR (cdr lat)
+          (lambda (newlat L R)
+            (col (cons oldR (cons new newlat)) L (add1 R))))]
+      [else
+        (multiinsertLR&co new oldL oldR (cdr lat)
+          (lambda (newlat L R)
+            (col (cons (car lat) newlat) L R)))])))
+
+(define insert-col
+  (lambda (newlat L R)
+    newlat))
+
+(eqvals? (multiinsertLR&co 'salty 'fish 'chips '(chips and fish) insert-col)
+         '(chips salty and salty fish))
+
+(true? (even? 10))
+(false? (even? 11))
+
+(define evens-only*
+  (lambda (l)
+    (cond
+      [(null? l) '()]
+      [(atom? (car l))
+        (cond
+          [(even? (car l)) (cons (car l) (evens-only* (cdr l)))]
+          [else (evens-only* (cdr l))])]
+      [else (cons (evens-only* (car l)) (evens-only* (cdr l)))])))
+
+(eqvals? (evens-only* '((9 1 2 8) 3 10 ((9 9) 7 6) 2)) '((2 8) 10 (() 6) 2))
+
+
+(define evens-only*&co
+  (lambda (l col)
+    (cond
+      [(null? l) (col '() 1 0)]
+      [(atom? (car l))
+        (cond
+          [(even? (car l))
+            (evens-only*&co (cdr l)
+              (lambda (newlat prod sum)
+                (col (cons (car l) newlat) (* (car l) prod) sum)))]
+          [else (evens-only*&co (cdr l)
+              (lambda (newlat prod sum)
+                (col newlat prod (+ (car l) sum))))])]
+      [else
+        (evens-only*&co (car l)
+          (lambda (al am as)
+            (evens-only*&co (cdr l)
+              (lambda (dl dm ds)
+                (col (cons al dl)
+                     (* am dm)
+                     (+ as ds))))))])))
+
+(define evens-co
+  (lambda (newl product sum)
+    (cons sum (cons product newl))))
+
+(print (evens-only*&co '((9 1 2 8) 3 10 ((9 9) 7 6) 2) evens-co))
