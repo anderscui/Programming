@@ -1,3 +1,6 @@
+; data types
+; primitive: number?
+
 (define atom?
     (lambda  (x)
           (and (not (pair? x)) (not (null? x)))))
@@ -12,26 +15,20 @@
       ((atom? (car l)) (lat? (cdr l)))
       (else #f))))
 
+; list operations.
 (define member?
   (lambda (a lat)
     (cond
       ((null? lat) #f)
       ((equal? a (car lat)) #t)
-      ("so let's go on" (member? a (cdr lat))))))
-
-(define member2?
-  (lambda (a lat)
-    (cond
-      ((null? lat) #f)
-      (else (or (eq? a (car lat))
-                (member? a (cdr lat)))))))
+      (else (member? a (cdr lat))))))
 
 (define rember
   (lambda  (a lat)
     (cond
       ((null? lat) (quote ()))
       ((eq? a (car lat)) (cdr lat))
-      ("otherwise" (cons (car lat) (rember a (cdr lat)))))))
+      (else (cons (car lat) (rember a (cdr lat)))))))
 
 (define occur
   (lambda (a lat)
@@ -51,6 +48,18 @@
 (define third
   (lambda (l)
     (car (cdr (cdr l)))))
+
+; the nth element of list 'lat'
+(define pick
+  (lambda (n lat)
+    (cond
+      ((= n 1) (car lat))
+      (else (pick (sub1 n) (cdr lat))))))
+
+; build a list consisting of the two specific items.
+(define build
+  (lambda (a b)
+    (cons a (cons b '()))))
 
 ; maths
 ; is 'n' multiple of 'm', 6 of 3.
