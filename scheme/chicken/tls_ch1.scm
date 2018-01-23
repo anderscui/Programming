@@ -1,12 +1,13 @@
-; (load "tls.scm")
-(atom? (quote ()))
-(atom? 1)
+(load "tls.scm")
 
-(atom? '(atom)) ; #t
-(list? '(atom turkey or)) ; #t
-(list? '((atom turkey) or))
-(list? '()) ; #t
+(false? (atom? (quote ())))
+(true? (atom? 1))
 
-(car '(a b c)) ; a
+(false? (atom? '(atom)))
+(true? (list? '(atom turkey or)))
+(true? (list? '((atom turkey) or)))
+(true? (list? '()))
 
-(cons 'peanut '(butter and jelly)) ; (peanut butter and jelly)
+(eqvals? (car '(a b c)) 'a)
+
+(eqvals? (cons 'peanut '(butter and jelly)) '(peanut butter and jelly))

@@ -40,3 +40,4 @@
       [(atom? pora) pora]
       [(pair? (first pora)) (align (shift pora))]
       [else (build (first pora) (align (second pora)))])))
+
