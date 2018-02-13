@@ -16,6 +16,25 @@
       (else #f))))
 
 ; list operations.
+(define len
+  (lambda (lat)
+    (cond
+      ((null? lat) 0)
+      (else (add1 (len (cdr lat)))))))
+
+(define nth
+  (lambda (n lat)
+    (cond
+      ((= n 1) (car lat))
+      (else (nth (sub1 n) (cdr lat))))))
+
+(define occur
+  (lambda (a lat)
+    (cond
+      ((null? lat) 0)
+      ((= a (car lat)) (add1 (occur a (cdr lat))))
+      (else (occur a (cdr lat))))))
+            
 (define member?
   (lambda (a lat)
     (cond

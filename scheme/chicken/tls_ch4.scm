@@ -1,13 +1,10 @@
 (load "tls.scm")
 
-; (print (atom? (quote ())))
-; (print (atom? 1))
+(eqvals? (add1 67) 68)
+(eqvals? (sub1 67) 66)
 
-; (print (add1 67))
-; (print (sub1 67))
-
-; (print (zero? 0))
-; (print (zero? 1))
+(true? (zero? 0))
+(false? (zero? 1))
 
 (define add
 	(lambda (n m)
@@ -24,6 +21,7 @@
 (eqvals? (add 3 6) 9)
 (eqvals? (sub 9 6) 3)
 
+; is l a list of numbers.
 (define tup?
   (lambda (l)
     (cond
@@ -33,10 +31,11 @@
 
 (true? (tup? '()))
 (true? (tup? '(1 2 3)))
-(true? (not (tup? '(1 (1 2) 3))))
-(true? (not (tup? '(3 (7 4) 13 9))))
-(true? (not (tup? '(1 2 8 'apple 3))))
+(false? (tup? '(1 (1 2) 3)))
+(false? (tup? '(3 (7 4) 13 9)))
+(false? (tup? '(1 2 8 'apple 3)))
 
+; sum a tuple.
 (define addtup
   (lambda (tup)
     (cond
@@ -44,7 +43,6 @@
       (else (+ (car tup) (addtup (cdr tup)))))))
 
 (eqvals? 18 (addtup '(3 5 2 8)))
-
 
 (define times
   (lambda (n m)
@@ -91,21 +89,9 @@
 
 (eqvals? (div 7 3) 2)
 
-(define len
-  (lambda (lat)
-    (cond
-      ((null? lat) 0)
-      (else (add1 (len (cdr lat)))))))
-
 (eqvals? (len '(ham and cheese on rye)) 5)
 
-(define pick
-  (lambda (n lat)
-    (cond
-      ((= n 1) (car lat))
-      (else (pick (sub1 n) (cdr lat))))))
-
-(eqvals? (pick 4 '(lasagna spaghetti ravioli macaroni meatball)) 'macaroni)
+(eqvals? (nth 4 '(lasagna spaghetti ravioli macaroni meatball)) 'macaroni)
 
 (define no-nums
   (lambda (lat)
@@ -115,13 +101,6 @@
       (else (cons (car lat) (no-nums (cdr lat)))))))
 
 (eqvals? (no-nums '(5 pears 6 prunes 9 dates)) '(pears prunes dates))
-
-(define occur
-  (lambda (a lat)
-    (cond
-      ((null? lat) 0)
-      ((= a (car lat)) (add1 (occur a (cdr lat))))
-      (else (occur a (cdr lat))))))
 
 (eqvals? (occur 1 '(1 2 1 2 3)) 2)
 (eqvals? (occur 10 '(1 2 1 2 3)) 0)

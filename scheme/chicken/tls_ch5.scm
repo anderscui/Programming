@@ -32,4 +32,3 @@
       (else (leftmost (car l))))))
 
 (eqvals? (leftmost '(((hot) (tuna (and))) cheese)) 'hot)
-
