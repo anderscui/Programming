@@ -1,0 +1,51 @@
+---
+uti: com.xamarin.workbook
+id: 368567fc-d6fd-4c98-a830-e4a09422f38b
+title: cs7
+platforms:
+- DotNetCore
+---
+
+```csharp
+// binary literal
+var b = 0b101
+```
+
+```csharp
+// underscores in numeric literals
+var i = 100_0000;
+```
+
+```csharp
+// inf
+double.NegativeInfinity
+```
+
+```csharp
+// nan
+double.NaN
+```
+
+```csharp
+1.0 / 0.0
+```
+
+```csharp
+0.0 / 0.0
+```
+
+```csharp
+// string interpolation
+var x = 1;
+var s = $"{x} + {x} = {x+x}"
+```
+
+```csharp
+$"255 in hex is {byte.MaxValue:X2}"
+```
+
+```csharp
+var x = 2;
+$@"this spans {
+    x} lines"
+```
