@@ -49,3 +49,285 @@ var x = 2;
 $@"this spans {
     x} lines"
 ```
+
+```csharp
+// verbatim string literals
+@"\\server\fileshare\hello.cs"
+```
+
+```csharp
+// auto string concat
+var s = "1" + 23;
+```
+
+```csharp
+// string comparision
+"Boston".CompareTo("Austin")
+```
+
+```csharp
+// more string ops
+var s = "Programming";
+var i = s.IndexOf("ing");
+Console.WriteLine(s.Substring(i, "ing".Length));
+
+Console.WriteLine(s.PadLeft(20, '*'));
+Console.WriteLine(s.TrimEnd("ing".ToCharArray()));
+
+var ids = new List<int>() { 1, 2, 3, 4, 5 };
+string.Join(" ", ids)
+```
+
+```csharp
+// arrays
+var vowels = new char[] { 'a', 'e', 'i', 'o', 'u' };
+foreach (var c in vowels)
+    Console.Write(c);
+
+// simplified array init
+char[] vowels2 = { 'a', 'e', 'i', 'o', 'u' };
+```
+
+```csharp
+// default value
+Console.WriteLine(default(int));
+default(string)
+```
+
+```csharp
+// nameof
+var i = 1;
+nameof(i);
+```
+
+```csharp
+// out var in C# 7
+int.TryParse("123", out int x);
+x
+
+// for multiple out vars
+// SomeMethod(out _, out _, out int x, out _, out_);
+// Console.WriteLine(x);
+```
+
+```csharp
+// optional args
+void Foo(int x = 23) {
+    Console.WriteLine(x);
+}
+Foo();
+Foo(32);
+```
+
+```csharp
+// named args
+void Foo(int x, int y) {
+    Console.WriteLine(x + ", " + y);
+}
+Foo(x:1, y:2)
+```
+
+```csharp
+// null values
+string s1 = null;
+var s2 = s1 ?? "nothing"
+```
+
+```csharp
+// null conditional
+using System.Text;
+StringBuilder sb = null;
+Console.WriteLine(sb?.ToString());
+Console.WriteLine(sb?.ToString().ToUpper());
+```
+
+```csharp
+// switch statement with patterns (C# 7)
+void TheType(object x) {
+    switch(x) {
+        case int i:
+            Console.WriteLine("It's an int");
+            break;
+        case string s:
+            Console.WriteLine(s.Length);
+            break;
+        case bool b when b == true:
+            Console.WriteLine("true");
+            break;
+        case null:
+            Console.WriteLine("null");
+            break;
+    }
+}
+
+TheType(1);
+TheType("str");
+TheType(true);
+TheType(false);
+TheType(null);
+```
+
+```csharp
+// exp bodied method
+int Foo(int x) => x * 2;
+Foo(1);
+```
+
+```csharp
+// local methods
+void WriteCubes() {
+    int Cube(int val) => val * val * val;
+
+    Console.WriteLine(Cube(3));
+}
+WriteCubes();
+```
+
+```csharp
+// generic type
+public class Stack<T> {
+    int pos;
+    T[] data = new T[100];
+    public void Push(T elem) => data[pos++] = elem;
+    public T Pop() => data[--pos];
+}
+
+var stack = new Stack<int>();
+stack.Push(1);
+stack.Push(2);
+Console.WriteLine(stack.Pop());
+Console.WriteLine(stack.Pop());
+```
+
+```csharp
+// generic method
+void Swap<T>(ref T a, ref T b) {
+    T temp = a; a = b; b = temp;
+}
+
+int a = 1, b = 2;
+Swap(ref a, ref b);
+Console.WriteLine("{0} = {1}, {2} = {3}", nameof(a), a, nameof(b), b);
+```
+
+```csharp
+// delegate
+delegate int Transformer(int x);
+
+int Square(int x) => x * x;
+
+Transformer m = Square;
+Console.WriteLine(m(3));
+
+Transformer m2 = new Transformer(Square);
+Console.WriteLine(m2.Invoke(3));
+```
+
+```csharp
+// Func and Action
+Func<int, int> dbl = a => a + a;
+dbl(1);
+```
+
+```csharp
+// lambda exp
+Transformer sqr = x => x * x;
+sqr(3)
+```
+
+```csharp
+// closure
+var factor = 2;
+Func<int, int> multiplier = n => n * factor;
+
+// captured var is evaluated when it's invoked.
+factor = 10;
+multiplier(3);
+```
+
+```csharp
+// anonymous types
+var dude = new { Name = "Anders", Aage = 30 };
+Console.WriteLine(dude);
+
+var Age = 30;
+Console.WriteLine(new { Name = "Bill", Age });
+```
+
+```csharp
+// tuples
+var candy = ("Candy", 20);
+Console.WriteLine("{0}, {1}", candy.Item1, candy.Item2);
+
+(string, int) person = candy;
+Console.WriteLine(person.GetType());
+```
+
+```csharp
+var dickens = (Name: "Dickens", Age: 21);
+Console.WriteLine("{0}, {1}", dickens.Item1, dickens.Item2);
+Console.WriteLine("{0}, {1}", dickens.Name, dickens.Age);
+```
+
+```csharp
+// deconstruct tuple
+(string name, int age) = dickens
+```
+
+```csharp
+// linq
+string[] names = { "Tom", "Dick", "Harry" };
+var filteredNames = names.Where(name => name.Length >= 4);
+```
+
+```csharp
+// projecting
+var upperNames = names.Select(name => name.ToUpper());
+```
+
+```csharp
+// aggregation
+int[] numbers = { 10, 9, 8, 7, 6 };
+Console.WriteLine(numbers.Count());
+Console.WriteLine(numbers.Count(n => n % 2 == 0));
+```
+
+```csharp
+using System.Linq;
+var range = Enumerable.Range(1, 5);
+foreach (var n in range)
+    Console.Write("{0} ", n);
+```
+
+```csharp
+// query exp
+var q = 
+    from n in names
+    where n.Contains("a")
+    orderby n.Length
+    select n.ToUpper();
+```
+
+```csharp
+// let var
+using System.Text.RegularExpressions;
+
+string[] names = { "Tom", "Dick", "Harry", "Mary", "Jay" };
+var q = 
+    from n in names
+    let vowelless = Regex.Replace(n, "[aeiou]", "")
+    where vowelless.Length > 2
+    orderby vowelless
+    select n + " - " + vowelless
+```
+
+```csharp
+// zip
+int[] numbers = { 3, 5, 7 };
+string[] words = { "three", "five", "seven", "ignored" };
+var zipped = numbers.Zip(words, (n, w) => n + " = " + w);
+```
+
+```csharp
+// dynamic binding
+```
