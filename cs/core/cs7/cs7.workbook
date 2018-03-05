@@ -331,3 +331,7 @@ var zipped = numbers.Zip(words, (n, w) => n + " = " + w);
 ```csharp
 // dynamic binding
 ```
+
+```csharp
+"hello".Substring(0, 3);
+```
