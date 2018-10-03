@@ -45,7 +45,7 @@ val oddList = Nil.::(1)
 
 // ops
 val strs = List("apple", "to", "scala", "language")
-strs sortBy (_.size)
+strs sortBy (_.length)
 strs slice (1, 3)
 strs splitAt 2
 strs partition (_(1) < 'o')
@@ -82,7 +82,7 @@ def reduceOp[A, B](l: List[A], start: B)(f: (B, A) => B): B = {
 List(4, 5, 6).scan(0)(_+_)
 
 val included = List(46, 19, 92).foldLeft(false) { (a, i) =>
-  if (a) a else (i == 19)
+  if (a) a else i == 19
 }
 
 val answer = List(11.1, 12.2, 13.7).reduceLeft(_ + _)
@@ -91,3 +91,6 @@ val answer = List(11.1, 12.2, 13.7).reduceLeft(_ + _)
 List(1, 2, 3).mkString(", ")
 // toBuffer, toList, toMap, toSet, toString
 Map("a" -> 1, "b" -> 2).toList
+
+val s = "true"
+s.toBoolean
