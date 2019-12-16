@@ -1,4 +1,4 @@
-scalaVersion := "2.12.1"
+scalaVersion := "2.12.7"
 
 name := "tour"
 version := "1.0"
