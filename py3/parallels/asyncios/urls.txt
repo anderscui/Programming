@@ -1,0 +1,11 @@
+https://www.kesci.com/home/dataset
+https://www.douban.com/update/
+https://www.douban.com/
+http://www.topcoder.com/
+https://www.douban.com/people/1959705/
+https://www.cnblogs.com/anderslly/
+https://trio.readthedocs.io/
+https://github.com/dabeaz/curio
+http://www.dabeaz.com/coroutines/
+https://snarky.ca/how-the-heck-does-async-await-work-in-python-3-5/
+https://realpython.com/async-io-python/#async-ios-roots-in-generators

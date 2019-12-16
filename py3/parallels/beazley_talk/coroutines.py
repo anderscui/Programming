@@ -26,4 +26,5 @@ def run():
         except StopIteration:
             print('Task done')
 
+
 run()
