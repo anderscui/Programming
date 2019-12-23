@@ -3,7 +3,7 @@ package tour.java.collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class maps {
+public class Maps {
     public static void main(String[] args) {
         Map<String, Integer> counts = new HashMap<>();
         counts.put("Alice", 1);
