@@ -2,10 +2,11 @@ package andersc.tour.values
 
 import java.lang.Exception
 import java.lang.IllegalStateException
+import andersc.tour.values.extensions.random
 
 fun main() {
     var swordsJuggling: Int? = null
-    val isJuggleProficient = (1..3).shuffled().last() == 3
+    val isJuggleProficient = (1..3).random() == 3
     if (isJuggleProficient) {
         swordsJuggling = 2
     }

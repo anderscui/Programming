@@ -1,11 +1,12 @@
 package andersc.tour.values
 
+import andersc.tour.values.extensions.random
 import java.io.File
 
 class Player(name: String,
-             var healthPoints: Int = 100,
+             override var healthPoints: Int = 100,
              val isBlessed: Boolean,
-             private val isImmortal: Boolean) {
+             private val isImmortal: Boolean): Fightable {
 
     constructor(name: String) : this(name, isBlessed = true, isImmortal = false) {
         if (name.toLowerCase() == "kar") {
@@ -19,13 +20,28 @@ class Player(name: String,
         require(name.isNotBlank()) { "Player must have a name."}
     }
 
+    override val diceCount = 3
+    override val diceSides = 6
+
+    override fun attack(opponent: Fightable): Int {
+        val damageDealt = if (isBlessed) {
+            damageRoll * 2
+        } else {
+            damageRoll
+        }
+        opponent.healthPoints -= damageDealt
+        return damageDealt
+    }
+
     val hometown: String = selectHometown()
+    var curPosition = Coordinate(0, 0)
 
     private fun selectHometown(): String =
         File("data/towns.txt")
             .readText()
             .split("\n")
-            .first { it.isNotEmpty() }
+            .filter { it.isNotEmpty() }
+            .random()
 
     var name = "madrigal"
         get() = "${field.capitalize()} of $hometown"

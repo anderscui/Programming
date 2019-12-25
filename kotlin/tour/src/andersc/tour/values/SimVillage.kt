@@ -5,7 +5,7 @@ fun main() {
 }
 
 //fun runSim(player: String, costPrinter: (Int) -> Unit, greeter: (String, Int) -> String) {
-//    val numBuildings = (1..3).shuffled().last()
+//    val numBuildings = (1..3).random()
 //    costPrinter(numBuildings)
 //    println(greeter(player, numBuildings))
 //}

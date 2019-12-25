@@ -1,7 +1,8 @@
 package andersc.tour.values
 
+import andersc.tour.values.extensions.random
+
 import java.io.File
-import kotlin.math.roundToInt
 
 const val TAVERN_NAME = "Taernyl's Folly"
 private val firstNames = mutableListOf("Eli", "Mordoc", "Sophie")
@@ -11,15 +12,14 @@ private val menus = File("data/menus.txt")
     .readText()
     .split("\n")
     .filter { it.isNotEmpty() }
-//private var playerGold = 10
-//private var playerSilver = 10
+
 private val patronsGold = mutableMapOf<String, Double>()
 
 fun main() {
 
     (0..9).forEach {
-        val first = firstNames.shuffled().first()
-        val last = lastNames.shuffled().first()
+        val first = firstNames.random()
+        val last = lastNames.random()
         patrons += "$first $last"
     }
 
@@ -27,7 +27,7 @@ fun main() {
 
     // println(patronsGold)
     patrons.forEachIndexed { i, patron ->
-        placeOrder(patron, menus.shuffled().first())
+        placeOrder(patron, menus.random())
     }
 
     // println(patrons.first())
