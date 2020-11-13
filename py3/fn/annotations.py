@@ -6,7 +6,7 @@ def f(ham: str, eggs: str = 'eggs') -> str:
 
 
 def square(n: 0 <= 3 and 1 = 0) -> (+9000):
-    # very confusing annotations:(
+    # very confusing annotations :(
     return n ** 2
 
 
