@@ -1,0 +1,376 @@
+<font><br></font><div><includetail><div>&nbsp;</div><div>&nbsp;</div><div style="font:Verdana normal 14px;color:#000;"><div style="FONT-SIZE: 12px;FONT-FAMILY: Arial Narrow;padding:2px 0 2px 0;">------------------&nbsp;Original&nbsp;------------------</div><div style="FONT-SIZE: 12px;background:#efefef;padding:8px;"><div id="menu_sender"><b>From: </b>&nbsp;"智联求职者 周先生"&lt;b2.service@zhaopinmail.com&gt;;</d<b>Date: </b>&nbsp;Wed, Mar 24, 2021 11:19 AM</div><div><b>To: </b>&nbsp;"anderscui"&lt;anderscui@nadileaf.com&gt;; <wbr></div><div></div><div><b>Subject: </b>&nbsp;(Zhaopin.com) 应聘 后端开发工程师-上海-周先生</div></;</div><div style="position:relative;"><div id="tmpcontent_res"></div><style type="text/css"> .btnbox{ width:600px; height:100px;}
+ .yelline{height:3px;  width:176px; float:left; margin-top:12px; font-size:1;}
+ .btnbox-mid{  float:left; text-align:center}
+ .btnbox-yelbtn{font:500 20px Microsoft YaHei; color:#ffffff; padding:5px 10px; background-color:#eb6100; text-decoration:none;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px; border-bottom:2px #e54d00 solid; }
+ .Clicktext{ color:#004e9c}
+ .footercont{width:600px; border-top:1px #e1e1e1 solid;text-align:center;line-height:20px; padding:10px 0;background:#ffffff;color:#a3a4a9;}
+ .space-left{padding-left:3px;}
+ .space{padding:0 3px 0 3px}
+ .contact-card {
+        height: 48px;
+        background: #e9f0ff;
+        color: #0168da;
+        border-radius: 5px;
+        padding: 0 0 0 10px;
+        word-break: break-all;
+        word-wrap:break-word;
+    }
+ .has-indicator {
+        color: #696e7d;
+        font-weight: 600;
+        padding: 0 15px;
+        background: #eef1f6;
+        font-size: 14px;
+        position: relative;
+    }
+ .has-indicator:before {
+        content: "";
+        position: absolute;
+        left: 2px;
+        bottom: 8px;
+        top: 8px;
+        border-radius: 4px;
+        width: 4px;
+        background-color: #1e9bf5;
+    }
+ .portrait {
+        display: block;
+        width: 100px;
+        height: 122.58065px;
+        border-radius: 5px;
+    }
+ .lookBtn:hover{
+        background: #4068FF;
+        box-shadow: 0 2px 0 0 rgba(64,104,255,0.20);
+    }
+</style>
+<table class="is-bordered is-top" width="600" cellspacing="0" cellpadding="0" border="0">
+    <tbody><tr style="background: #EAEFF9;" height="85">
+        <td style="border-left: 1px solid #d8dce6; padding-left: 20px; border-top: 1px solid #d8dce6;" width="193" align="left"><a href="https://ihr.zhaopin.com/B-APP-download/?from=rd_cvemail"><img style="float: left; margin-top: 10px;" src="https://storage-public.zhaopin.cn/org/newlogo/RD5%E8%BD%AC%E5%8F%91%E7%AE%80%E5%8E%86LOGO%402x.png" onerror="" width="110" height="32"></a></td>
+        <td style="border-right: 1px solid #d8dce6;padding-right: 14px;border-top: 1px solid #d8dce6;">
+            <table class="is-bordered is-bottom" width="400" cellspacing="0" cellpadding="0" border="0">
+                <tbody><tr height="80" bgcolor="#EAEFF9">
+                    <td style="text-align: center;">
+                        <a href="https://ihr.zhaopin.com/B-APP-download/?from=rd_cvemail">
+                            <span style="color: #4068FF;font-size: 18px;letter-spacing: 1px;">用企业版APP，随时随地招人才</span><br>
+                            <em style="color: #4068FF;font-size: 12px; line-height: 22px;">——</em><span style="color: #4068FF;font-size: 12px; line-height: 22px;letter-spacing: 1px;"> 筛选 · 沟通 · 约面  一站解决 </spae="color: #4068FF;font-size: 12px; line-height: 22px;">——</em>
+                        </a>
+                    </td>
+                    <td width="30"></td>
+                    <td><a href="https://ihr.zhaopin.com/B-APP-download/?from=rd_cvemail" class="lookBtn" style="display: inline-block; background-color: #4068FF; color:#ffffff; width:94px; height:32px; line-height:32px; text-align:center;border-radius: 100px;text-decoration:none;">去看看 &gt;</a></td>
+                </tr>
+            </tbody></table>
+        </td>
+    </tr>
+</tbody></table>
+<table width="600" cellspacing="0" cellpadding="0" border="0" bgcolor="#ffffff">
+    <tbody><tr>
+        <td style="border-left: 1px solid #d8dce6;border-right: 1px solid #d8dce6;">
+            <table class="is-bordered" width="598" cellspacing="0" cellpadding="0" border="0">
+                <tbody><tr>
+                    <td>
+                        <table width="570" cellspacing="0" cellpadding="0" border="0" bgcolor="#ffffff" align="center">
+                            <tbody><tr>
+                                <td colspan="3" height="10"></td>
+                            </tr>
+                            <tr>
+                                <td width="466" valign="top">
+                                    <table style="word-break: break-all; word-wrap:break-word;" width="466" cellspacing="0" cellpadding="0" border="0">
+                                        <tbody><tr style="width:100%;height:40px">
+                                            <td style="font-size:18px;padding-left:0;line-height:40px">周先生</td>
+                                        </tr>
+                                        <tr width="466" style="height:30px">
+                                            <td style="line-height:24px;padding-left:0;word-break: break-all; word-wrap:break-word;" width="466">
+                                                <font style="font-weight:bold">男</font>
+                                                    <small style="color:#b5b5b5" class="space">|</small>
+                                                    <font style="font-weight:bold">(1998年2月)</font>
+                                                    <small style="color:#b5b5b5" class="space">|</small>
+                                                    <font style="font-weight:bold">暂不换工作</font>
+                                                <br>
+                                                    现居住于无锡宜兴市
+                                                    <small style="color:#b5b5b5" class="space">|</small>
+                                                    本科
+                                                    <small style="color:#b5b5b5" class="space">|</small>
+                                                    无锡户口
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <table style="margin-left: -10px;">
+                                                    <tbody><tr>
+                                                        <td width="4"></td>
+                                                        <td style="border-radius:5px;text-align:center;background:#00bdff;" width="300" height="48">
+                                                            <a style="font-size: 16px;color: #f5f6fa;" href="https://rd6.zhaopin.com/resume/detail?resumeNumber=%28mSb21kCzwLJuPI9lwPiOS6fTmRzqWJc&amp;resumeLanguage=1&amp;k=B327FF6C53DAE234E421628FB2CC7A56&amp;t=1616555974554">如需联系候选人，请登录智联招聘</a>
+                                                        </td>
+                                                        <td width="4"></td>
+                                                    </tr>
+                                                </tbody></table>
+                                            </td>
+                                        </tr>
+                                    </tbody></table>
+                                </td>
+                                <td style="vertical-align: top;" width="80">
+                                    <div class="photo" style="padding: 0px 5px 5px 5px">
+                                        <a target="_blank" href="http://img00.zhaopin.cn/SZProj/newrd/img/banner/personpic_m.png"><img class="
+                              portrait
+                            " style="
+                              vertical-align:middle
+                            " src="http://img00.zhaopin.cn/SZProj/newrd/img/banner/personpic_m.png" onerror="" width="
+                              100
+                            " height="
+                              122
+                            " border="
+                              0
+                            "></a>
+                                    </div>
+                                </td>
+                                <td width="6"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" height="10"></td>
+                            </tr>
+                        </tbody></table>
+                    </td>
+                </tr>
+                <tr>
+                    <td height="10"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <table style="word-break: break-all; word-wrap:break-word;" width="570" cellspacing="0" cellpadding="0" border="0" align="center"></table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table width="570" height="30" cellspacing="0" cellpadding="0" border="0" bgcolor="#f6f8fa" align="center">
+                            <tbody><tr>
+                                <td class="has-indicator" style="word-break: break-all; word-wrap:break-word;"><span>自我评价</span></td>
+                            </tr>
+                        </tbody></table>
+                        <table width="570">
+                            <tbody><tr>
+                                <td colspan="2" height="5"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="word-break:break-all;word-wrap:break-word;padding-left:12px;"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" height="5"></td>
+                            </tr>
+                        </tbody></table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <br>
+                        <table width="570" height="30" cellspacing="0" cellpadding="0" border="0" bgcolor="#f6f8fa" align="center">
+                            <tbody><tr>
+                                <td class="has-indicator"><span>求职意向</span></td>
+                            </tr>
+                        </tbody></table>
+                        <br>
+                        <table width="570" cellspacing="0" cellpadding="0" border="0" align="center">
+                                   <tbody><tr>
+                                       <td width="95" valign="top" align="left"><span style="font-weight:bold;display: inline-block;margin-bottom:5px;margin-top:5px;">Python&nbsp; 上海</span>
+                                       <br>
+                                           4001-6000元/月<small style="color:#b5b5b5" class="space">|</small>
+                                           人工智能<small style="color:#b5b5b5;word-break:break-all;" class="space-left">|</small>
+                                           实习
+                                       <br><br>
+                                       </td>
+                                   </tr>
+                        </tbody></table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <br>
+                        <table width="570" height="30" cellspacing="0" cellpadding="0" border="0" bgcolor="#f6f8fa" align="center">
+                            <tbody><tr>
+                                <td class="has-indicator"><span>项目经验</span></td>
+                            </tr>
+                        </tbody></table>
+                        <br>
+                        <table width="570" cellspacing="0" cellpadding="0" border="0" align="center">
+                            <tbody><tr>
+                                <td style="color:#333333;word-break: break-all; word-wrap:break-word;">
+                                    <table style="margin-bottom:15px;word-break: break-all; word-wrap:break-word;" cellspacing="0" cellpadding="0" border="0">
+                                        <tbody><tr>
+                                            <td style="text-align:right;font-weight:bold;" width="138" height="22">
+                                                <p style="width:138px;text-align:right;font-weight:bold;">2019.10
+                                                    - 2019.11</p>
+                                            </td>
+                                            <td style="padding-left:14px; font-weight:bold" width="424"><span style="display:inline-block;margin:0 2px">编程机械臂使其完成指定任务   顾问:Dr. Anne Martin</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="132" height="22"></td>
+                                            <td style="padding-left:14px;" width="424">
+                                                <p style="line-height:20px;word-break: break-all; word-wrap:break-word;">
+                                                    <span>项目简介：</span> 通过公式计算出垂直状态的机械臂各个关节的角度然后使其垂直<br> 使用Arduino工具包给机械臂编入程序,使其用头部机械钳夹取方块塔顶部的方块然后将其放在另一个塔<br>顶上并使两座塔不倒
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </tbody></table>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                        <table width="570" cellspacing="0" cellpadding="0" border="0" align="center">
+                            <tbody><tr>
+                                <td style="color:#333333;word-break: break-all; word-wrap:break-word;">
+                                    <table style="margin-bottom:15px;word-break: break-all; word-wrap:break-word;" cellspacing="0" cellpadding="0" border="0">
+                                        <tbody><tr>
+                                            <td style="text-align:right;font-weight:bold;" width="138" height="22">
+                                                <p style="width:138px;text-align:right;font-weight:bold;">2019.09
+                                                    - 2019.10</p>
+                                            </td>
+                                            <td style="padding-left:14px; font-weight:bold" width="424"><span style="display:inline-block;margin:0 2px">编程无人机令其飞到指定地点并着陆   顾问:Dr. Anne Martin</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="132" height="22"></td>
+                                            <td style="padding-left:14px;" width="424">
+                                                <p style="line-height:20px;word-break: break-all; word-wrap:break-word;">
+                                                    <span>项目简介：</span> 使用Arduino工具包来给简易无人机输入代码使其飞行<br> 测试无人机飞行的稳定性和精准性<br> 改进无人机行进方向,角度值,飞行速度和时间,添加hover(悬停)指令来使无人机在起飞和降落前自我<br>调整位置来增江稳定性和精确度
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </tbody></table>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                        <table width="570" cellspacing="0" cellpadding="0" border="0" align="center">
+                            <tbody><tr>
+                                <td style="color:#333333;word-break: break-all; word-wrap:break-word;">
+                                    <table style="margin-bottom:15px;word-break: break-all; word-wrap:break-word;" cellspacing="0" cellpadding="0" border="0">
+                                        <tbody><tr>
+                                            <td style="text-align:right;font-weight:bold;" width="138" height="22">
+                                                <p style="width:138px;text-align:right;font-weight:bold;">2019.08
+                                                    - 2020.05</p>
+                                            </td>
+                                            <td style="padding-left:14px; font-weight:bold" width="424"><span style="display:inline-block;margin:0 2px">环氧-氧化铝复合材料的断裂机理研究   顾问:Assistant Prof. Jing Du</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="132" height="22"></td>
+                                            <td style="padding-left:14px;" width="424">
+                                                <p style="line-height:20px;word-break: break-all; word-wrap:break-word;">
+                                                    <span>项目简介：</span> 目的:研究无气泡环氧氧化铝复合材料的断裂行为<br> 参与了实验方案的设计和文献综述<br> 提出了用三点弯曲试验测定单边缺口弯曲(SENB)试样的断裂韧度像堆栈中显示断裂路径<br> 提出研究气泡对断裂韧性的影响及其断裂机理
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </tbody></table>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                        <table width="570" cellspacing="0" cellpadding="0" border="0" align="center">
+                            <tbody><tr>
+                                <td style="color:#333333;word-break: break-all; word-wrap:break-word;">
+                                    <table style="margin-bottom:15px;word-break: break-all; word-wrap:break-word;" cellspacing="0" cellpadding="0" border="0">
+                                        <tbody><tr>
+                                            <td style="text-align:right;font-weight:bold;" width="138" height="22">
+                                                <p style="width:138px;text-align:right;font-weight:bold;">2019.01
+                                                    - 2019.05</p>
+                                            </td>
+                                            <td style="padding-left:14px; font-weight:bold" width="424"><span style="display:inline-block;margin:0 2px">设计水压控制的机械臂   顾问:Prof. Timothy W. Simpson</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="132" height="22"></td>
+                                            <td style="padding-left:14px;" width="424">
+                                                <p style="line-height:20px;word-break: break-all; word-wrap:break-word;">
+                                                    <span>项目简介：</span> 设计了一个3D打印液压臂套件,带有八个注射器、一个2米长的透明管和十个独特的3D打印结构,能通<br>过注射器控制机械臂来抓取物品<br> 使用多种不同的概为注射器设计了一种新的控制机构:四个注射器连接在四个3D打印杆上,使用杠杆控制柱塞更加方便
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </tbody></table>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <br>
+                        <table width="570" height="30" cellspacing="0" cellpadding="0" border="0" bgcolor="#f6f8fa" align="center">
+                            <tbody><tr>
+                                <td class="has-indicator"><span>教育经历</span></td>
+                            </tr>
+                        </tbody></table>
+                        <br>
+                        <table width="570" cellspacing="0" cellpadding="0" border="0" align="center">
+                            <tbody><tr>
+                                <td style="color:#333333;word-break: break-all; word-wrap:break-word;">
+                                    <table cellspacing="0" cellpadding="0" border="0">
+        <tbody><tr height="20">
+            <td style="" width="138" valign="top">
+                <p style="width:138px;text-align:right;font-weight:bold;">2016.08
+                    - 2020.05</p>
+            </td>
+            <td style="word-break: break-all; word-wrap:break-word;padding-left:12px;" width="412">
+                <span style="display:inline-block;margin-right:12px;font-weight:normal;">&nbsp; 宾夕法尼亚州立大学</span><span style="display:inline-block;margin-right:12px;font-weight:normal;">&nbsp; 机械工程</span><ssplay:inline-block;margin-right:12px;font-weight:normal;"> &nbsp; 本科</span>
+            </td>
+        </tr>
+                                    </tbody></table>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <br>
+                        <table width="570" height="30" cellspacing="0" cellpadding="0" border="0" bgcolor="#f6f8fa" align="center">
+                            <tbody><tr>
+                                <td class="has-indicator"><span>专业技能</span></td>
+                            </tr>
+                        </tbody></table>
+                        <br>
+                        <table width="570" cellspacing="0" cellpadding="0" border="0" align="center">
+                            <tbody><tr>
+                                <td style="color:#333333;word-break: break-all; word-wrap:break-word;">
+                                    <table cellspacing="0" cellpadding="0" border="0">
+                                        <tbody><tr height="20">
+                                            <td style="padding-left:12px;"><span style="display:inline-block;margin-right:4px;">python</span><span style="display:inline-block;margin-right:4px;">熟练</span>
+                                            </td>
+                                        </tr>
+                                        <tr height="20">
+                                            <td style="padding-left:12px;"><span style="display:inline-block;margin-right:4px;">tensorflow</span><span style="display:inline-block;margin-right:4px;">良好</span>
+                                            </td>
+                                        </tr>
+                                        <tr height="20">
+                                            <td style="padding-left:12px;"><span style="display:inline-block;margin-right:4px;">solidworks</span><span style="display:inline-block;margin-right:4px;">良好</span>
+                                            </td>
+                                        </tr>
+                                        <tr height="20">
+                                            <td style="padding-left:12px;"><span style="display:inline-block;margin-right:4px;">arduino</span><span style="display:inline-block;margin-right:4px;">良好</span>
+                                            </td>
+                                        </tr>
+                                        <tr height="20">
+                                            <td style="padding-left:12px;"><span style="display:inline-block;margin-right:4px;">matlab</span><span style="display:inline-block;margin-right:4px;">熟练</span>
+                                            </td>
+                                        </tr>
+                                    </tbody></table>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                    </td>
+                </tr>
+            </tbody></table>
+        </td>
+    </tr>
+</tbody></table><table class="is-bordered" width="600" height="80" cellspacing="0" cellpadding="0" border="0" bgcolor="#ffffff">
+    <tbody><tr>
+        <td style="border-left: 1px solid #d8dce6;" width="165"></td><td style="text-align:center;" width="270"></td><td style="border-right: 1px solid #d8dce6;" width="165"></td>
+    </tr>
+</tbody></table><table class="is-bordered is-bottom" width="600" cellspacing="0" cellpadding="0" border="0">
+    <tbody><tr height="80" bgcolor="#464b54">
+        <td width="15"></td><td><img src="https://storage-public.zhaopin.cn/org/newlogo/%E5%BA%95%E9%83%A8LOGO%402x.png" onerror="" width="80" height="22"></td><td width="5"></td><td style="color: #ffffff;font-size: 15px;">
+        450万+企业信赖的人才招聘平台，免费注册发布职位！
+    </td><td><a href="https://rd.zhaopin.com" style="display: inline-block; background-color: #ffffff; color:#262B33; padding: 6px 12px;border-radius: 100px;text-decoration:none;">去看看 &gt;</a></td><td width="15"></td>
+    </tr>
+    <tr height="30">
+        <td colspan="6" style="color: #696E7D;padding-left: 5px;border-left: 1px solid #d8dce6;border-right: 1px solid #d8dce6;border-bottom: 1px solid #d8dce6;">
+            本邮件由系统发送勿回复。为简历安全，邮件内链接5日内有效，请尽快处理或登录智联查看。<img src="http://jobimg.zhaopin.cn/email-track.png?param=rpTSFZqfTVLypP4f8qZXR7DLNGULWYGy9Cnw8q7Svg8p9Fjh+scl1hvt43mP8X0Sgu=" onerror="">
+        </td>
+    </tr>
+</tbody></table>
+
+</div></div><!--<![endif]--></includetail></div>

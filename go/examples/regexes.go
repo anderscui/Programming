@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
+	"log"
 	"regexp"
 	"strings"
 )
@@ -33,9 +34,17 @@ func main() {
 	//contactUrl = strings.Replace(contactUrl, "amp;", "", -1)
 	//fmt.Println(contactUrl)
 
-	text := ReadText("data/bjx_email_1.txt")
-	RE_BJX_CONTACT := regexp.MustCompile(`(?i)href="(.*?.bjx.com.*?)".*?>我要联系`)
-	matches := RE_BJX_CONTACT.FindStringSubmatch(text)
+	//text := ReadText("data/bjx_email_1.txt")
+	//RE_BJX_CONTACT := regexp.MustCompile(`(?i)href="(.*?.bjx.com.*?)".*?>我要联系`)
+	//matches := RE_BJX_CONTACT.FindStringSubmatch(text)
+	//contactUrl := matches[1]
+	//contactUrl = strings.Replace(contactUrl, "amp;", "", -1)
+	//fmt.Println(contactUrl)
+
+	text := ReadText("data/zhilian_email_0.txt")
+	RE_ZHILIAN_CONTACT := regexp.MustCompile(`(?i)href="(https://rd[5|6]\.zhaopin\.com/resume/.*?)".*?>*联系*`)
+	matches := RE_ZHILIAN_CONTACT.FindStringSubmatch(text)
+	log.Println(matches)
 	contactUrl := matches[1]
 	contactUrl = strings.Replace(contactUrl, "amp;", "", -1)
 	fmt.Println(contactUrl)
