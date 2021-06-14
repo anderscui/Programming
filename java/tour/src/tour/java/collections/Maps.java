@@ -10,8 +10,8 @@ public class Maps {
         counts.put("Blue", 2);
 
         // NullPointer
-        // int count = counts.get("Candy");
-        int count = counts.getOrDefault("Candy", 0);
+        int count1 = counts.get("Candy");
+        int count2 = counts.getOrDefault("Candy", 0);
 
         // merge set
         counts.merge("Candy", 1, (a, b) -> a+b);
@@ -23,6 +23,13 @@ public class Maps {
         counts.forEach((k, v) -> {
             System.out.printf("%s -> %d\n", k, v);
         });
+
+        for (var entry : counts.entrySet()) {
+            System.out.printf("%s -> %d\n", entry.getKey(), entry.getValue());
+        }
+
+        // new Map interface
+        Map<String, Double> capitals = Map.of("Barcelona", 22.5, "New York", 28.3);
 
         // Use LinkedHashMap to remember the order in which entries were added.
     }

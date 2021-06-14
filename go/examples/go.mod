@@ -8,5 +8,6 @@ require (
 	github.com/guonaihong/gout v0.0.11
 	github.com/jmoiron/sqlx v1.2.0
 	github.com/remeh/sizedwaitgroup v1.0.0 // indirect
-	github.com/simia-tech/go-pop3 v0.0.0-20150626094726-c9c20550a244
+	github.com/emersion/go-imap v1.0.6
+    github.com/emersion/go-message v0.11.2
 )
