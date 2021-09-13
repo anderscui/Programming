@@ -1,0 +1,36 @@
+#!/bin/bash
+
+clear
+echo "
+Please Select:
+  1. Display Sys Info
+  2. Display Disk Space
+  3. Display Home Space
+  0. Quit
+"
+
+read -p "Enter selection [0-3] > "
+
+if [[ "$REPLY" =~ ^[0-3]$ ]]; then
+  if [[ "$REPLY" == 0 ]]; then
+    echo "Program terminated."
+    exit
+  fi
+  if [[ "$REPLY" == 1 ]]; then
+    echo "Host: $HOSTNAME"
+    uptime
+    exit
+  fi
+  if [[ "$REPLY" == 2 ]]; then
+    df -h
+    exit
+  fi
+  if [[ "$REPLY" == 3 ]]; then
+    echo "Home Space ($USER)"
+    du -sh "$HOME"
+    exit
+  fi
+else
+  echo "Invalid entry." >&2
+  exit 1
+fi

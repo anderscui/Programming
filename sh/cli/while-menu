@@ -1,0 +1,38 @@
+#!/bin/bash
+
+DELAY=2
+
+while [[ "$REPLY" != 0 ]]; do
+  clear
+  cat <<- _EOF_
+    Please Select:
+    1. Display Sys Info
+    2. Display Disk Space
+    3. Display Home Space
+    0. Quit
+_EOF_
+  read -p "Enter selection [0-3] >"
+
+  if [[ "$REPLY" =~ ^[0-3]$ ]]; then
+    if [[ "$REPLY" == 1 ]]; then
+      echo "Host: $HOSTNAME"
+      uptime
+      sleep "$DELAY"
+    fi
+    if [[ "$REPLY" == 2 ]]; then
+      df -h
+      sleep "$DELAY"
+    fi
+    if [[ "$REPLY" == 3 ]]; then
+      echo "Home Space ($USER)"
+      du -sh "$HOME"
+      sleep "$DELAY"
+    fi
+  else
+    echo "Invalid entry." >&2
+    sleep "$DELAY"
+  fi
+
+done
+
+echo "while done :)"
