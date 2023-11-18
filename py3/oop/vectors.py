@@ -1,6 +1,7 @@
 # coding=utf-8
 from array import array
 import math
+from typing import SupportsComplex, SupportsAbs
 
 
 class Vector2d:
@@ -21,6 +22,11 @@ class Vector2d:
         type_code = chr(octets[0])
         memv = memoryview(octets[1:]).cast(type_code)
         return cls(*memv)
+
+    @classmethod
+    def from_complex(cls, datum: SupportsComplex) -> "Vector2d":
+        c = complex(datum)
+        return cls(c.real, c.imag)
 
     @property
     def x(self):
@@ -48,7 +54,7 @@ class Vector2d:
     def __eq__(self, other: "Vector2d"):
         return tuple(self) == tuple(other)
 
-    def __abs__(self):
+    def __abs__(self) -> float:
         return math.hypot(self.__x, self.__y)
 
     def __bool__(self):
@@ -71,6 +77,9 @@ class Vector2d:
     def __hash__(self):
         # hash of a tuple with the components
         return hash((self.x, self.y))
+
+    def __complex__(self) -> complex:
+        return complex(self.x, self.y)
 
 
 def show_vector_keywords(v: Vector2d):
@@ -144,3 +153,6 @@ if __name__ == '__main__':
     # print(v1.__x) -> error
     print(v1._Vector2d__x)  # still ok
 
+    # complex
+    v = Vector2d(3, 4)
+    print(isinstance(v, SupportsComplex), isinstance(v, SupportsAbs))
