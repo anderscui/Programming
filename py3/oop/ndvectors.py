@@ -6,6 +6,7 @@ import reprlib
 import math
 
 from array import array
+from collections import abc
 
 
 class Vector:
@@ -50,7 +51,9 @@ class Vector:
         # return True
 
         # simpler
-        return len(self) == len(other) and all(a == b for a, b in zip(self, other))
+        if isinstance(other, Vector):
+            return len(self) == len(other) and all(a == b for a, b in zip(self, other))
+        return NotImplemented
 
     def __hash__(self):
         hashes = (hash(item) for item in self._items)
@@ -122,6 +125,41 @@ class Vector:
             output_fmt = '({})'
         components = (format(c, fmt_spec) for c in coords)
         return output_fmt.format(', '.join(components))
+
+    def __neg__(self):
+        return Vector(-x for x in self)
+
+    def __pos__(self):
+        return Vector(self)
+
+    def __add__(self, other):
+        try:
+            pairs = itertools.zip_longest(self, other, fillvalue=0.0)
+            return Vector(a+b for a, b in pairs)
+        except TypeError:
+            return NotImplemented
+
+    def __radd__(self, other):
+        return self + other
+
+    def __mul__(self, scalar):
+        try:
+            factor = float(scalar)
+        except TypeError:
+            return NotImplemented
+        return Vector(x * factor for x in self)
+
+    def __rmul__(self, scalar):
+        return self * scalar
+
+    def __matmul__(self, other):
+        if (isinstance(other, abc.Sized) and isinstance(other, abc.Iterable)):
+            if len(self) == len(other):
+                return sum(a * b for a, b in zip(self, other))
+            else:
+                raise ValueError('@ requires vectors of equal dimension.')
+        else:
+            return NotImplemented
 
 
 if __name__ == '__main__':
