@@ -18,7 +18,7 @@ from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from random import random, uniform
 
 MIN_DELAY = 0.5  # minimum delay for do_GET (seconds)
-MAX_DELAY = 5.0  # maximum delay for do_GET (seconds)
+MAX_DELAY = 3.0  # maximum delay for do_GET (seconds)
 
 class SlowHTTPRequestHandler(SimpleHTTPRequestHandler):
     """SlowHTTPRequestHandler adds delays and errors to test HTTP clients.
