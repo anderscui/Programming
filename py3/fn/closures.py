@@ -1,21 +1,49 @@
 # coding=utf-8
-from functools import partial
-from operator import __mul__
 
 
-def multiply():
-    return [lambda x: i * x for i in range(4)]
+def make_averager():
+    items = []
+
+    def averager(val):
+        items.append(val)
+        return sum(items) / len(items)
+
+    return averager
 
 
-def multiply2():
-    return (lambda x: i * x for i in range(4))
+def make_averager2():
+    count = 0
+    total = 0.0
 
+    def averager(val):
+        # order:
+        # not global or nonlocal
+        # not local (no assignment)
+        # then go nonlocal -> global -> builtin scopes
+        # NameError: name 'b' is not defined
+        # print(b)
+        nonlocal count, total
+        count += 1
+        total += val
+        return total / count
 
-def multiply3():
-    return [partial(__mul__, i) for i in range(4)]
+    return averager
 
 
 if __name__ == '__main__':
-    print([m(100) for m in multiply()])
-    print([m(100) for m in multiply2()])
-    print([m(100) for m in multiply3()])
+    print('--avg')
+    avg = make_averager()
+    print(avg(10), avg(11), avg(15))
+    print(avg.__code__.co_varnames)
+    print(avg.__code__.co_freevars)
+    # __closure__ is a tuple, see co_freevars
+    for free_var, var in zip(avg.__code__.co_freevars, avg.__closure__):
+        print(free_var, var.cell_contents)
+
+    print('\n--avg2')
+    avg2 = make_averager2()
+    print(avg2(10), avg2(11), avg2(15))
+    print(avg2.__code__.co_varnames)
+    print(avg2.__code__.co_freevars)
+    for free_var, var in zip(avg2.__code__.co_freevars, avg2.__closure__):
+        print(free_var, var.cell_contents)
