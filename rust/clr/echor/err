@@ -1,0 +1,8 @@
+    Finished dev [unoptimized + debuginfo] target(s) in 0.04s
+     Running `target/debug/echor -x`
+error: Found argument '-x' which wasn't expected, or isn't valid in this context
+
+USAGE:
+    echor [FLAGS] <TEXT>...
+
+For more information try --help
