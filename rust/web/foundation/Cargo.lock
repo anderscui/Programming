@@ -155,6 +155,7 @@ dependencies = [
 name = "foundation"
 version = "0.1.0"
 dependencies = [
+ "handle_errors",
  "serde",
  "serde_json",
  "tokio",
@@ -247,6 +248,13 @@ dependencies = [
  "tokio",
  "tokio-util",
  "tracing",
+]
+
+[[package]]
+name = "handle_errors"
+version = "0.1.0"
+dependencies = [
+ "warp",
 ]
 
 [[package]]
