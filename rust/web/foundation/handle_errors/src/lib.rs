@@ -1,9 +1,9 @@
 use std::fmt::{Display, Formatter};
-use warp::reject::Reject;
-use warp::{Rejection, Reply};
 use warp::body::BodyDeserializeError;
 use warp::cors::CorsForbidden;
 use warp::http::StatusCode;
+use warp::reject::Reject;
+use warp::{Rejection, Reply};
 
 #[derive(Debug)]
 pub enum Error {
@@ -18,10 +18,10 @@ impl Display for Error {
         match *self {
             Error::ParseError(ref err) => {
                 write!(f, "can't parse param: {}", err)
-            },
+            }
             Error::MissingParameters => {
                 write!(f, "missing param")
-            },
+            }
             Error::InvalidRange(start, end) => {
                 write!(f, "invalid range value: [{start}, {end})")
             }

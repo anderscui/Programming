@@ -1,5 +1,5 @@
-use std::fmt::{Display, Formatter};
 use serde::{Deserialize, Serialize};
+use std::fmt::{Display, Formatter};
 
 #[derive(Debug, Deserialize, Serialize, Clone, PartialEq, Eq, Hash)]
 pub struct QuestionId(pub String);
@@ -20,8 +20,10 @@ pub struct Question {
 
 impl Display for Question {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f,
-               "{}, title: {}, content: {}, tags: {:?}",
-               self.id, self.title, self.content, self.tags)
+        write!(
+            f,
+            "{}, title: {}, content: {}, tags: {:?}",
+            self.id, self.title, self.content, self.tags
+        )
     }
 }

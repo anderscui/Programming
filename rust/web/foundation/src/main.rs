@@ -1,18 +1,20 @@
+#![warn(clippy::all)]
+
 use std::net::Ipv4Addr;
 
-use warp::{Filter, http::Method};
 use handle_errors::return_error;
+use warp::{http::Method, Filter};
 
+mod routes;
 mod store;
 mod types;
-mod routes;
 
+use crate::routes::answer::{add_answer, get_answers};
+use crate::routes::question::{add_question, delete_question, get_questions, update_question};
 use crate::store::Store;
-use crate::routes::question::{get_questions, add_question, update_question, delete_question};
-use crate::routes::answer::{get_answers, add_answer};
 
 #[tokio::main]
-async  fn main() {
+async fn main() {
     let store = Store::new();
     let store_filter = warp::any().map(move || store.clone());
 
@@ -78,7 +80,5 @@ async  fn main() {
 
     // curl http://localhost:3030
     // curl http://localhost:3030/questions
-    warp::serve(routes)
-        .run((ip, port))
-        .await;
+    warp::serve(routes).run((ip, port)).await;
 }

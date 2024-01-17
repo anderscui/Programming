@@ -4,7 +4,7 @@ use tokio::sync::RwLock;
 
 use crate::types::{
     answer::{Answer, AnswerId},
-    question::{Question, QuestionId}
+    question::{Question, QuestionId},
 };
 
 #[derive(Clone)]
