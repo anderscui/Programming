@@ -15,6 +15,21 @@ use crate::store::Store;
 
 #[tokio::main]
 async fn main() {
+    // env_logger::init();
+    log4rs::init_file("log4rs.yaml", Default::default()).unwrap();
+
+    let log_filter = warp::log::custom(|info| {
+        log::info!(
+            "{} {} {} {:?} from {} with {:?}",
+            info.method(), info.path(), info.status(),
+            info.elapsed(),
+            info.remote_addr().unwrap(),
+            info.request_headers()
+        );
+    });
+
+    let id_filter = warp::any().map(|| uuid::Uuid::new_v4().to_string());
+
     let store = Store::new();
     let store_filter = warp::any().map(move || store.clone());
 
@@ -28,6 +43,7 @@ async fn main() {
         .and(warp::path::end())
         .and(warp::query())
         .and(store_filter.clone())
+        .and(id_filter)
         .and_then(get_questions);
 
     let add_q_item = warp::post()
@@ -73,6 +89,7 @@ async fn main() {
         .or(get_a_items)
         .or(add_a_item)
         .with(cors)
+        .with(log_filter)
         .recover(return_error);
 
     let ip: Ipv4Addr = "127.0.0.1".parse().expect("Please use a valid ip address.");

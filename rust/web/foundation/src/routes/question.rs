@@ -10,11 +10,13 @@ use crate::types::question::{Question, QuestionId};
 pub async fn get_questions(
     params: HashMap<String, String>,
     store: Store,
+    id: String,
 ) -> Result<impl warp::Reply, Rejection> {
-    println!("params: {:?}", params);
+    log::info!("{}: start querying questions", id);
 
     if !params.is_empty() {
         let pagination = extract_pagination(params)?;
+        log::info!("use pagination {:?}", &pagination);
         let res: Vec<Question> = store.questions.read().await.values().cloned().collect();
         let res = if pagination.start > res.len() {
             // TODO: how to create an empty slice
@@ -26,6 +28,7 @@ pub async fn get_questions(
         };
         Ok(warp::reply::json(&res))
     } else {
+        log::info!("{}: no pagination used", id);
         let res: Vec<Question> = store.questions.read().await.values().cloned().collect();
         Ok(warp::reply::json(&res))
     }
