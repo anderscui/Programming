@@ -27,7 +27,7 @@ async fn main() {
         .with_span_events(FmtSpan::CLOSE)
         .init();
 
-    let store = Store::new();
+    let store = Store::new("postgres://webdev:webdev@localhost:5432/rust_web").await;
     let store_filter = warp::any().map(move || store.clone());
 
     let cors = warp::cors()
@@ -59,7 +59,7 @@ async fn main() {
 
     let update_q_item = warp::put()
         .and(warp::path("questions"))
-        .and(warp::path::param::<String>())
+        .and(warp::path::param::<i32>())
         .and(warp::path::end())
         .and(store_filter.clone())
         .and(warp::body::json())
@@ -67,7 +67,7 @@ async fn main() {
 
     let delete_q_item = warp::delete()
         .and(warp::path("questions"))
-        .and(warp::path::param::<String>())
+        .and(warp::path::param::<i32>())
         .and(warp::path::end())
         .and(store_filter.clone())
         .and_then(delete_question);

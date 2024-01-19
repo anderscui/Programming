@@ -11,6 +11,7 @@ pub enum Error {
     InvalidRange(usize, usize),
     QuestionNotFound,
     MissingParameters,
+    DatabaseQueryError,
 }
 
 impl Display for Error {
@@ -27,6 +28,9 @@ impl Display for Error {
             }
             Error::QuestionNotFound => {
                 write!(f, "question not found")
+            }
+            Error::DatabaseQueryError => {
+                write!(f, "query couldn't be executed")
             }
         }
     }
