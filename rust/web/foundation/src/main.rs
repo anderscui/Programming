@@ -1,6 +1,7 @@
 #![warn(clippy::all)]
 
 use std::net::Ipv4Addr;
+use tracing_subscriber::fmt::format::FmtSpan;
 
 use handle_errors::return_error;
 use warp::{http::Method, Filter};
@@ -15,20 +16,16 @@ use crate::store::Store;
 
 #[tokio::main]
 async fn main() {
-    // env_logger::init();
-    log4rs::init_file("log4rs.yaml", Default::default()).unwrap();
+    let log_filter = std::env::var("RUST_LOG")
+        .unwrap_or_else(|_| "foundation=info,warp=info".to_owned());
 
-    let log_filter = warp::log::custom(|info| {
-        log::info!(
-            "{} {} {} {:?} from {} with {:?}",
-            info.method(), info.path(), info.status(),
-            info.elapsed(),
-            info.remote_addr().unwrap(),
-            info.request_headers()
-        );
-    });
-
-    let id_filter = warp::any().map(|| uuid::Uuid::new_v4().to_string());
+    tracing_subscriber::fmt()
+        // Use the filter we built above to determine which traces to record.
+        .with_env_filter(log_filter)
+        // Record an event when each span closes.
+        // This can be used to time our routes' durations!
+        .with_span_events(FmtSpan::CLOSE)
+        .init();
 
     let store = Store::new();
     let store_filter = warp::any().map(move || store.clone());
@@ -43,8 +40,15 @@ async fn main() {
         .and(warp::path::end())
         .and(warp::query())
         .and(store_filter.clone())
-        .and(id_filter)
-        .and_then(get_questions);
+        .and_then(get_questions)
+        .with(warp::trace(|info| {
+            tracing::info_span!(
+                "get_questions request",
+                method = %info.method(),
+                path = %info.path(),
+                id = %uuid::Uuid::new_v4(),
+            )
+        }));
 
     let add_q_item = warp::post()
         .and(warp::path("questions"))
@@ -89,7 +93,7 @@ async fn main() {
         .or(get_a_items)
         .or(add_a_item)
         .with(cors)
-        .with(log_filter)
+        .with(warp::trace::request())
         .recover(return_error);
 
     let ip: Ipv4Addr = "127.0.0.1".parse().expect("Please use a valid ip address.");
