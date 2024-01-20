@@ -17,7 +17,7 @@ use crate::store::Store;
 #[tokio::main]
 async fn main() {
     let log_filter = std::env::var("RUST_LOG")
-        .unwrap_or_else(|_| "foundation=info,warp=info".to_owned());
+        .unwrap_or_else(|_| "handle_errors=warn,foundation=info,warp=info".to_owned());
 
     tracing_subscriber::fmt()
         // Use the filter we built above to determine which traces to record.
@@ -27,7 +27,15 @@ async fn main() {
         .with_span_events(FmtSpan::CLOSE)
         .init();
 
+    // sqlx migrate add -r questions_table
+    // sqlx migrate add -r answers_table
+    // sqlx migrate run --database-url postgres://webdev:webdev@localhost:5432/rust_web
     let store = Store::new("postgres://webdev:webdev@localhost:5432/rust_web").await;
+    sqlx::migrate!()
+        .run(&store.clone().connection)
+        .await
+        .expect("cann't run migration scripts.");
+
     let store_filter = warp::any().map(move || store.clone());
 
     let cors = warp::cors()
