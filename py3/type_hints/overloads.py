@@ -2,7 +2,7 @@
 import functools
 import operator
 from collections.abc import Iterable
-from typing import overload, Union, TypeVar
+from typing import overload, Union, TypeVar, get_overloads
 
 T = TypeVar('T')
 S = TypeVar('S')
@@ -18,3 +18,6 @@ def mysum(it, /, start=0):
 
 if __name__ == '__main__':
     print(mysum([1, 2, 3], 1))
+    print(mysum([1, 2]))
+    for ol in get_overloads(mysum):
+        print('overload item:', ol)

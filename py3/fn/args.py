@@ -18,7 +18,7 @@ def f(a, *, b):
     return a, b
 
 
-def divmod(a, b, /):
+def divmod2(a, b, /):
     # positional-only arguments
     return a // b, a % b
 
@@ -48,4 +48,7 @@ if __name__ == '__main__':
     print(f(1, b=2))
     print(f(a=1, b=2))
 
-    print(divmod(5, 2))
+    # TypeError: divmod2() got some positional-only arguments passed as keyword arguments: 'b'
+    # print(divmod2(5, b=2))
+    print(divmod2(5, 2))
+
