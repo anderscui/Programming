@@ -6,6 +6,4 @@ let next_weekday d =
   | Tuesday -> Wednesday
   | Wednesday -> Thursday
   | Thursday -> Friday
-  | Friday -> Monday
-  | Saturday -> Monday
-  | Sunday -> Monday
+  | Friday | Saturday | Sunday -> Monday
