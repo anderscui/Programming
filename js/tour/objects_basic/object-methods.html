@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <script src="../commons.js"></script>
+  <script>
+    print('-- Method examples:');
+
+    // let user = {
+    //   name: 'andersc',
+    //   age: 30
+    // };
+    // // user.sayHi = function() {
+    // //   print('hello!');
+    // // };
+    // user.sayHi = () => print('hello!');
+    // user.sayHi();
+
+    print('-- this in methods:');
+    let user = {
+      name: 'andersc',
+      age: 30,
+
+      sayHi() {
+        print(this.name);
+      }
+    };
+
+    user.sayHi();
+
+    print('-- Create a calculator:');
+    let calculator = {
+      sum() {
+        return this.a + this.b;
+      },
+
+      mul() {
+        return this.a * this.b;
+      },
+
+      read() {
+        this.a = +prompt('a?', 0);
+        this.b = +prompt('b?', 0);
+      }
+    };
+
+    calculator.read();
+    print(`sum: ${calculator.sum()}`);
+    print(`mul: ${calculator.mul()}`);
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <script src="../commons.js"></script>
+  <script>
+    print('--- Symbol.iterator ---');
+    let range = {
+      from: 1,
+      to: 5,
+    }
+
+    range[Symbol.iterator] = function() {
+      return {
+        current: this.from,
+        last: this.to,
+
+        next() {
+          if (this.current <= this.last) {
+            return {done: false, value: this.current++};
+          } else {
+            return {done: true};
+          }
+        }
+      };
+    };
+
+    for (let num of range) {
+      print(num);
+    }
+
+    print('--- String ---');
+    for (let ch of 'test😂') {
+      print(ch);
+    }
+
+    print('--- Calling an iterator ---');
+    let str = 'hello';
+    let iterator = str[Symbol.iterator]();
+    while (true) {
+      let result = iterator.next();
+      if (result.done) break;
+      print(result.value);
+    }
+
+    print('--- Array.from ---');
+    let arrayLike = {
+      0: 'hello',
+      1: 'world',
+      length: 2,
+    };
+    let arr = Array.from(arrayLike);
+    assertArrayEqual(['hello', 'world'], arr);
+
+
+  </script>
+
+</body>
+
+</html>

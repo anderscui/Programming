@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <script src="../commons.js"></script>
+  <script>
+    print('-- Declaration:');
+    let arr = new Array();
+    let arr2 = [];
+
+    let arr3 = [ 'Apple', { name: 'John' }, true, function() { print('hello'); } ];
+    assertEqual('John', arr3[1].name);
+    arr3[3]();
+
+    let arr5 = [1];
+    arr5.push(2);
+    arr5.push(3);
+    print(arr5);
+    arr5.shift();
+    arr5.shift();
+    print(arr5);
+
+    arr5 = [1, 2, 3];
+    print(arr5.pop());
+    print(arr5.pop());
+    print(arr5);
+
+    print('-- Misuse:');
+    let arr6 = [0];
+    arr6[5] = 5;
+    print(arr6);
+
+    print('-- Loops:');
+    let fruits = ['Apple', 'Orange', 'Plum'];
+    for (let i = 0; i  < fruits.length; i++) {
+      print(fruits[i]);
+    }
+    print('-- For ... of:');
+    for (let fruit of fruits) {
+      print(fruit);
+    }
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+  <script>
+    console.log("-- NaN:");
+    console.log("two" / 3);
+
+    console.log("- BigInt:");
+    console.log(9007199254740991 + 1);
+    console.log(9007199254740991 + 2);
+    console.log(9007199254740991 + 6);
+
+    const bigInt = 1234567890123456789012345678901234567890n;
+    console.log(bigInt);
+
+    console.log("- Strings:");
+
+    let str = 'hello';
+    let str2 = "Single quotes are OK too";
+    let phrase = `can embed another ${str}`;
+
+    console.log(str);
+    console.log(str2);
+    console.log(phrase);
+
+    console.log('-- Boolean:');
+    let isGreater = 2 > 1;
+    console.log(isGreater);
+
+    console.log('-- undefined:');
+    let age;
+    console.log(age);
+
+    let width = 100;
+    width = undefined; // normaly use `null`
+
+    console.log('-- typeof:');
+    console.log(typeof undefined); // undefined
+    console.log(typeof 0); // number
+    console.log(typeof 10n); // bigint
+    console.log(typeof true); // boolean
+    console.log(typeof Symbol('id')); // symbol
+    console.log(typeof Math); // object
+    console.log(typeof null); // object
+    console.log(typeof alert); // function
+
+  </script>
+
+</body>
+
+</html>

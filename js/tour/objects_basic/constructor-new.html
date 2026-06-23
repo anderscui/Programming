@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <script src="../commons.js"></script>
+  <script>
+    print('-- Constructor new:');
+    function User(name) {
+      this.name = name;
+      this.isAdmin = false;
+    }
+    let user = new User('andersc');
+    print(`name: ${user.name}, isAdmin: ${user.isAdmin}`);
+    
+    print('-- Methods in constructor:');
+    function User(name) {
+      this.name = name;
+
+      this.sayHi = function() {
+        print(`My name is: ${this.name}`);
+      }
+    }
+    let john = new User('John');
+    john.sayHi();
+
+    (new User('andersc')).sayHi();
+    
+  </script>
+
+</body>
+
+</html>

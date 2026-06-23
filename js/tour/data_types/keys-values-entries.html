@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <script src="../commons.js"></script>
+  <script>
+    print('--- Simple map ---');
+    let user = {
+      name: 'andersc',
+      age: 30,
+    };
+    assertArrayEqual(['name', 'age'], Object.keys(user));
+    assertArrayEqual(['andersc', 30], Object.values(user));
+    assertArrayEqual(['name', 'andersc'], Object.entries(user)[0]);
+    assertArrayEqual(['age', 30], Object.entries(user)[1]);
+    
+  </script>
+
+</body>
+
+</html>

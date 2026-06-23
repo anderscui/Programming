@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <script src="../commons.js"></script>
+  <script>
+    print('-- toString(base):');
+    let num = 255;
+    assertEqual('ff', num.toString(16));
+    assertEqual('11111111', num.toString(2));
+
+    print('-- parseInt & parseFloat:');
+    assert(isNaN(+'100px'));
+    assert(isNaN(Number('100px')));
+    // assert(!isNaN(parseInt('100px')));
+    assertEqual(100, parseInt('100px'));
+    assert(isNaN(parseInt('a123')));
+    assertEqual(255, parseInt('0xff', 16));
+
+    print('-- Math object:');
+    print(`random number: ${Math.random()}`);
+    print(`Math.max(3, 5, -10, 0, 1) = ${Math.max(3, 5, -10, 0, 1)}`);
+
+    print('-- Random from min to max:');
+    print(random(1, 5));
+    print(random(1, 5));
+    print(random(1, 5));
+
+  </script>
+
+</body>
+
+</html>

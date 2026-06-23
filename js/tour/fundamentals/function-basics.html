@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+  <script>
+    console.log('-- Default values:');
+    function showMsg(from, text='no text given') {
+      console.log(from + ': ' + text);
+    }
+    showMsg('Ann');
+
+    console.log('-- Pow:');
+    function pow(x, n) {
+      let result = 1;
+      for (let i = 0; i < n; i++) {
+        result *= x
+      }
+      return result;
+    }
+    console.log(`pow(3, 2) = ${pow(3, 2)}`);
+    console.log(`pow(3, 3) = ${pow(3, 3)}`);
+    console.log(`pow(1, 100) = ${pow(1, 100)}`);
+    
+  </script>
+
+</body>
+
+</html>

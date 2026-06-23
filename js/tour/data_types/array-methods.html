@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <script src="../commons.js"></script>
+  <script>
+    print('-- Add/remove items:');
+    let arr = ['I', 'go', 'home'];
+    print(arr);
+    delete arr[1];
+    print(arr);
+    assertEqual(3, arr.length);
+
+    print('-- splice:');
+    arr = ['I', 'go', 'home'];
+    print(arr);
+    arr.splice(1, 1);
+    print(arr);
+    assertEqual(2, arr.length);
+
+    arr = ["I", "study", "JavaScript", "right", "now"];
+    arr.splice(0, 3, "Let's", 'dance');
+    print(arr);
+
+    print('-- forEach:');
+    ['Bilbo', 'Gandalf', 'Nazgul'].forEach((item, index, array) => {
+      print(`${item} is at index ${index} in ${array}`);
+    });
+
+    print('-- Searching:');
+    print('-- find:');
+    let users = [
+      {id: 1, name: 'John'},
+      {id: 2, name: 'Pete'},
+      {id: 3, name: 'Mary'},
+    ];
+    let user = users.find(item => item.id == 2);
+    assertEqual('Pete', user.name);
+    assertEqual(undefined, users.find(item => item.name === 'Bill'));
+
+    print('--- Transform an array ---');
+    print('-- map --');
+    let userNames = users.map(item => item.name);
+    print(userNames);
+    assertArrayEqual(['John', 'Pete', 'Mary'], userNames);
+
+    print('-- split and join --');
+    let names = 'Bilbo, Gandalf, Nazgul';
+    arr = names.split(', ');
+    assertArrayEqual(['Bilbo', 'Gandalf', 'Nazgul'], arr);
+
+    let letters = 'test'.split('');
+    assertArrayEqual(['t', 'e', 's', 't'], letters);
+    assertEqual('Bilbo | Gandalf | Nazgul', arr.join(' | '));
+
+    print('--- Tasks ---');
+    function camelize(s) {
+      let letters = s.split('').map((item, index, array) => {
+        if (item === '-') {
+          return '';
+        }
+
+        let shouldUp = false;
+        if (index >= 1 && array[index-1] === '-') {
+          shouldUp = true;
+        }
+        return shouldUp ? item.toUpperCase() : item;
+      });
+      return letters.join('');
+    }
+
+    assertEqual('backgroundColor', camelize("background-color"));
+    assertEqual('listStyleImage', camelize("list-style-image"));
+    assertEqual('WebkitTransition', camelize("-webkit-transition"));
+
+  </script>
+
+</body>
+
+</html>

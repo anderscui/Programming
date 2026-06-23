@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <script src="../commons.js"></script>
+  <script>
+    print('-- Object.asign:');
+    
+    let user = {name: "andersc"};
+    let permissions1 = {canView: true};
+    let permissions2 = {canEdit: true};
+
+    Object.assign(user, permissions1, permissions2);
+    printObject(user);
+
+    print('-- structureClone:');
+    let user2 = {
+      name: 'andersc',
+      sizes: {
+        height: 182,
+        width: 50
+      }
+    };
+    
+    let clone = structuredClone(user2);
+    print(user.sizes === clone.sizes);
+
+    printObject(user2.sizes);
+    printObject(clone.sizes);
+
+    user2.sizes.width = 60;
+    printObject(user2.sizes);
+    printObject(clone.sizes);
+    
+  </script>
+
+</body>
+
+</html>

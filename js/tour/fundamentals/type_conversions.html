@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+  <script>
+    console.log('-- String conversions:');
+    let value = true;
+    console.log(typeof value)
+
+    let val = String(value)
+    console.log(typeof val);
+
+    console.log('-- Numeric conversions:');
+    let num = "6" / 2;
+    console.log(`type: ${typeof num}, value: ${num}`);
+
+    let str = "6";
+    let num2 = Number(str);
+    console.log(`type: ${typeof num2}, value: ${num2}`);
+
+    console.log(`Number(" 123 ") is ${Number(" 123 ")}`);
+    console.log(`Number("123n") is ${Number("123n")}`);
+    console.log(`Number(undefined) is ${Number(undefined)}`);
+    console.log(`Number(null) is ${Number(null)}`);
+    console.log(`Number(true) is ${Number(true)}`);
+
+    console.log('-- Boolean conversions:');
+    console.log(`Boolean(0) is ${Boolean(0)}`);
+    console.log(`Boolean("0") is ${Boolean("0")}`);
+  </script>
+
+</body>
+
+</html>

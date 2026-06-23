@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+  <script>
+    console.log('-- Function as a value:');
+    function sayHi() {
+      console.log('hello');
+    }
+    console.log(sayHi);
+    // alert(sayHi);
+
+    let sayHi2 = function() {
+      console.log('hello2');
+    }
+    console.log(sayHi2);
+
+    console.log('-- Callback functions:');
+    function ask(question, yes, no) {
+      if (confirm(question)) yes()
+      else no();
+    }
+
+    function showOk() {
+      console.log( "You agreed." );
+    }
+
+    function showCancel() {
+      console.log( "You canceled the execution." );
+    }
+
+    // usage: functions showOk, showCancel are passed as arguments to ask
+    ask("Do you agree?", showOk, showCancel);
+    
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <script src="../commons.js"></script>
+  <script>
+    print('--- Simple map ---');
+    let map = new Map();
+    map.set('1', 'str1');
+    map.set(1, 'num1');
+    map.set(true, 'bool1');
+
+    assertEqual(3, map.size);
+    assertEqual('num1', map.get(1));
+    assertEqual('bool1', map.get(true));
+
+    print('--- Iteration ---');
+    let recipeMap = new Map([
+      ['cucumber', 500],
+      ['tomatoes', 350],
+      ['onion', 50],
+    ]);
+    for (let k of recipeMap.keys()) {
+      print(`key: ${k}`);
+    }
+    for (let v of recipeMap.values()) {
+      print(`value: ${v}`);
+    }
+    for (let entry of recipeMap) {
+      print(`entry: ${entry}`);
+    }
+
+    print('--- Map from object ---');
+    let obj = {
+      name: 'andersc',
+      age: 30,
+    };
+    let m = new Map(Object.entries(obj));
+    for (let entry of m) {
+      print(`entry: ${entry}`);
+    }
+
+    print('--- Object from Map ---');
+
+    let m2 = new Map([
+      ['banana', 1],
+      ['orange', 2],
+      ['meat', 3],
+    ])
+    let obj2 = Object.fromEntries(m2.entries());
+    printObject(obj2);
+
+    print('--- Set ---');
+    let set = new Set();
+    let john = {name: 'John'};
+    let pete = {name: 'Pete'};
+    let mary = {name: 'Mary'};
+
+    set.add(john);
+    set.add(pete);
+    set.add(mary);
+    set.add(john);
+    set.add(mary);
+    assertEqual(3, set.size);
+
+    for (let user of set) {
+      print(user.name);
+    }
+
+    print('--- Filter unique array members ---');
+    let values = ["Hare", "Krishna", "Hare", "Krishna", "Krishna", "Krishna", "Hare", "Hare", ":-O"];
+    assertArrayEqual(["Hare", "Krishna", ":-O"], uniqueArray(values));
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <script src="../commons.js"></script>
+  <script>
+    print('-- String length:');
+    let s1 = `users:
+* anders
+* bill
+`;
+    print(s1.length);
+
+    let s2 = 'hello world!';
+    assert(s2[0] == 'h');
+    assert(s2.at(1) == 'e');
+    // assert(s2[-1] == '!');
+    assert(s2.at(-1) == '!');
+
+    print('-- Iterate chars:');
+    for (let ch of 'hello') {
+      print(ch);
+    }
+
+    print('-- Searching:')
+    let s3 = 'Widget with id';
+    assertEqual(-1, s3.indexOf('widget'));
+    assertEqual(0, s3.indexOf('Widget'));
+    assertEqual(1, s3.indexOf('id'));
+    assertEqual(12, s3.indexOf('id', 2));
+
+    // all occurrences
+    let str = 'As sly as a fox, as strong as an ox';
+    let target = 'as';
+
+    let pos = 0;
+    while (true) {
+      let found_pos = str.indexOf(target, pos);
+      if (found_pos == -1) break;
+
+      print(`found at ${found_pos}`);
+      pos = found_pos + 1;
+    }
+
+    assert(s3.includes('Widget'));
+    assertNot(s3.includes('widget'));
+
+    assert(s3.startsWith('Wid'));
+    assert(s3.endsWith('id'));
+
+    print('-- Substrings:');
+    let str2 = 'stringify';
+    assertEqual('s', str2.slice(0, 1));
+    assertEqual('strin', str2.slice(0, 5));
+    assertEqual('ringify', str2.slice(2));
+    assertEqual('gif', str2.slice(-4, -1));
+
+    assertEqual('s', str2.substring(0, 1));
+    assertEqual('strin', str2.substring(0, 5));
+
+    assertEqual('s', str2.substr(0, 1));
+    assertEqual('strin', str2.substr(0, 5));
+    assertEqual('tring', str2.substr(1, 5));
+
+    print('-- fromCodePoint:');
+    let str3 = '';
+    for (let i = 65; i <= 220; i++) {
+      str3 += String.fromCodePoint(i);
+    }
+    print(str3);
+
+  </script>
+
+</body>
+
+</html>

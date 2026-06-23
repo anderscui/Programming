@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <script src="../commons.js"></script>
+  <script>
+    print('-- Symbols:');
+    let id = Symbol();
+    print(typeof id);
+
+    let id2 = Symbol('id desc/name');
+    print(typeof id2);
+
+    print('-- “Hidden” properties:');
+    let user = {
+      name: 'andersc'
+    };
+    let id3 = Symbol('id');
+    user[id3] = 1;
+    print(user[id3]);
+
+    print('-- Global symbols:');
+    let id5 = Symbol.for('id');
+    let idAgain = Symbol.for('id');
+    print(id5 === idAgain);
+
+  </script>
+
+</body>
+
+</html>
