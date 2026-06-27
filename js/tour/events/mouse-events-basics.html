@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="../commons.js"></script>
+</head>
+
+<body>
+  <button id="button">Alt+Shift+Click on me!</button>
+
+  <script>
+    // print(button);
+    button.onclick = function(event) {
+      print(`shift: ${event.shiftKey}`);
+      print(`alt: ${event.altKey}`);
+      print(`ctrl: ${event.ctrlKey}`);
+      print(`meta: ${event.metaKey}`);
+
+      if (event.altKey && event.shiftKey) {
+        print('Hooray');
+      }
+    };
+  </script>
+</body>
+
+</html>

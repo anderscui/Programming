@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <script src="../commons.js"></script>
+  <script>
+    print('--- name ---');
+    function sayHi() {
+      print('hi');
+    }
+    assertEqual('sayHi', sayHi.name);
+
+    let sayHello = () => print('hello');
+    assertEqual('sayHello', sayHello.name);
+
+    print('--- length ---');
+    function f1(a) {}
+    function f2(a, b) {}
+    function many(a, b, ...more) {}
+
+    assertEqual(1, f1.length);
+    assertEqual(2, f2.length);
+    assertEqual(2, many.length);
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <script src="../commons.js"></script>
+  <script>
+    print('--- loading script ---');
+    function loadScript(src, callback) {
+      let script = document.createElement('script');
+      script.src = src;
+
+      script.onload = () => callback(script);
+      document.head.append(script);
+    }
+    loadScript('extra.js', script => {
+      print(`cool, the script ${script.src} is loaded...`);
+      print(`add(1, 2) = ${add(1, 2)}`);
+    });
+
+  </script>
+
+</body>
+
+</html>

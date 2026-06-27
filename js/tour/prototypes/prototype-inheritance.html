@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <script src="../commons.js"></script>
+  <script>
+    print('--- [[Prototype]] ---');
+    let animal = {
+      eats: true,
+      walk() {
+        print('Animal walks');
+      }
+    };
+    let rabbit = {
+      jumps: true,
+    };
+    rabbit.__proto__ = animal;
+    assert(rabbit.jumps);
+    assert(rabbit.eats);
+    rabbit.walk();
+
+  </script>
+
+</body>
+
+</html>

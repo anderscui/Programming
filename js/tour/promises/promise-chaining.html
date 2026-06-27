@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <script src="../commons.js"></script>
+  <script>
+    print('--- Promise chaining ---');
+    new Promise(function (resolve, reject) {
+      setTimeout(() => resolve(1), 500);
+    }).then(function (result) {
+      print(result);
+      return result * 2;
+    }).then(function (result) {
+      print(result);
+      return result * 2;
+    }).then(function (result) {
+      print(result);
+      return result * 2;
+    });
+
+  </script>
+
+</body>
+
+</html>

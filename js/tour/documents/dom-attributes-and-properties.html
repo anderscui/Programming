@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="../commons.js"></script>
+</head>
+
+<body id="content" type="..." something="non-std">
+  <div id="divElem">A blinking element</div>
+
+  <input id="input" type="text">
+
+  <script>
+    print('--- DOM attributes ---');
+    document.body.myData = {
+      name: 'Caesar',
+      title: 'Imperator',
+    };
+    document.body.sayTagName = function() {
+      print(this.tagName);
+    };
+
+    print(document.body.myData.title);
+    document.body.sayTagName();
+
+    // add new methods to all elements
+    Element.prototype.sayHi = function() {
+      print(`Hello, I am ${this.tagName}`);
+    };
+
+    document.documentElement.sayHi();
+    document.body.sayHi();
+
+    print('--- HTML attributes ---');
+    print(document.body.id);
+    print(document.body.type);
+    print(document.body.something);
+
+    print(document.body.getAttribute('type'));
+    print(document.body.getAttribute('something'));
+  </script>
+</body>
+
+</html>

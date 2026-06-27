@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <script src="../commons.js"></script>
+  <script>
+    print('--- loading script ---');
+    function loadScriptOld(src, callback) {
+      let script = document.createElement('script');
+      script.src = src;
+
+      script.onload = () => callback(null, script);
+      script.onerror = () => callback(new Error(`script load error for ${src}`));
+
+      document.head.append(script);
+    }
+
+    function loadScript(src) {
+      return new Promise(function(resolve, reject) {
+        let script = document.createElement('script');
+        script.src = src;
+
+        script.onload = () => resolve(script);
+        script.onerror = () => reject(new Error(`script load error for ${src}`));
+
+        document.head.append(script);
+      });
+    }
+
+    let promise = loadScript('extra.js');
+    promise.then(
+      script => print(`${script.src} is loaded!`),
+      error => print(`error: ${error.message}`)
+    );
+
+    promise.then(script => print(`another handler...`));
+    promise.then(script => print(`${script}: job done:)`));
+
+  </script>
+
+</body>
+
+</html>

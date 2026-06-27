@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="../commons.js"></script>
+</head>
+
+<body>
+  <form name="my">
+    <input name="one" value="1">
+    <input name="two" value="2">
+  </form>
+
+  <script>
+    let form = document.forms.my;
+    print(`form: ${form}`);
+
+    print(`one: ${form.elements.one}`);
+    print(`two: ${form.elements.two}`);
+
+    print(form.elements.one.value);
+  </script>
+</body>
+
+</html>

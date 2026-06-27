@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="../commons.js"></script>
+</head>
+
+<body>
+  <div id="elem">
+    <div id="elem-content">Element</div>
+  </div>
+
+  <ul>
+    <li>The</li>
+    <li>time</li>
+  </ul>
+  <ul>
+    <li>has</li>
+    <li>come.</li>
+  </ul>
+
+  <a href="http://example.com/file.zip">...</a>
+  <br />
+  <a href="http://ya.ru">...</a>
+
+  <script>
+    let elem = document.getElementById('elem');
+    elem.style.background = 'green';
+
+    let elements = document.querySelectorAll('ul > li:last-child');
+    for (let elem of elements) {
+      print(elem.innerHTML);
+    }
+
+    // matches
+    for (let elem of document.body.children) {
+      if (elem.matches('a[href$="zip"]')) {
+        print(`The archive ref: ${elem.href}`);
+      }
+    }
+  </script>
+</body>
+
+</html>

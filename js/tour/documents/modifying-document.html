@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="../commons.js"></script>
+</head>
+
+<body id="content">
+  <style>
+    .alert {
+      padding: 15px;
+      border: 1px solid #d6e9c6;
+      border-radius: 4px;
+      color: #3c763d;
+      background-color: #dff0d8;
+    }
+  </style>
+  
+  <!-- <div class="alert">
+    <strong>Hi there!</strong> You've read an important message.
+  </div> -->
+
+  <ol id="ol">
+    <li>0</li>
+    <li>1</li>
+    <li>2</li>
+  </ol>
+
+  <script>
+    // create an element
+    let div = document.createElement('div');
+    div.className = 'alert';
+    div.innerHTML = "<strong>Hi there!</strong> You've read an important message.";
+
+    // insert into document
+    document.body.append(div);
+
+    ol.before('before');
+    ol.after('after');
+
+    let liFirst = document.createElement('li');
+    liFirst.innerHTML = 'prepend';
+    ol.prepend(liFirst);
+
+    let liLast = document.createElement('li');
+    liLast.innerHTML = 'append';
+    ol.append(liLast);
+
+  </script>
+</body>
+
+</html>

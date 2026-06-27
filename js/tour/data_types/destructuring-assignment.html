@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <script src="../commons.js"></script>
+  <script>
+    print('--- Array destructruing ---');
+    let arr = ['anders', 'bill'];
+    let [firstName, lastName] = arr;
+    print(firstName);
+    print(lastName);
+
+    [firstName, lastName] = 'Anders Cui'.split(' ');
+    print(firstName);
+    print(lastName);
+
+    let [name, , title] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
+    assertEqual('Julius', name);
+    assertEqual('Consul', title);
+
+    [name, , , title] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
+    assertEqual('Julius', name);
+    assertEqual('of the Roman Republic', title);
+
+    // works with any iterable
+    let [a, b, c] = 'abcde';
+    assertArrayEqual(['a', 'b', 'c'], [a, b, c]);
+
+    // assign to anything to the left-side
+    let user = {};
+    [user.name, user.surname] = 'John Smith'.split(' ');
+    printObject(user);
+
+    // default values
+    [firstName, lastName] = [];
+    assert(firstName === undefined);
+    assert(lastName === undefined);
+
+    [firstName = 'Guest', lastName = 'Anonymous'] = ['Julius'];
+    assert(firstName === 'Julius');
+    assert(lastName === 'Anonymous');
+    
+    print('--- Object destructuring ---');
+    let options = {
+      title2: 'Menu',
+      width: 100,
+      height: 200,
+    };
+
+    let {title2, width, height} = options;
+    print([title2, width, height]);
+
+  </script>
+
+</body>
+
+</html>

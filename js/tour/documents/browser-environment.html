@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <script src="../commons.js"></script>
+  <script>
+    function sayHi() {
+      print('Hello');
+    }
+
+    // a global object
+    window.sayHi();
+
+    // a browser window object
+    print(`window.innerHeight = ${window.innerHeight}, window.innerWidth = ${window.innerWidth}`);
+
+    print('--- document ---');
+    setTimeout(() => {
+      document.body.style.background = 'green'
+    }, 1000);
+
+    print('--- BOM ---');
+    print(`href: ${location.href}`);
+    if (confirm('Go to wikipedia?')) {
+      location.href = "https://wikipedia.org"; // redirect the browser to another URL
+    }
+  </script>
+</body>
+
+</html>

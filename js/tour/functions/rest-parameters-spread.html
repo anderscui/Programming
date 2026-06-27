@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <script src="../commons.js"></script>
+  <script>
+    print('--- Rest parameters ... ---');
+    function sum(a, b) {
+      return a + b;
+    }
+    assertEqual(3, sum(1, 2, 3, 4, 5));
+
+    function sumAll(...values) {
+      let sum = 0;
+      for (let val of values) {
+        sum += val;
+      }
+      return sum;
+    }
+    assertEqual(1, sumAll(1));
+    assertEqual(3, sumAll(1, 2));
+    assertEqual(6, sumAll(1, 2, 3));
+    assertEqual(15, sumAll(1, 2, 3, 4, 5));
+
+    print('--- `arguments` variable ---');
+    function showNames() {
+      print(`${arguments.length} args received.`);
+      print(Array.from(arguments).join(', '));
+    }
+    showNames('Julius', 'Caesar');
+    showNames('Julius', 'Caesar', 'Ilya');
+
+    print('--- Spread syntax ---');
+    let arr1 = [1, -2, 3, 4];
+    let arr2 = [8, 3, -8, 1];
+    assertEqual(8, Math.max(...arr1, ...arr2));
+    // combine with normal values
+    assertEqual(25, Math.max(1, ...arr1, 25, ...arr2, 10));
+
+    // merge arrays
+    let a1 = [3, 5, 1];
+    let a2 = [8, 9, 15];
+    let merged = [0, ...a1, 2, ...a2];
+    print(merged);
+
+    // iterable
+    let str = "Hello";
+    assertArrayEqual(['H', 'e', 'l', 'l', 'o'], [...str]);
+
+  </script>
+
+</body>
+
+</html>

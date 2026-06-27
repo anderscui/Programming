@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <script src="../commons.js"></script>
+  <script>
+    print('--- Error object ---');
+    try {
+      lalala;
+    } catch (err) {
+      print(err.name);
+      print(err.message);
+      print(err.stack);
+    }
+
+  </script>
+
+</body>
+
+</html>

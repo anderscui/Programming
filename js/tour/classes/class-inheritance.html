@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <script src="../commons.js"></script>
+  <script>
+    print('--- `extends` syntax ---');
+    class Animal {
+      constructor(name) {
+        this.speed = 0;
+        this.name = name;
+      }
+
+      run(speed) {
+        this.speed = speed;
+        print(`${this.name} runs with speed ${this.speed}`);
+      }
+
+      stop() {
+        this.speed = 0;
+        print(`${this.name} stands still`);
+      }
+    }
+
+    class Rabbit extends Animal {
+      hide() {
+        print(`${this.name} hides!`);
+      }
+
+      stop() {
+        super.stop();
+        this.hide();
+      }
+    }
+
+    let animal = new Animal('human');
+    animal.run(10.0);
+    animal.stop();
+
+    let rabbit = new Rabbit('A white rabbit');
+    rabbit.run(15.0);
+    // rabbit.hide();
+    rabbit.stop();
+
+  </script>
+
+</body>
+
+</html>

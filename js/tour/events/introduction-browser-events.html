@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="../commons.js"></script>
+</head>
+
+<body class="main page shiny">
+  <input id="elem" value="Click me" onclick="print('handler by attribute')" type="button">
+  <input id="elem2" value="Click me2" type="button">
+  <button onclick="alert(this.innerHTML)">Click me (button elem)</button>
+
+  <script>
+    // elem.onclick = function() {
+    //   print('handler by onclick!');
+    // };
+
+    function handler1() {
+      print('handler1 by addEventHandler');
+    }
+
+    function handler2() {
+      print('handler2 by addEventHandler');
+    }
+
+    elem.addEventListener('click', handler1);
+    elem.addEventListener('click', handler2);
+
+    elem2.onclick = function(event) {
+      print(event.type + ' @ ' + event.currentTarget);
+      print(`Coordinates: ${event.clientX}:${event.clientY}`);
+    }
+  </script>
+</body>
+
+</html>

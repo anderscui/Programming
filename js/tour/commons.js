@@ -17,6 +17,10 @@ function print(obj) {
     console.log(obj);
 }
 
+function pprint(obj, indent=2) {
+    console.log(JSON.stringify(obj, null, indent));
+}
+
 function printObject(obj) {
     for (const [key, value] of Object.entries(obj)) {
         console.log(`${key}: ${value}`);

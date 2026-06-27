@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <script src="../commons.js"></script>
+  <script>
+    print('--- Promise chaining ---');
+    new Promise((resolve, reject) => {
+      throw new Error('~ Whoops ~');
+    }).catch(print);
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <script src="../commons.js"></script>
+  <script>
+    print('--- JSON.stringify ---');
+    let student = {
+      name: 'John',
+      age: 30,
+      isAdmin: false,
+      courses: ['html', 'css', 'js'],
+      spouse: null,
+    };
+
+    let json = JSON.stringify(student);
+    assertEqual('string', typeof json);
+    print(json);
+
+    print('--- Nested ---');
+    let room = {
+      number: 23
+    };
+    let meetup = {
+      title: 'Conference',
+      participants: [{name: "John"}, {name: "Alice"}],
+      place: room,
+    };
+    print(JSON.stringify(meetup, ['title', 'participants', 'name', 'place', 'number']));
+    print(JSON.stringify(meetup, function replacer(key, value) {
+      print(`${key}: ${value}`);
+      return (key === 'number') ? undefined : value;
+    }));
+
+    print('--- Formatting ---');
+    print(JSON.stringify(meetup, null, 2));
+
+    print('--- JSON.parse ---');
+    let numbers = "[0, 1, 2, 3]";
+    numbers = JSON.parse(numbers);
+    print(numbers);
+
+  </script>
+
+</body>
+
+</html>

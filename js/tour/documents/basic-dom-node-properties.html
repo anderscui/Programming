@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="../commons.js"></script>
+</head>
+
+<body>
+  <div id="divElem">A blinking element</div>
+
+  <script>
+    print(document.body.constructor.name); // HTMLBodyElement
+    // print(String(document.body));
+
+    // console.log(document.body);
+    // console.dir(document.body);
+
+    assert(document.body instanceof HTMLBodyElement);
+    assert(document.body instanceof HTMLElement);
+    assert(document.body instanceof Element);
+    assert(document.body instanceof Node);
+    assert(document.body instanceof EventTarget);
+
+    let elem = document.body;
+    assertEqual(1, elem.nodeType); // element
+    assertEqual(3, elem.firstChild.nodeType); // text
+    assertEqual(9, document.nodeType);
+
+    assertEqual('BODY', elem.nodeName);
+    assertEqual('BODY', elem.tagName);
+
+    divElem.style.background = 'green';
+    setInterval(() => divElem.hidden = !divElem.hidden, 1000);
+  </script>
+</body>
+
+</html>
